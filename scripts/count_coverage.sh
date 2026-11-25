@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # count_coverage.sh — prints the contract totals (nodes, props, event keys,
 # channels, jsr members, fixtures per level) from docs/contract/inventory.json,
-# docs/contract/jsr-api.md and docs/conformance/fixtures/.
+# docs/contract/jsr-api.md, the js_runtime pin's docs/PROTOCOL.md and
+# docs/conformance/fixtures/*/meta.json.
 # Exit 2 when a total cannot be computed.
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -11,6 +12,7 @@ fail() { echo "count_coverage: $1" >&2; exit 2; }
 INV=docs/contract/inventory.json
 API=docs/contract/jsr-api.md
 FIX=docs/conformance/fixtures
+PROTOCOL="${JSR_CONFORMANCE_DIR:-.conformance}/js_runtime/docs/PROTOCOL.md"
 
 [ -f "$INV" ] || fail "$INV missing (run scripts/gen_inventory.mjs)"
 [ -f "$API" ] || fail "$API missing"
@@ -19,8 +21,16 @@ nodes=$(jq '.nodes | length' "$INV") || fail "cannot count nodes in $INV"
 props=$(jq '[.nodes[].props | length] | add' "$INV") || fail "cannot count props in $INV"
 events=$(jq '[.nodes[].events | length] | add' "$INV") || fail "cannot count event keys in $INV"
 
-channels=$(grep -oE '__jsr_[a-z_0-9]+' "$API" | sort -u | wc -l | tr -d ' ')
-[ "$channels" -gt 0 ] || fail "no channels found in $API"
+# Channels: the bridge channels declared by the js_runtime pin's PROTOCOL.md
+# (the main channel table rows, each carrying its wire example), and the
+# subset the jsr members of jsr-api.md use.
+if [ -f "$PROTOCOL" ]; then
+  channels_protocol=$(grep -cE '^\| `__jsr_[a-z_0-9]+`.*sendMessage\(' "$PROTOCOL") || channels_protocol=0
+else
+  channels_protocol="n/a (fetch pin)"
+fi
+channels_members=$(grep -oE '__jsr_[a-z_0-9]+' "$API" | sort -u | wc -l | tr -d ' ')
+[ "$channels_members" -gt 0 ] || fail "no channels found in $API"
 
 members=$(grep -cE '^\| `jsr\.' "$API") || true
 [ "$members" -gt 0 ] || fail "no jsr member rows found in $API"
@@ -32,13 +42,15 @@ levels=$(jq -rRn '
     . as $c |
     reduce ($levels | to_entries | map(select(.value as $l | $line | contains($l))) | .[].key) as $i
       ($c; .[$i] += 1))) as $c |
-  reduce range(0; $levels | length) as $i (""; . + "\($levels[$i]): \($c[$i])  ")' < <(cat "$FIX"/*/expected.json 2>/dev/null))
+  reduce range(0; $levels | length) as $i (""; . + "\($levels[$i]): \($c[$i])  ")' \
+  < <(cat "$FIX"/*/meta.json 2>/dev/null))
 fixtures=$(ls -d "$FIX"/*/ 2>/dev/null | wc -l | tr -d ' ')
 [ "$fixtures" -gt 0 ] || fail "no fixtures under $FIX"
 
 echo "nodes: $nodes"
 echo "props: $props"
 echo "event keys: $events"
-echo "channels: $channels"
+echo "channels (PROTOCOL.md of the js_runtime pin): $channels_protocol"
+echo "channels (used by jsr members in jsr-api.md): $channels_members"
 echo "jsr members: $members"
-echo "fixtures: $fixtures  per level: $levels"
+echo "fixtures: $fixtures  per level (meta.json.categories): $levels"

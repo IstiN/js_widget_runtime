@@ -1,0 +1,8 @@
+{
+  "categories": ["L0"],
+  "capabilities": [],
+  "ignore": [],
+  "nodes": ["scroll", "column", "container", "text"],
+  "mock": {},
+  "notes": "Observed reference defect (kept as the fixture's behavior): the flutter reference `container` builds only its `child`, so items authored with `children:` dump without content. Tracked as IstiN/flutter_js_widget_runtime#11 ('renderer: container ignores children (found by the conformance kit)'). The text delta proving the fix is added when the Flutter pin carries it."
+}
