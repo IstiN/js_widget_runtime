@@ -1,9 +1,9 @@
 {
   "actions": [{ "wait": 200 }],
   "expect": {
-    "renders": 1,
-    "channels": ["load_asset", "set_title"],
-    "title": "asset pending",
-    "finalDumpDelta": { "text[n2].data": "asset: (missing)" }
+    "renders": 2,
+    "channels": ["load_asset", "set_title", "render"],
+    "title": "asset: asset payload 7",
+    "finalDumpDelta": { "text[n2].data": "asset says: asset payload 7" }
   }
 }

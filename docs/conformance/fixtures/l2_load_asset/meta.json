@@ -1,8 +1,15 @@
 {
-  "categories": ["L2"],
-  "capabilities": ["assets"],
+  "categories": [
+    "L2"
+  ],
+  "capabilities": [
+    "assets"
+  ],
   "ignore": [],
-  "notes": "flutter_js_widget_runtime#13: load_asset is dispatched but its response never resolves on the runner; this fixture pins the observed pre-fetch screen until the runner wires the asset handler (then expect renders 2, 'asset says: asset payload 7')",
-  "nodes": ["center", "column", "text"],
+  "nodes": [
+    "center",
+    "column",
+    "text"
+  ],
   "mock": {}
 }

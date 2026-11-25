@@ -1,9 +1,6 @@
 // L4 weather — deterministic port of example/widgets/weather (flutter pin):
-// one mocked fetch fills the card. NOTE (flutter_js_widget_runtime#12): the
-// runner never injects __JSR_MOCK_ORIGIN__, so the fetch throws a
-// ReferenceError and the reference renders the jsr.showError card as the
-// first and only render — pinned here; no initial render on purpose so
-// renders[0] is the observed error card.
+// one mocked fetch fills the card. No initial render — the card appears
+// when the mock answers.
 (function() {
   jsr.setTitle('Weather');
   jsr.fetchJson(__JSR_MOCK_ORIGIN__ + '/weather').then(function(d) {

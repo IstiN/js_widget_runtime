@@ -2,10 +2,11 @@
   "actions": [{ "wait": 400 }],
   "expect": {
     "renders": 1,
-    "channels": ["set_title", "render"],
+    "channels": ["set_title", "fetch", "render"],
     "title": "Weather",
     "finalDumpDelta": {
-      "text[n5].data": "Widget error: '__JSR_MOCK_ORIGIN__' is not defined"
+      "text[n2].data": "London",
+      "text[n5].data": "humidity 71%"
     }
   }
 }
