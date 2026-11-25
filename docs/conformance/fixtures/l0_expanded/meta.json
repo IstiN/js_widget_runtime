@@ -1,0 +1,14 @@
+{
+  "categories": [
+    "L0"
+  ],
+  "capabilities": [],
+  "ignore": [],
+  "nodes": [
+    "column",
+    "expanded",
+    "text"
+  ],
+  "mock": {},
+  "notes": "committed after flutter_js_widget_runtime#14 (Expanded/Flexible now dump with their own nodeId under the ParentDataWidget)"
+}

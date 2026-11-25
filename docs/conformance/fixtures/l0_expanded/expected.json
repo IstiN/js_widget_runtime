@@ -1,0 +1,10 @@
+{
+  "actions": [],
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "expanded[0].flex": 2,
+      "text[0].data": "L0 text"
+    }
+  }
+}
