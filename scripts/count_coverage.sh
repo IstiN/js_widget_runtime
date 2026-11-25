@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 # count_coverage.sh — prints the contract totals (nodes, props, event keys,
-# channels, jsr members, fixtures per level) from docs/contract/inventory.json,
-# docs/contract/jsr-api.md, the js_runtime pin's docs/PROTOCOL.md and
-# docs/conformance/fixtures/*/meta.json.
-# Exit 2 when a total cannot be computed.
+# node-event bindings, channels, jsr members, fixtures per level) from
+# docs/contract/inventory.json, docs/contract/jsr-api.md, the js_runtime pin's
+# docs/PROTOCOL.md and docs/conformance/fixtures/*/meta.json, then delegates
+# the fixtures-coverage check to the harness (`harness.mjs coverage`).
+# Exit 2 when a total cannot be computed or a coverage gap exists.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -19,7 +20,8 @@ PROTOCOL="${JSR_CONFORMANCE_DIR:-.conformance}/js_runtime/docs/PROTOCOL.md"
 
 nodes=$(jq '.nodes | length' "$INV") || fail "cannot count nodes in $INV"
 props=$(jq '[.nodes[].props | length] | add' "$INV") || fail "cannot count props in $INV"
-events=$(jq '[.nodes[].events | length] | add' "$INV") || fail "cannot count event keys in $INV"
+event_keys=$(jq '[.nodes[].events | add?] | add | length' "$INV") || fail "cannot count unique event keys in $INV"
+bindings=$(jq '[.nodes[].events | length] | add' "$INV") || fail "cannot count event bindings in $INV"
 
 # Channels: the bridge channels declared by the js_runtime pin's PROTOCOL.md
 # (the main channel table rows, each carrying its wire example), and the
@@ -49,8 +51,13 @@ fixtures=$(ls -d "$FIX"/*/ 2>/dev/null | wc -l | tr -d ' ')
 
 echo "nodes: $nodes"
 echo "props: $props"
-echo "event keys: $events"
+echo "event keys (unique): $event_keys"
+echo "node-event bindings: $bindings"
 echo "channels (PROTOCOL.md of the js_runtime pin): $channels_protocol"
 echo "channels (used by jsr members in jsr-api.md): $channels_members"
 echo "jsr members: $members"
 echo "fixtures: $fixtures  per level (meta.json.categories): $levels"
+
+# Fixtures-coverage check (plan 1.5): every inventory node type and every
+# event key must occur in at least one widget.js. Exit 2 on a gap.
+exec node harness/harness.mjs coverage "$@"

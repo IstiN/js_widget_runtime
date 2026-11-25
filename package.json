@@ -6,10 +6,13 @@
     "node": ">=20"
   },
   "scripts": {
-    "test": "node --test \"test/**/*.test.js\""
+    "test": "node --test \"test/*.test.js\" \"test/harness/*.test.mjs\""
   },
   "devDependencies": {
     "acorn": "^8.19.0",
     "acorn-walk": "^8.3.5"
+  },
+  "bin": {
+    "jsr-harness": "harness/harness.mjs"
   }
 }
