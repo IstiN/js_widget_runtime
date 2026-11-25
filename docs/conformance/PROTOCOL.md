@@ -212,7 +212,7 @@ the `fixtures-coverage` check.
 
 | command | behaviour |
 |---|---|
-| `jsr-harness compare --fixtures <dir> --results <dir> --out-report <file.md> [--out-badge <file.json>]` | loads every `*.result.json`, derives expected dumps, compares, scores, writes report + badge; exit 2 when a fixture fails |
+| `jsr-harness compare --fixtures <dir> --results <dir> --out-report <file.md> [--out-badge <file.json>]` | loads every `*.result.json`, derives expected dumps, compares, scores, writes report + badge; exit 2 when a fixture fails or when the results directory holds no `*.result.json` (nothing verified — the report says `FAILED`, never a 0-passed/0-failed score) |
 | `jsr-harness run --engine node\|quickjs\|chromium --fixtures <dir> --out <dir> [--filter <glob>] [--write-expect]` | runs fixtures headless (3D-API and L2 logic; fixtures with actions are SKIPped); `quickjs` needs `$JSR_QJS_HARNESS`; boot order `__IID` → three (capability `three`) → runtime half → widget half → widget.js |
 | `jsr-harness coverage --fixtures <dir> --inventory <path>` | every node type and event key of the inventory occurs in at least one `widget.js`; exit 2 on a gap |
 | `jsr-harness mock <fixture-dir>` | mock server per §3.4 |

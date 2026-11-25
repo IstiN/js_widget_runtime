@@ -53,6 +53,17 @@ test('compare exits 2 on a failing fixture', async () => {
   assert.match(md, /Score: 0%/);
 });
 
+test('compare exits 2 with a clear message when results hold no *.result.json', async () => {
+  const tmp = makeTmp();
+  const results = join(tmp, 'results');
+  mkdirSync(results); // exists, but no result file in it
+  const { code, stdout, stderr } = await runCli(['compare', '--fixtures', FIXTURES, '--results', results, '--out-report', join(tmp, 'r.md')]);
+  assert.equal(code, 2);
+  assert.match(stderr, /no \*\.result\.json in/);
+  const md = readFileSync(join(tmp, 'r.md'), 'utf8');
+  assert.match(md, /FAILED: no \*\.result\.json in/);
+});
+
 test('compare treats SKIP as skipped and exits 0', async () => {
   const tmp = makeTmp();
   const results = join(tmp, 'results');

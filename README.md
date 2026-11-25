@@ -16,7 +16,10 @@ semantics, and the conformance protocol every renderer must pass.
 - `docs/contract/` — the node inventory, `jsr.*` API reference, effect
   semantics and the per-platform support matrix.
 - `harness/` — `jsr-harness`: fixture runner (node / quickjs / chromium
-  headless), comparator, scorer, mock server.
+  headless), comparator, scorer, mock server. Comparator exit codes:
+  0 pass · 1 usage error or invalid input · 2 failures — a results
+  directory with no `*.result.json` is a failure (exit 2), never a
+  0-passed/0-failed score.
 
 ## Quality gate
 

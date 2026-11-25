@@ -89,15 +89,23 @@ function listResultFiles(resultsDir) {
   } catch {
     throw new HarnessError(`results directory not readable: ${resultsDir}`);
   }
-  if (files.length === 0) throw new HarnessError(`no *.result.json in ${resultsDir}`);
   return files;
 }
 
 async function compareCommand(opts) {
   requireOpts(opts, ['fixtures', 'results', 'out-report']);
+  const files = listResultFiles(opts.results);
+  if (files.length === 0) {
+    // an empty results directory proves nothing: verdict FAILURE, not a
+    // silent 0-passed/0-failed score
+    const message = `no *.result.json in ${opts.results} — nothing was verified`;
+    writeText(opts['out-report'], `# Conformance report\n\nFAILED: ${message}\n`);
+    process.stderr.write(`jsr-harness: compare FAILED: ${message}\n`);
+    return 2;
+  }
   const rows = [];
   let platform = null;
-  for (const file of listResultFiles(opts.results)) {
+  for (const file of files) {
     const result = loadResultFile(join(opts.results, file));
     const fixture = loadFixture(opts.fixtures, result.fixture); // HarnessError names the path
     if (platform === null) platform = result.platform;
