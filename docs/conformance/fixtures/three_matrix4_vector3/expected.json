@@ -1,0 +1,30 @@
+{
+  "expect": {
+    "state": {
+      "applied": [
+        2.872586727168,
+        2.625983651571,
+        2.681309841384
+      ],
+      "elements": [
+        1.872586727168,
+        1.88940497199,
+        1.950340654404,
+        1
+      ],
+      "decomposedPosition": [
+        0,
+        0,
+        0
+      ],
+      "decomposedScale": [
+        1,
+        1,
+        1
+      ],
+      "identityQuatW": 1,
+      "invertedDeterminant": 0.125,
+      "iid": "three_matrix4_vector3"
+    }
+  }
+}

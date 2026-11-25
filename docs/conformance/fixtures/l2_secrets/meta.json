@@ -1,0 +1,8 @@
+{
+  "categories": ["L2"],
+  "capabilities": ["secrets"],
+  "ignore": [],
+  "notes": "flutter_js_widget_runtime#13: secrets_set is dispatched but its response never resolves on the runner, so the round trip hangs; this fixture pins the observed pre-fetch screen until the runner wires secrets handlers (then expect renders 2, 'secret round-trip: true')",
+  "nodes": ["center", "column", "text"],
+  "mock": {}
+}

@@ -1,0 +1,9 @@
+{
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "text[n1].data": "CONFORMANCE RUMOR",
+      "text[n1].textTransform": "uppercase"
+    }
+  }
+}

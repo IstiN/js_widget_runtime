@@ -1,0 +1,9 @@
+{
+  "actions": [{ "wait": 200 }],
+  "expect": {
+    "renders": 1,
+    "channels": ["secrets_set", "set_title"],
+    "title": "secret pending",
+    "finalDumpDelta": { "text[n2].data": "secret: (none)" }
+  }
+}

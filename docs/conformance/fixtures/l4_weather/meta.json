@@ -1,0 +1,10 @@
+{
+  "categories": ["L4"],
+  "capabilities": ["network"],
+  "ignore": [],
+  "notes": "flutter_js_widget_runtime#12: the runner never injects __JSR_MOCK_ORIGIN__, so the mocked fetch cannot resolve; this fixture pins the observed error card until the runner fix lands (then expect the mock facts: renders 2, London/12°C/Light rain)",
+  "nodes": ["center", "column", "text"],
+  "mock": {
+    "/weather": { "status": 200, "body": { "city": "London", "tempC": 12, "desc": "Light rain", "humidity": 71 } }
+  }
+}

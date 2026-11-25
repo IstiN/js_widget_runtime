@@ -1,0 +1,8 @@
+{
+  "categories": ["L3"],
+  "capabilities": [],
+  "ignore": [],
+  "notes": "delta paths through a first-level array prop (textShadows[0].blur) resolve against the node instead of node.props in harness/compare.mjs resolveDeltaPath — harness gap reported to the integration lane; the exact effect value is pinned via the console line and the dump/payload textShadows equality is proven by diffTree",
+  "nodes": ["center", "text"],
+  "mock": {}
+}
