@@ -9,25 +9,38 @@ const COLOR_KEY = /color/i;
 export function normalizeColor(value) {
   if (typeof value !== 'string') return value;
   const hex = /^#([0-9a-f]{3,8})$/i.exec(value.trim());
-  if (hex) {
-    const h = hex[1];
-    if (h.length === 3 || h.length === 4) {
-      return '#' + [...h].map((c) => c + c).join('').toUpperCase();
-    }
-    if (h.length === 6 || h.length === 8) return '#' + h.toUpperCase();
-    return value;
-  }
+  if (hex) return hexColor(hex[1], value);
   const rgb = /^rgba?\(\s*([^)]+?)\s*\)$/i.exec(value.trim());
-  if (rgb) {
-    const nums = rgb[1].split(/[\s,+/]+/).map(Number).filter((n) => !Number.isNaN(n));
-    if (nums.length !== 3 && nums.length !== 4) return value;
-    const byte = (n) => Math.max(0, Math.min(255, Math.round(n)));
-    const alpha = nums.length === 4 ? (nums[3] > 1 ? nums[3] / 255 : nums[3]) : null; // ponytail: alpha > 1 read as 0-255 scale
-    let out = '#' + nums.slice(0, 3).map((n) => byte(n).toString(16).padStart(2, '0')).join('').toUpperCase();
-    if (alpha !== null) out += byte(Math.round(alpha * 255)).toString(16).padStart(2, '0').toUpperCase();
-    return out;
-  }
+  if (rgb) return rgbColor(rgb[1], value);
   return value;
+}
+
+function hexColor(h, original) {
+  if (h.length === 3 || h.length === 4) {
+    return '#' + [...h].map((c) => c + c).join('').toUpperCase();
+  }
+  if (h.length === 6 || h.length === 8) return '#' + h.toUpperCase();
+  return original;
+}
+
+const clampByte = (n) => Math.max(0, Math.min(255, Math.round(n)));
+
+function byteHex(n) {
+  return clampByte(n).toString(16).padStart(2, '0');
+}
+
+// ponytail: alpha > 1 read as 0-255 scale
+function alphaHex(v) {
+  const alpha = v > 1 ? v / 255 : v;
+  return clampByte(Math.round(alpha * 255)).toString(16).padStart(2, '0').toUpperCase();
+}
+
+function rgbColor(numsText, original) {
+  const nums = numsText.split(/[\s,+/]+/).map(Number).filter((n) => !Number.isNaN(n));
+  if (nums.length !== 3 && nums.length !== 4) return original;
+  let out = '#' + nums.slice(0, 3).map(byteHex).join('').toUpperCase();
+  if (nums.length === 4) out += alphaHex(nums[3]);
+  return out;
 }
 
 // Accepts the protocol v0.1 `{ root: {...} }` wrapper for integration safety;
@@ -52,6 +65,21 @@ function buildNode(node) {
   if (typeof node.type !== 'string') throw new TypeError('normalizeTree: node without string type');
   // working map: top-level keys, already-normalized props merged in first so
   // the alias rules see the same view for raw payloads and dumps (idempotent)
+  const working = workingMap(node);
+  working.type = resolveTypeAlias(working.type);
+  applyFieldAliases(working); // reference UiViewTreeNormalizer._aliasFields
+
+  const out = { type: working.type };
+  const events = isPlainObject(working.events) ? { ...working.events } : {};
+  const props = collectProps(working, events);
+  mergeStyleProps(node, props, events); // rule 1: node keys win over style keys
+  out.props = props;
+  out.events = events;
+  out.children = rawChildren(working).map(toChild); // rule 3
+  return out;
+}
+
+function workingMap(node) {
   const working = {};
   if (isPlainObject(node.props)) {
     for (const [k, v] of Object.entries(node.props)) working[k] = v;
@@ -59,26 +87,25 @@ function buildNode(node) {
   for (const [k, v] of Object.entries(node)) {
     if (k !== 'props' && !(k in working)) working[k] = v; // node keys win
   }
-  working.type = resolveTypeAlias(working.type);
-  applyFieldAliases(working); // reference UiViewTreeNormalizer._aliasFields
+  return working;
+}
 
-  const out = { type: working.type };
+// rules 2 and 6: string `on*` values move to events; values normalize.
+function collectProps(working, events) {
   const props = {};
-  const events = isPlainObject(working.events) ? { ...working.events } : {};
   for (const [k, v] of Object.entries(working)) {
     if (STRUCTURAL.has(k) || k === 'events') continue;
     if (/^on[A-Z]/.test(k) && typeof v === 'string') { events[k] = v; continue; } // rule 2
     props[k] = normalizePropValue(k, v); // rule 6
   }
-  if (isPlainObject(node.style)) { // rule 1: node keys win over style keys
-    for (const [k, v] of Object.entries(node.style)) {
-      if (!(k in props) && !(k in events)) props[k] = normalizePropValue(k, v);
-    }
+  return props;
+}
+
+function mergeStyleProps(node, props, events) {
+  if (!isPlainObject(node.style)) return;
+  for (const [k, v] of Object.entries(node.style)) {
+    if (!(k in props) && !(k in events)) props[k] = normalizePropValue(k, v);
   }
-  out.props = props;
-  out.events = events;
-  out.children = rawChildren(working).map(toChild); // rule 3
-  return out;
 }
 
 // Field aliases copied from the reference normalizer (ui_view_tree_normalizer.dart @ 1fa2ec41):
@@ -90,16 +117,26 @@ const INPUT_TYPES = new Set(['textField', 'input', 'textArea']);
 const IMAGE_TYPES = new Set(['image', 'networkImage', 'img']);
 const VALUE_TYPES = new Set(['switch', 'checkbox', 'slider']);
 
+const SVG_TYPES = new Set(['svg']);
+const DROPDOWN_TYPES = new Set(['dropdown', 'select']);
+
+// Reference UiViewTreeNormalizer._aliasFields as a type-family table; an
+// alias applies only when its target prop is absent (see the alias helpers).
+const ALIAS_FAMILIES = [
+  [BOX_TYPES, aliasBoxDecoration],
+  [BUTTON_TYPES, (out) => aliasButtonLabel(out)],
+  [INPUT_TYPES, aliasInputFields],
+  [IMAGE_TYPES, aliasImageSource],
+  [SVG_TYPES, aliasSvgMarkup],
+  [VALUE_TYPES, aliasOnChanged],
+  [DROPDOWN_TYPES, aliasDropdown],
+];
+
 function applyFieldAliases(out) {
   aliasTextContent(out);
-  const type = out.type;
-  if (BOX_TYPES.has(type)) aliasBoxDecoration(out, type);
-  if (BUTTON_TYPES.has(type)) aliasButtonLabel(out);
-  if (INPUT_TYPES.has(type)) aliasInputFields(out, type);
-  if (IMAGE_TYPES.has(type)) aliasImageSource(out);
-  if (type === 'svg') aliasSvgMarkup(out);
-  if (VALUE_TYPES.has(type)) aliasOnChanged(out);
-  if (type === 'dropdown' || type === 'select') aliasDropdown(out);
+  for (const [types, rule] of ALIAS_FAMILIES) {
+    if (types.has(out.type)) rule(out, out.type);
+  }
 }
 
 function aliasTextContent(out) {

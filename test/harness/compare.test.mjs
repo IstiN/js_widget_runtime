@@ -126,3 +126,24 @@ test('valuesEqual: number tolerance, strict everything else', () => {
   assert.equal(valuesEqual(0, false), false);
   assert.equal(valuesEqual(null, undefined), false);
 });
+
+test('nested object props diff key by key; array props diff by length and items', () => {
+  const expected = normalizeTree({ type: 'container', decoration: { color: '#112233', radius: 4 }, stops: [1, 2, 3] });
+  const actual = normalizeTree({ type: 'container', decoration: { color: '#112233', radius: 8 }, stops: [1, 2] });
+  const diffs = diffTree(expected, actual);
+  const paths = diffs.map((d) => d.path).sort();
+  assert.deepEqual(paths, ['container[0].decoration.radius', 'container[0].stops']);
+  const radius = diffs.find((d) => d.path === 'container[0].decoration.radius');
+  assert.equal(radius.expected, 4);
+  assert.equal(radius.actual, 8);
+  const stops = diffs.find((d) => d.path === 'container[0].stops');
+  assert.equal(stops.expected, 3);
+  assert.equal(stops.actual, 2);
+});
+
+test('object vs scalar mismatches walk the object side and mark the leaf missing', () => {
+  const expected = normalizeTree({ type: 'container', decoration: { color: '#112233' } });
+  const actual = normalizeTree({ type: 'container' });
+  const diffs = diffTree(expected, actual);
+  assert.deepEqual(diffs, [{ path: 'container[0].decoration.color', expected: '#112233', actual: 'missing' }]);
+});

@@ -1,0 +1,7 @@
+{
+  "actions": [],
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": { "text[0].data": "x" }
+  }
+}

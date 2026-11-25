@@ -31,6 +31,13 @@ var setInterval = function (fn, ms) {
   return id;
 };
 var clearInterval = function (id) { delete __cbs[id]; __send('__jsr_clear_interval', JSON.stringify({ iid: __IID, id: String(id) })); };
+var requestAnimationFrame = function (fn) {
+  var id = __nid();
+  __cbs[id] = fn;
+  __send('__jsr_raf', JSON.stringify({ id: id }));
+  return id;
+};
+var cancelAnimationFrame = function (id) { delete __cbs[id]; __send('__jsr_caf', JSON.stringify({ iid: __IID, id: String(id) })); };
 var console = {
   log: function () { __send('__jsr_log', JSON.stringify({ iid: __IID, id: Array.prototype.join.call(arguments, ' ') })); },
 };

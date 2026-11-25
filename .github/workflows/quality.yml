@@ -1,0 +1,90 @@
+name: Quality
+
+on: [push, pull_request]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fetch the pinned cross-repository inputs
+        run: bash scripts/fetch-conformance.sh
+      - name: Build the host qjs_harness from the js_runtime pin
+        run: bash .conformance/js_runtime/tool/build_all.sh host
+      - name: Install dependencies
+        run: npm ci
+      - name: Unit tests (quickjs engine enabled)
+        run: npm test
+        env:
+          JSR_QJS_HARNESS: ${{ github.workspace }}/.conformance/js_runtime/build/host/qjs_harness
+      - name: Coverage (c8 over src + harness)
+        run: >-
+          npx c8 --reporter=json --reporter=text --include='src/**' --include='harness/**'
+          node --test "test/*.test.js" "test/harness/*.test.mjs"
+        env:
+          JSR_QJS_HARNESS: ${{ github.workspace }}/.conformance/js_runtime/build/host/qjs_harness
+      - name: Coverage file must exist and be non-empty
+        run: test -s coverage/coverage-final.json
+      - name: CRAP gate (threshold 8.0; generated bootstrap copies excluded)
+        run: >-
+          npx crap4js src harness --coverage coverage/coverage-final.json --threshold 8.0
+          --exclude 'src/bootstrap-runtime.js' --exclude 'src/bootstrap-widget.js'
+      - name: Bootstrap drift check
+        run: node scripts/extract_bootstrap.mjs --check
+
+  fixtures-coverage:
+    # Every node type and every event key of the contract inventory must
+    # occur in at least one widget.js. Expected red until the Flutter pin
+    # carries the expanded/flexible dump fixes (flutter#14) and their
+    # fixtures land.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: bash scripts/fetch-conformance.sh
+      - run: npm ci
+      - run: node harness/harness.mjs coverage --fixtures docs/conformance/fixtures --inventory docs/contract/nodes
+
+  fixtures:
+    # Headless fixture runs on the three engines plus the comparison of the
+    # committed Flutter samples. Expected red on exactly scroll_list in the
+    # Flutter samples (flutter#11 at the pin).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fetch the pinned cross-repository inputs
+        run: bash scripts/fetch-conformance.sh
+      - name: Install dependencies
+        run: npm ci
+      - name: Build the host qjs_harness from the js_runtime pin
+        run: bash .conformance/js_runtime/tool/build_all.sh host
+      - name: Install the chromium browser
+        run: npx playwright install --with-deps chromium
+      - name: Run fixtures on the node engine
+        run: node harness/harness.mjs run --engine node --fixtures docs/conformance/fixtures --out out/node --three .conformance/js_runtime/libs/three/three.min.js
+      - name: Run fixtures on the quickjs engine
+        run: node harness/harness.mjs run --engine quickjs --fixtures docs/conformance/fixtures --out out/quickjs --three .conformance/js_runtime/libs/three/three.min.js
+        env:
+          JSR_QJS_HARNESS: ${{ github.workspace }}/.conformance/js_runtime/build/host/qjs_harness
+      - name: Run fixtures on the chromium engine
+        run: node harness/harness.mjs run --engine chromium --fixtures docs/conformance/fixtures --out out/chromium --three .conformance/js_runtime/libs/three/three.min.js
+      - name: Compare the engine results
+        run: |
+          node harness/harness.mjs compare --fixtures docs/conformance/fixtures --results out/node --out-report out/report-node.md --out-badge out/badge-node.json
+          node harness/harness.mjs compare --fixtures docs/conformance/fixtures --results out/quickjs --out-report out/report-quickjs.md --out-badge out/badge-quickjs.json
+          node harness/harness.mjs compare --fixtures docs/conformance/fixtures --results out/chromium --out-report out/report-chromium.md --out-badge out/badge-chromium.json
+      - name: Compare the Flutter samples
+        run: node harness/harness.mjs compare --fixtures docs/conformance/fixtures --results docs/conformance/samples/flutter --out-report out/report-flutter.md --out-badge out/badge-flutter.json
+      - name: Upload reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: fixture-reports
+          path: out/

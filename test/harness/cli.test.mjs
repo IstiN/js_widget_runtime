@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync, mkdirSync, mkdtempSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { runCli, makeTmp, copyFixtures, FIXTURES, STUB } from './helpers.mjs';
+import { execFile } from 'node:child_process';
+import { runCli, makeTmp, copyFixtures, FIXTURES, STUB, HARNESS, REPO_ROOT } from './helpers.mjs';
 
 test('--help exits 0 and prints usage', async () => {
   const { code, stdout } = await runCli(['--help']);
@@ -100,7 +101,7 @@ test('coverage prints totals and exits 0 when complete', async () => {
   assert.match(stdout, /props: 3\/3 covered/);
   assert.match(stdout, /event keys: 1\/1 covered/);
   assert.match(stdout, /fixtures L1: 1/);
-  assert.match(stdout, /fixtures L2: 1/);
+  assert.match(stdout, /fixtures L2: 2/);
   assert.match(stdout, /fixtures 3D-API: 1/);
 });
 
@@ -132,7 +133,7 @@ test('run --engine node drives mock fetch, storage, timers and exportState', asy
   const out = makeTmp();
   const { code, stdout } = await runCli(['run', '--engine', 'node', '--fixtures', FIXTURES, '--out', out, '--bootstrap-dir', STUB]);
   assert.equal(code, 0);
-  assert.match(stdout, /ran 2 fixture\(s\), skipped 1/); // taps has actions -> SKIP
+  assert.match(stdout, /ran 3 fixture\(s\), skipped 2/); // taps has actions; delta_probe pins a renderer value
   const logic = JSON.parse(readFileSync(join(out, 'logic_l2.result.json'), 'utf8'));
   assert.equal(logic.status, 'DONE');
   assert.equal(logic.platform, 'node');
@@ -184,4 +185,52 @@ test('run --engine quickjs without $JSR_QJS_HARNESS exits 1', async () => {
 test('invalid settle, filter and fixture values exit 1', async () => {
   assert.equal((await runCli(['run', '--engine', 'node', '--fixtures', join(FIXTURES, 'taps'), '--out', makeTmp()])).code, 1);
   assert.equal((await runCli(['run', '--engine', 'node', '--fixtures', FIXTURES, '--out', makeTmp(), '--bootstrap-dir', STUB, '--filter', 'zzz_*'])).code, 1);
+});
+
+test('inventory loading errors exit 1 naming the path', async () => {
+  const tmp = makeTmp();
+  const missing = await runCli(['coverage', '--fixtures', FIXTURES, '--inventory', join(tmp, 'nope.json')]);
+  assert.equal(missing.code, 1);
+  assert.match(missing.stderr, /inventory path not readable/);
+
+  const broken = join(tmp, 'broken.json');
+  writeFileSync(broken, '{nope');
+  const invalid = await runCli(['coverage', '--fixtures', FIXTURES, '--inventory', broken]);
+  assert.equal(invalid.code, 1);
+  assert.match(invalid.stderr, /invalid inventory JSON/);
+
+  const badShape = join(tmp, 'shape.json');
+  writeFileSync(badShape, JSON.stringify({ nodes: 'nope' }));
+  const shape = await runCli(['coverage', '--fixtures', FIXTURES, '--inventory', badShape]);
+  assert.equal(shape.code, 1);
+  assert.match(shape.stderr, /inventory must hold nodes\[\]/);
+});
+
+test('mock serves meta.json.mock until SIGTERM', async () => {
+  const child = execFile(process.execPath, [HARNESS, 'mock', join(FIXTURES, 'logic_l2')], { cwd: REPO_ROOT }, () => {});
+  try {
+    const origin = await new Promise((resolve, reject) => {
+      child.stdout.once('data', (d) => {
+        const line = String(d).split('\n').find((l) => l.startsWith('http://'));
+        if (line) resolve(line); else reject(new Error(`no origin line in ${d}`));
+      });
+      setTimeout(() => reject(new Error('mock server printed no origin')), 5000);
+    });
+    const res = await fetch(`${origin}/data`);
+    assert.deepEqual(await res.json(), { answer: 42 });
+    const exit = new Promise((resolve) => child.once('exit', (code) => resolve(code)));
+    child.kill('SIGTERM');
+    assert.equal(await exit, 0);
+  } finally {
+    if (child.exitCode === null && !child.killed) child.kill('SIGKILL');
+  }
+});
+
+test('fixtures with renderer-side finalDumpDelta are skipped headless', async () => {
+  const out = makeTmp();
+  const { code, stdout } = await runCli(['run', '--engine', 'node', '--fixtures', FIXTURES, '--out', out, '--bootstrap-dir', STUB, '--filter', 'delta_probe']);
+  assert.equal(code, 0);
+  const probe = JSON.parse(readFileSync(join(out, 'delta_probe.result.json'), 'utf8'));
+  assert.equal(probe.status, 'SKIP');
+  assert.match(probe.skippedReason, /finalDumpDelta/);
 });

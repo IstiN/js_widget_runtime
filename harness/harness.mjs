@@ -49,17 +49,26 @@ function parseArgs(argv) {
   const opts = {};
   const positionals = [];
   for (let i = 0; i < rest.length; i++) {
-    const arg = rest[i];
-    if (arg === '--help') { opts.help = true; continue; }
-    if (!arg.startsWith('--')) { positionals.push(arg); continue; }
-    const flag = arg.slice(2);
-    if (!VALUE_FLAGS.has(flag) && flag !== 'write-expect') throw new HarnessError(`unknown flag --${flag}`);
-    if (flag === 'write-expect') { opts.writeExpect = true; continue; }
-    const value = rest[++i];
-    if (value === undefined || value.startsWith('--')) throw new HarnessError(`flag --${flag} needs a value`);
-    opts[flag] = value;
+    i = parseArg(rest, i, opts, positionals);
   }
   return { command, opts, positionals };
+}
+
+function parseArg(rest, i, opts, positionals) {
+  const arg = rest[i];
+  if (arg === '--help') { opts.help = true; return i; }
+  if (!arg.startsWith('--')) { positionals.push(arg); return i; }
+  return parseValueFlag(rest, i, opts);
+}
+
+function parseValueFlag(rest, i, opts) {
+  const flag = rest[i].slice(2);
+  if (!VALUE_FLAGS.has(flag) && flag !== 'write-expect') throw new HarnessError(`unknown flag --${flag}`);
+  if (flag === 'write-expect') { opts.writeExpect = true; return i; }
+  const value = rest[++i];
+  if (value === undefined || value.startsWith('--')) throw new HarnessError(`flag --${flag} needs a value`);
+  opts[flag] = value;
+  return i;
 }
 
 function requireOpts(opts, keys) {
@@ -73,9 +82,7 @@ function writeText(path, text) {
   writeFileSync(path, text);
 }
 
-async function compareCommand(opts) {
-  requireOpts(opts, ['fixtures', 'results', 'out-report']);
-  const resultsDir = opts.results;
+function listResultFiles(resultsDir) {
   let files;
   try {
     files = readdirSync(resultsDir).filter((f) => f.endsWith('.result.json')).sort();
@@ -83,26 +90,18 @@ async function compareCommand(opts) {
     throw new HarnessError(`results directory not readable: ${resultsDir}`);
   }
   if (files.length === 0) throw new HarnessError(`no *.result.json in ${resultsDir}`);
-  const fixturesDir = opts.fixtures;
+  return files;
+}
+
+async function compareCommand(opts) {
+  requireOpts(opts, ['fixtures', 'results', 'out-report']);
   const rows = [];
   let platform = null;
-  for (const file of files) {
-    const path = join(resultsDir, file);
-    const result = loadResultFile(path);
-    const fixture = loadFixture(fixturesDir, result.fixture); // HarnessError names the path
+  for (const file of listResultFiles(opts.results)) {
+    const result = loadResultFile(join(opts.results, file));
+    const fixture = loadFixture(opts.fixtures, result.fixture); // HarnessError names the path
     if (platform === null) platform = result.platform;
-    if (result.status === 'SKIP') {
-      rows.push({ fixture: result.fixture, level: levelLabel(fixture), status: 'SKIP', diffs: [], weight: weightFor(fixture.meta.categories) });
-      continue;
-    }
-    const diffs = evaluateResult(fixture, result);
-    rows.push({
-      fixture: result.fixture,
-      level: levelLabel(fixture),
-      status: diffs.length > 0 ? 'FAIL' : 'PASS',
-      diffs,
-      weight: weightFor(fixture.meta.categories),
-    });
+    rows.push(resultRow(result, fixture));
   }
   const report = renderReport({ platform, rows });
   writeText(opts['out-report'], report);
@@ -111,84 +110,122 @@ async function compareCommand(opts) {
   return rows.some((r) => r.status === 'FAIL') ? 2 : 0;
 }
 
+function resultRow(result, fixture) {
+  const level = levelLabel(fixture);
+  const weight = weightFor(fixture.meta.categories);
+  if (result.status === 'SKIP') return { fixture: result.fixture, level, status: 'SKIP', diffs: [], weight };
+  const diffs = evaluateResult(fixture, result);
+  return { fixture: result.fixture, level, status: diffs.length > 0 ? 'FAIL' : 'PASS', diffs, weight };
+}
+
 function levelLabel(fixture) {
   const categories = fixture.meta.categories ?? [];
   return categories.length ? categories.join('/') : 'unknown';
 }
 
-async function runCommand(opts) {
-  requireOpts(opts, ['engine', 'fixtures', 'out']);
+function engineRunner(engine) {
   const engines = { node: runWithNode, quickjs: runWithQuickjs, chromium: runWithChromium };
-  const runner = engines[opts.engine];
-  if (!runner) throw new HarnessError(`--engine must be node, quickjs or chromium (got ${opts.engine})`);
+  const runner = engines[engine];
+  if (!runner) throw new HarnessError(`--engine must be node, quickjs or chromium (got ${engine})`);
+  return runner;
+}
+
+function settleMsOpt(opts) {
   const settleMs = Number(opts.settle ?? 1000);
   if (!Number.isFinite(settleMs) || settleMs < 0) throw new HarnessError(`--settle must be a non-negative number (got ${opts.settle})`);
-  const fixturesDir = opts.fixtures;
-  let ids = listFixtureIds(fixturesDir);
+  return settleMs;
+}
+
+function selectFixtureIds(opts) {
+  let ids = listFixtureIds(opts.fixtures);
   if (opts.filter) {
     const re = globToRegExp(opts.filter);
     ids = ids.filter((id) => re.test(id));
   }
-  if (ids.length === 0) throw new HarnessError(`no fixtures match in ${fixturesDir}${opts.filter ? ` (filter ${opts.filter})` : ''}`);
-  const outDir = opts.out;
-  mkdirSync(outDir, { recursive: true });
-  const bootOpts = { bootstrapDir: opts['bootstrap-dir'], threePath: opts.three };
+  if (ids.length === 0) throw new HarnessError(`no fixtures match in ${opts.fixtures}${opts.filter ? ` (filter ${opts.filter})` : ''}`);
+  return ids;
+}
+
+function assertWriteExpectFixture(writeExpect, fixture) {
+  if (writeExpect && !fixture.meta.categories.includes('3D-API')) {
+    throw new HarnessError(`fixture ${fixture.id}: --write-expect is generator mode for 3D-API fixtures only (categories: ${levelLabel(fixture)})`);
+  }
+}
+
+// headless has no hit testing and no renderer: interactive fixtures and
+// fixtures whose finalDumpDelta asserts renderer-side values (defaults,
+// live text, transforms) belong to platform runners
+function headlessSkipReason(fixture) {
+  if ((fixture.expected.actions?.length ?? 0) > 0) return 'actions require a rendering runner';
+  const delta = fixture.expected.expect.finalDumpDelta;
+  if (delta && typeof delta === 'object' && Object.keys(delta).length > 0) {
+    return 'renderer assertions (finalDumpDelta) require a rendering runner';
+  }
+  return null;
+}
+
+function skipRow(fixture, engine, skippedReason) {
   const enginePlatform = { node: 'node', quickjs: 'quickjs', chromium: 'web' };
+  return {
+    fixture: fixture.id, platform: enginePlatform[engine], status: 'SKIP',
+    dump: null, trace: [], diffs: [], screenshot: null, renders: [], finalDump: null,
+    title: null, state: null, console: [], error: null,
+    skippedReason,
+  };
+}
+
+function writeExpectState(fixture, result) {
+  fixture.expected.expect.state = result.state;
+  writeText(join(fixture.dir, 'expected.json'), JSON.stringify(fixture.expected, null, 2) + '\n');
+}
+
+async function runCommand(opts) {
+  requireOpts(opts, ['engine', 'fixtures', 'out']);
+  const runner = engineRunner(opts.engine);
+  const settleMs = settleMsOpt(opts);
+  const ids = selectFixtureIds(opts);
+  mkdirSync(opts.out, { recursive: true });
+  const bootOpts = { bootstrapDir: opts['bootstrap-dir'], threePath: opts.three };
   let done = 0;
   let skipped = 0;
   for (const id of ids) {
-    const fixture = loadFixture(fixturesDir, id);
-    if (opts.writeExpect && !fixture.meta.categories.includes('3D-API')) {
-      throw new HarnessError(`fixture ${id}: --write-expect is generator mode for 3D-API fixtures only (categories: ${levelLabel(fixture)})`);
-    }
-    let result;
-    if ((fixture.expected.actions?.length ?? 0) > 0) {
-      // headless has no hit testing: interactive fixtures belong to platform runners
-      result = {
-        fixture: id, platform: enginePlatform[opts.engine], status: 'SKIP',
-        dump: null, trace: [], diffs: [], screenshot: null, renders: [], finalDump: null,
-        title: null, state: null, console: [], error: null,
-        skippedReason: 'actions require a rendering runner',
-      };
-      skipped++;
-    } else {
-      result = await runner(fixture, { settleMs, ...bootOpts });
-      done++;
-    }
-    if (opts.writeExpect) {
-      fixture.expected.expect.state = result.state;
-      writeText(join(fixture.dir, 'expected.json'), JSON.stringify(fixture.expected, null, 2) + '\n');
-    }
-    writeText(join(outDir, `${id}.result.json`), JSON.stringify(result, null, 2) + '\n');
+    const fixture = loadFixture(opts.fixtures, id);
+    assertWriteExpectFixture(opts.writeExpect, fixture);
+    const skipReason = headlessSkipReason(fixture);
+    const result = skipReason ? skipRow(fixture, opts.engine, skipReason) : await runner(fixture, { settleMs, ...bootOpts });
+    if (skipReason) skipped++; else done++;
+    if (opts.writeExpect) writeExpectState(fixture, result);
+    writeText(join(opts.out, `${id}.result.json`), JSON.stringify(result, null, 2) + '\n');
   }
-  console.log(`ran ${done} fixture(s), skipped ${skipped} (engine ${opts.engine}) -> ${outDir}`);
+  console.log(`ran ${done} fixture(s), skipped ${skipped} (engine ${opts.engine}) -> ${opts.out}`);
   return 0;
 }
 
-async function coverageCommand(opts) {
-  requireOpts(opts, ['fixtures', 'inventory']);
-  let invPath = opts.inventory;
+function loadInventory(invPath) {
+  let path = invPath;
   try {
-    if (statSync(invPath).isDirectory()) invPath = join(invPath, '..', 'inventory.json');
+    if (statSync(path).isDirectory()) path = join(path, '..', 'inventory.json');
   } catch {
     throw new HarnessError(`inventory path not readable: ${invPath}`);
   }
   let inventory;
   try {
-    inventory = JSON.parse(readFileSync(invPath, 'utf8'));
+    inventory = JSON.parse(readFileSync(path, 'utf8'));
   } catch (e) {
-    throw new HarnessError(`invalid inventory JSON at ${invPath}: ${e.message}`);
+    throw new HarnessError(`invalid inventory JSON at ${path}: ${e.message}`);
   }
   if (!Array.isArray(inventory.nodes) || inventory.nodes.some((n) => !n || typeof n.type !== 'string')) {
-    throw new HarnessError(`inventory must hold nodes[] with type (and optional events[], props[]) at ${invPath}`);
+    throw new HarnessError(`inventory must hold nodes[] with type (and optional events[], props[]) at ${path}`);
   }
-  const fixturesDir = opts.fixtures;
-  const fixtures = listFixtureIds(fixturesDir).map((id) => loadFixture(fixturesDir, id));
+  return inventory;
+}
+
+// ponytail: regex scan of widget.js sources; fixtures are declarative
+// jsr.render payloads, so key-shaped regexes find every node/event/prop.
+function scanFixtures(fixtures) {
   const seenTypes = new Set();
   const seenEvents = new Set();
   const seenProps = new Set();
-  // ponytail: regex scan of widget.js sources; fixtures are declarative
-  // jsr.render payloads, so key-shaped regexes find every node/event/prop.
   for (const fixture of fixtures) {
     for (const m of fixture.widget.matchAll(/(?:^|[,{\s])type\s*:\s*['"]([^'"]+)['"]/g)) {
       seenTypes.add(resolveTypeAlias(m[1]));
@@ -200,61 +237,91 @@ async function coverageCommand(opts) {
       seenProps.add(m[1]);
     }
   }
+  return { seenTypes, seenEvents, seenProps };
+}
 
+// props may be a name array or a prop map ({ "<name>": {...} }) — both count as names
+function propNamesOf(node) {
+  if (Array.isArray(node.props)) return node.props;
+  if (node.props && typeof node.props === 'object') return Object.keys(node.props);
+  return [];
+}
+
+function coverageCounts(inventory, { seenTypes, seenEvents, seenProps }) {
   const missingNodes = [];
   let coveredProps = 0;
   let totalProps = 0;
   for (const node of inventory.nodes) {
     if (!seenTypes.has(node.type)) missingNodes.push(node.type);
-    // props may be a name array or a prop map ({ "<name>": {...} }) — both count as names
-    const propNames = Array.isArray(node.props) ? node.props : (node.props && typeof node.props === 'object' ? Object.keys(node.props) : []);
-    for (const prop of propNames) {
+    for (const prop of propNamesOf(node)) {
       totalProps++;
       if (seenProps.has(prop)) coveredProps++;
     }
   }
   const eventKeys = [...new Set(inventory.nodes.flatMap((n) => n.events ?? []))];
   const missingEvents = eventKeys.filter((key) => !seenEvents.has(key));
+  return { missingNodes, coveredProps, totalProps, eventKeys, missingEvents };
+}
 
+function printCoverage(inventory, counts, fixtures) {
   const levels = ['L0', 'L1', 'L2', 'L3', 'L4', '3D-API'];
-  const perLevel = Object.fromEntries(levels.map((level) => [level, fixtures.filter((f) => f.meta.categories.includes(level)).length]));
-  console.log(`nodes: ${inventory.nodes.length - missingNodes.length}/${inventory.nodes.length} covered`);
-  if (totalProps > 0) console.log(`props: ${coveredProps}/${totalProps} covered`);
-  console.log(`event keys: ${eventKeys.length - missingEvents.length}/${eventKeys.length} covered`);
-  for (const level of levels) console.log(`fixtures ${level}: ${perLevel[level]}`);
-  if (missingNodes.length > 0 || missingEvents.length > 0) {
-    if (missingNodes.length > 0) console.error(`missing node fixtures: ${missingNodes.join(', ')}`);
-    if (missingEvents.length > 0) console.error(`missing event fixtures: ${missingEvents.join(', ')}`);
-    return 2;
+  console.log(`nodes: ${inventory.nodes.length - counts.missingNodes.length}/${inventory.nodes.length} covered`);
+  if (counts.totalProps > 0) console.log(`props: ${counts.coveredProps}/${counts.totalProps} covered`);
+  console.log(`event keys: ${counts.eventKeys.length - counts.missingEvents.length}/${counts.eventKeys.length} covered`);
+  for (const level of levels) {
+    const n = fixtures.filter((f) => f.meta.categories.includes(level)).length;
+    console.log(`fixtures ${level}: ${n}`);
   }
+}
+
+function coverageVerdict({ missingNodes, missingEvents }) {
+  if (missingNodes.length > 0) console.error(`missing node fixtures: ${missingNodes.join(', ')}`);
+  if (missingEvents.length > 0) console.error(`missing event fixtures: ${missingEvents.join(', ')}`);
+  return missingNodes.length > 0 || missingEvents.length > 0 ? 2 : 0;
+}
+
+async function coverageCommand(opts) {
+  requireOpts(opts, ['fixtures', 'inventory']);
+  const inventory = loadInventory(opts.inventory);
+  const fixtures = listFixtureIds(opts.fixtures).map((id) => loadFixture(opts.fixtures, id));
+  const counts = coverageCounts(inventory, scanFixtures(fixtures));
+  printCoverage(inventory, counts, fixtures);
+  return coverageVerdict(counts);
+}
+
+function usageExit(argv) {
+  if (argv.length === 0) {
+    process.stderr.write(USAGE + '\n');
+    return 1;
+  }
+  process.stdout.write(USAGE + '\n');
+  return 0;
+}
+
+function dispatchCommand(command, opts, positionals) {
+  switch (command) {
+    case 'compare': return compareCommand(opts);
+    case 'run': return runCommand(opts);
+    case 'coverage': return coverageCommand(opts);
+    case 'mock': return mockCommand(positionals);
+    default: throw new HarnessError(`unknown command "${command}" (try --help)`);
+  }
+}
+
+async function mockCommand(positionals) {
+  if (positionals.length !== 1) throw new HarnessError('usage: jsr-harness mock <fixture-dir>');
+  await runMockCommand(resolveDir(positionals[0]));
   return 0;
 }
 
 async function main(argv) {
-  if (argv.length === 0 || argv[0] === '--help') {
-    if (argv.length === 0) {
-      process.stderr.write(USAGE + '\n');
-      return 1;
-    }
-    process.stdout.write(USAGE + '\n');
-    return 0;
-  }
+  if (argv.length === 0 || argv[0] === '--help') return usageExit(argv);
   const { command, opts, positionals } = parseArgs(argv);
   if (opts.help) {
     process.stdout.write(USAGE + '\n');
     return 0;
   }
-  switch (command) {
-    case 'compare': return compareCommand(opts);
-    case 'run': return runCommand(opts);
-    case 'coverage': return coverageCommand(opts);
-    case 'mock':
-      if (positionals.length !== 1) throw new HarnessError('usage: jsr-harness mock <fixture-dir>');
-      await runMockCommand(resolveDir(positionals[0]));
-      return 0;
-    default:
-      throw new HarnessError(`unknown command "${command}" (try --help)`);
-  }
+  return dispatchCommand(command, opts, positionals);
 }
 
 function resolveDir(p) {

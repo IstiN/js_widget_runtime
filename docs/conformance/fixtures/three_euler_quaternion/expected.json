@@ -24,8 +24,7 @@
         0,
         0.923879532511
       ],
-      "axisQuatLength": 1,
-      "iid": "three_euler_quaternion"
+      "axisQuatLength": 1
     }
   }
 }

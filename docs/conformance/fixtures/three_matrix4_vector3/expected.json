@@ -23,8 +23,7 @@
         1
       ],
       "identityQuatW": 1,
-      "invertedDeterminant": 0.125,
-      "iid": "three_matrix4_vector3"
+      "invertedDeterminant": 0.125
     }
   }
 }

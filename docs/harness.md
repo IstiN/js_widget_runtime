@@ -28,7 +28,11 @@ jsr-harness mock <fixture-dir>
   - `finalDumpDelta` — map of delta path → expected value (see below).
 - `widget.js` — the widget; `jsr.render(...)` payloads are the ground truth the expected AUI is derived from.
 
-Actions (headless runners cannot execute them; rendering platform runners do): `{ "tap": "<nodeId|text>" }`, `{ "input": { "node": "<nodeId>", "value": "..." } }`, `{ "scroll": [dx, dy] }`, `{ "swipe": [x1, y1, x2, y2, ms] }`, `{ "wait": <ms> }`, `{ "back": true }`.
+Actions (headless runners cannot execute them; rendering platform runners do): `{ "tap": "<nodeId|text>" }`, `{ "input": { "node": "<nodeId>", "value": "..." } }`, `{ "scroll": [dx, dy] }`, `{ "swipe": [x1, y1, x2, y2, ms] }`, `{ "submit": "<nodeId>" }`, `{ "wait": <ms> }`, `{ "back": true }`.
+
+- `submit` (PROTOCOL v0.2 amendment A1) performs the keyboard done action on the named text node (`textField`, `textArea`, `searchBar`) and must dispatch `onSubmit` / `onSubmitted` ([flutter#17](https://github.com/IstiN/flutter_js_widget_runtime/issues/17)).
+- `scroll` is a **pointer scroll** (wheel/trackpad signal) at the center of the surface — it reaches `gestureDetector.onScroll` and scrollable containers; `swipe` is the **touch drag** (PROTOCOL v0.2 amendment A2, [flutter#18](https://github.com/IstiN/flutter_js_widget_runtime/issues/18)).
+- `back` dispatches the reference host-event global `__jsrHostEvent('back', {})`.
 
 ## AUI normalization (`harness/normalize.mjs`)
 
@@ -118,7 +122,12 @@ Engines:
 Object payloads arrive with the routing `iid` merged in (the canonical `__tag`); the host strips that transport tag before handlers run, and unwraps the `{iid, id}` envelope on the raw-payload channels — protocol §1/§6.
 
 Fixtures with `actions` are `SKIP` (`skippedReason: "actions require a
-rendering runner"`) — headless has no hit testing. `--settle <ms>` (default
+rendering runner"`) — headless has no hit testing. Fixtures whose
+`expect.finalDumpDelta` is non-empty are also `SKIP`
+(`skippedReason: "renderer assertions (finalDumpDelta) require a rendering
+runner"`) — the delta pins renderer-side values (defaults, live text,
+transforms) that only a platform dump carries; the headless derived tree
+equals the normalized payload. `--settle <ms>` (default
 1000) is the real-time window timers get. `--filter <glob>` selects fixture ids
 (`*`/`?` wildcards). `--write-expect` copies the measured `state` into
 `expect.state` of `expected.json` and refuses (exit 1) any fixture whose

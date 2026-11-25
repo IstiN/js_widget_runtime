@@ -36,21 +36,32 @@ export function createMockServer(mock = {}) {
 // Runs the `mock` command: resolves the fixture meta.json, starts the server,
 // prints the origin, serves until SIGTERM/SIGINT.
 export async function runMockCommand(fixtureDir) {
+  const { origin, close } = await createMockServer(loadMock(fixtureDir));
+  console.log(origin);
+  await serveUntilSignal(close); // hold the event loop; main exits 0 on signal
+}
+
+function loadMock(fixtureDir) {
   const metaPath = join(fixtureDir, 'meta.json');
-  let mock = {};
   try {
-    const meta = JSON.parse(readFileSync(metaPath, 'utf8'));
-    if (meta.mock !== undefined && (meta.mock === null || typeof meta.mock !== 'object' || Array.isArray(meta.mock))) {
-      throw new HarnessError(`meta.json.mock must be an object (${metaPath})`);
-    }
-    mock = meta.mock ?? {};
+    return validateMock(metaPath, JSON.parse(readFileSync(metaPath, 'utf8')));
   } catch (e) {
     if (e instanceof HarnessError) throw e;
     throw new HarnessError(`missing or invalid meta.json at ${metaPath}: ${e.message}`);
   }
-  const { origin, close } = await createMockServer(mock);
-  console.log(origin);
-  const stop = () => { close(); process.exit(0); };
-  process.on('SIGTERM', stop);
-  process.on('SIGINT', stop);
+}
+
+function validateMock(metaPath, meta) {
+  if (meta.mock !== undefined && (meta.mock === null || typeof meta.mock !== 'object' || Array.isArray(meta.mock))) {
+    throw new HarnessError(`meta.json.mock must be an object (${metaPath})`);
+  }
+  return meta.mock ?? {};
+}
+
+function serveUntilSignal(close) {
+  return new Promise((resolve) => {
+    const stop = () => { close(); resolve(); };
+    process.on('SIGTERM', stop);
+    process.on('SIGINT', stop);
+  });
 }

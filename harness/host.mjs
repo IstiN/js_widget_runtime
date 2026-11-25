@@ -11,6 +11,84 @@ const UNSUPPORTED_PROMISE_CHANNELS = new Set(['__jsr_exec', '__jsr_open_url', '_
 
 // createHost({ fixtureDir, mock, fire }) — fire(action) is provided by the
 // engine runner; actions: {type:'resolve'|'interval'|'raf'|'cancel', ...}.
+// Per-channel handlers at module level (each stays small: CRAP gate CC <= 8,
+// split or tested above 8.0). Signature (host, ctx, payload); ctx carries
+// { fire, mock, fixtureDir }. Promise channels resolve exactly one value.
+function resolveHandler(valueFn) {
+  // parseTagged + id guard + one resolve; valueFn maps (parsed payload, ctx).
+  return (host, ctx, payload) => {
+    const p = parseTagged(payload);
+    if (!p || typeof p.id !== 'string') return;
+    ctx.fire({ type: 'resolve', id: p.id, value: valueFn(p, ctx) });
+  };
+}
+
+function cancelTimer(host, ctx, payload) {
+  const id = unwrapRaw(payload);
+  host.timers.delete(id);
+  ctx.fire({ type: 'cancel', id });
+}
+
+function intervalMsOf(p, once) {
+  return typeof p.ms === 'number' && p.ms >= 0 ? p.ms : (once ? 0 : 1000);
+}
+
+const HANDLERS = {
+  __jsr_log: (host, _ctx, payload) => { host.consoleLines.push(unwrapRaw(payload)); },
+  __jsr_render: (host, _ctx, payload) => { host.renders.push(String(payload)); },
+  __jsr_set_title: (host, _ctx, payload) => { host.title = unwrapRaw(payload); },
+  __jsr_set_interval: (host, ctx, payload) => {
+    const p = parseTagged(payload);
+    if (!p || typeof p.id !== 'string') return;
+    const once = Boolean(p.once);
+    const ms = intervalMsOf(p, once);
+    host.timers.set(p.id, { kind: 'interval', ms, once });
+    ctx.fire({ type: 'interval', id: p.id, ms, once });
+  },
+  __jsr_clear_interval: cancelTimer,
+  __jsr_raf: (host, ctx, payload) => {
+    const p = parseTagged(payload);
+    if (!p || typeof p.id !== 'string') return;
+    host.timers.set(p.id, { kind: 'raf' });
+    ctx.fire({ type: 'raf', id: p.id });
+  },
+  __jsr_caf: cancelTimer,
+  __jsr_fetch: resolveHandler((p, ctx) => mockLookup(ctx.mock, String(p.url))),
+  __jsr_storage_get: resolveHandler((p, ctx) => storedValue(ctx.host.storage, p.key)),
+  __jsr_storage_set: (host, _ctx, payload) => {
+    const p = parseTagged(payload);
+    if (!p || typeof p.key !== 'string') return;
+    host.storage.set(p.key, p.value);
+  },
+  __jsr_secrets_get: resolveHandler((p, ctx) => storedValue(ctx.host.secrets, p.key)),
+  __jsr_secrets_set: resolveHandler((p, ctx) => {
+    ctx.host.secrets.set(p.key, p.value);
+    return true;
+  }),
+  __jsr_load_asset: resolveHandler((p, ctx) => readAsset(ctx.fixtureDir, String(p.path))),
+  __jsr_export_state: (host, _ctx, payload) => {
+    const p = parseTagged(payload);
+    host.state = p === undefined ? undefined : p;
+  },
+};
+
+// unsupported promise channels resolve the documented named error
+const unsupported = (channel) => resolveHandler(() => ({ __error: `${channel} is not supported by this host` }));
+for (const channel of UNSUPPORTED_PROMISE_CHANNELS) HANDLERS[channel] = unsupported(channel);
+
+function storedValue(map, key) {
+  return map.has(key) ? map.get(key) : null;
+}
+
+function makeHandlers(host, { fire, mock, fixtureDir }) {
+  const handlers = {};
+  const ctx = { fire, mock, fixtureDir, host };
+  for (const [channel, fn] of Object.entries(HANDLERS)) {
+    handlers[channel] = (payload) => fn(host, ctx, payload);
+  }
+  return handlers;
+}
+
 export function createHost({ fixtureDir, mock = {}, fire = () => {} }) {
   const host = {
     trace: [],        // verbs: channel name without the __jsr_ prefix
@@ -26,69 +104,24 @@ export function createHost({ fixtureDir, mock = {}, fire = () => {} }) {
       if (!t) return;
       if (t.kind === 'raf' || t.once) this.timers.delete(id);
     },
+    // replay support: a new round re-executes every item from scratch, so
+    // accumulators and timers reset to their boot state
+    restart() {
+      this.trace.length = 0;
+      this.renders.length = 0;
+      this.consoleLines.length = 0;
+      this.title = null;
+      this.state = undefined;
+      this.timers.clear();
+      this.storage.clear();
+      this.secrets.clear();
+    },
   };
-
+  const handlers = makeHandlers(host, { fire, mock, fixtureDir });
   host.handle = (channel, payload) => {
-    const verb = channel.slice('__jsr_'.length);
-    host.trace.push(verb);
-    if (channel === '__jsr_log') {
-      host.consoleLines.push(unwrapRaw(payload));
-    } else if (channel === '__jsr_render') {
-      host.renders.push(String(payload));
-    } else if (channel === '__jsr_set_title') {
-      host.title = unwrapRaw(payload);
-    } else if (channel === '__jsr_set_interval') {
-      const p = parseTagged(payload);
-      if (!p || typeof p.id !== 'string') return;
-      const ms = typeof p.ms === 'number' && p.ms >= 0 ? p.ms : (p.once ? 0 : 1000);
-      host.timers.set(p.id, { kind: 'interval', ms, once: Boolean(p.once) });
-      fire({ type: 'interval', id: p.id, ms, once: Boolean(p.once) });
-    } else if (channel === '__jsr_clear_interval') {
-      const id = unwrapRaw(payload);
-      host.timers.delete(id);
-      fire({ type: 'cancel', id });
-    } else if (channel === '__jsr_raf') {
-      const p = parseTagged(payload);
-      if (!p || typeof p.id !== 'string') return;
-      host.timers.set(p.id, { kind: 'raf' });
-      fire({ type: 'raf', id: p.id });
-    } else if (channel === '__jsr_caf') {
-      const id = unwrapRaw(payload);
-      host.timers.delete(id);
-      fire({ type: 'cancel', id });
-    } else if (channel === '__jsr_fetch') {
-      const p = parseTagged(payload);
-      if (!p || typeof p.id !== 'string') return;
-      fire({ type: 'resolve', id: p.id, value: mockLookup(mock, String(p.url)) });
-    } else if (UNSUPPORTED_PROMISE_CHANNELS.has(channel)) {
-      const p = parseTagged(payload);
-      if (!p || typeof p.id !== 'string') return;
-      fire({ type: 'resolve', id: p.id, value: { __error: `${channel} is not supported by this host` } });
-    } else if (channel === '__jsr_storage_get') {
-      const p = parseTagged(payload);
-      if (!p || typeof p.id !== 'string') return;
-      fire({ type: 'resolve', id: p.id, value: host.storage.has(p.key) ? host.storage.get(p.key) : null });
-    } else if (channel === '__jsr_storage_set') {
-      const p = parseTagged(payload);
-      if (!p || typeof p.key !== 'string') return;
-      host.storage.set(p.key, p.value);
-    } else if (channel === '__jsr_secrets_get') {
-      const p = parseTagged(payload);
-      if (!p || typeof p.id !== 'string') return;
-      fire({ type: 'resolve', id: p.id, value: host.secrets.has(p.key) ? host.secrets.get(p.key) : null });
-    } else if (channel === '__jsr_secrets_set') {
-      const p = parseTagged(payload);
-      if (!p || typeof p.id !== 'string') return;
-      host.secrets.set(p.key, p.value);
-      fire({ type: 'resolve', id: p.id, value: true });
-    } else if (channel === '__jsr_load_asset') {
-      const p = parseTagged(payload);
-      if (!p || typeof p.id !== 'string') return;
-      fire({ type: 'resolve', id: p.id, value: readAsset(fixtureDir, String(p.path)) });
-    } else if (channel === '__jsr_export_state') {
-      const p = parseTagged(payload);
-      host.state = p === undefined ? undefined : p;
-    }
+    host.trace.push(channel.slice('__jsr_'.length));
+    const handler = handlers[channel];
+    if (handler) handler(payload);
     // __jsr_host_call_binary, __jsr_scene3d_command, __jsr_event_done:
     // fire-and-forget lanes, dropped by an unsupported host (PROTOCOL 5).
   };
