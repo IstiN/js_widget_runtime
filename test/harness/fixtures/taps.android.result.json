@@ -1,0 +1,37 @@
+{
+  "fixture": "taps",
+  "platform": "android",
+  "status": "DONE",
+  "dump": {
+    "type": "column",
+    "props": { "spacing": 8 },
+    "children": [
+      { "type": "text", "props": { "data": "Taps: 0", "fontSize": 20 }, "children": [], "events": {}, "nodeId": "n1" },
+      { "type": "textButton", "props": { "text": "tap", "data": "tap" }, "children": [], "events": { "onTap": "inc" }, "nodeId": "n2" }
+    ],
+    "events": {},
+    "nodeId": "n0"
+  },
+  "trace": ["render", "set_title", "render", "set_title"],
+  "diffs": [],
+  "screenshot": null,
+  "renders": [
+    "{\"type\":\"column\",\"spacing\":8,\"children\":[{\"type\":\"text\",\"data\":\"Taps: 0\",\"style\":{\"fontSize\":20}},{\"type\":\"textButton\",\"text\":\"tap\",\"onTap\":\"inc\"}],\"__iid\":\"taps\"}",
+    "{\"type\":\"column\",\"spacing\":8,\"children\":[{\"type\":\"text\",\"data\":\"Taps: 1\",\"style\":{\"fontSize\":20}},{\"type\":\"textButton\",\"text\":\"tap\",\"onTap\":\"inc\"}],\"__iid\":\"taps\"}"
+  ],
+  "finalDump": {
+    "type": "column",
+    "props": { "spacing": 8 },
+    "children": [
+      { "type": "text", "props": { "data": "Taps: 1", "fontSize": 20 }, "children": [], "events": {}, "nodeId": "n1" },
+      { "type": "textButton", "props": { "text": "tap", "data": "tap" }, "children": [], "events": { "onTap": "inc" }, "nodeId": "n2" }
+    ],
+    "events": {},
+    "nodeId": "n0"
+  },
+  "title": "Tapped: 1",
+  "state": null,
+  "console": [],
+  "error": null,
+  "skippedReason": null
+}
