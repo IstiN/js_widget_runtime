@@ -1,0 +1,9 @@
+{
+  "actions": [],
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "line[0].x2": 173
+    }
+  }
+}

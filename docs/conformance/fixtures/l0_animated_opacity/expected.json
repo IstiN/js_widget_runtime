@@ -1,0 +1,9 @@
+{
+  "actions": [],
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "animatedOpacity[0].opacity": 0.5
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "actions": [],
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "path[0].path": "M 10 10 L 90 90"
+    }
+  }
+}

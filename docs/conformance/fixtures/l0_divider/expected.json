@@ -1,0 +1,9 @@
+{
+  "actions": [],
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "divider[0].thickness": 2
+    }
+  }
+}

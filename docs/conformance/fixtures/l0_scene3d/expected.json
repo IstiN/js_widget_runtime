@@ -1,0 +1,9 @@
+{
+  "actions": [],
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "scene3d[0].width": 200
+    }
+  }
+}

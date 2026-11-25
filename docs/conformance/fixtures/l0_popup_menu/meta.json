@@ -1,0 +1,15 @@
+{
+  "categories": [
+    "L0"
+  ],
+  "capabilities": [],
+  "ignore": [
+    "message"
+  ],
+  "nodes": [
+    "column",
+    "popupMenu"
+  ],
+  "mock": {},
+  "notes": "reference defect flutter_js_widget_runtime#15: popupMenu ignores documented items (payload items dropped, dump children []) and injects undocumented default message \"Show menu\"; observed behavior kept per plan 462"
+}

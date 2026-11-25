@@ -1,0 +1,15 @@
+{
+  "categories": [
+    "L0"
+  ],
+  "capabilities": [],
+  "ignore": [
+    "data",
+    "text"
+  ],
+  "nodes": [
+    "column",
+    "searchBar"
+  ],
+  "mock": {}
+}

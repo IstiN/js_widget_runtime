@@ -1,0 +1,9 @@
+{
+  "actions": [],
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "searchBar[0].hint": "L0 search"
+    }
+  }
+}
