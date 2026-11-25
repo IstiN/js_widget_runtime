@@ -1,0 +1,10 @@
+{
+  "actions": [
+    { "scroll": [0, 60] },
+    { "wait": 100 }
+  ],
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": { "text[0].data": "idle" }
+  }
+}

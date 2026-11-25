@@ -1,0 +1,8 @@
+{
+  "categories": ["L1"],
+  "capabilities": [],
+  "ignore": ["data"],
+  "nodes": ["column", "text", "map"],
+  "mock": {},
+  "notes": "onMarkerTap triggers through tap-by-visible-text on the marker label (markers render a Text with the label over an opaque hit target); the tap action cannot target a marker without a label because tap selects by nodeId or visible text only."
+}

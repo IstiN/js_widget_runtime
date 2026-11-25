@@ -1,0 +1,12 @@
+{
+  "actions": [
+    { "tap": "N2" },
+    { "tap": "R2" },
+    { "tap": "S2" },
+    { "wait": 100 }
+  ],
+  "expect": {
+    "renders": 4,
+    "finalDumpDelta": { "text[0].data": "idle cn1=1 cn2=1 cn3=S2" }
+  }
+}

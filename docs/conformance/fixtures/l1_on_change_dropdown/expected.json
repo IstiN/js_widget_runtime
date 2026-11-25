@@ -1,0 +1,12 @@
+{
+  "actions": [
+    { "tap": "n2" },
+    { "wait": 200 },
+    { "tap": "Beta" },
+    { "wait": 100 }
+  ],
+  "expect": {
+    "renders": 2,
+    "finalDumpDelta": { "text[0].data": "d1=Beta" }
+  }
+}

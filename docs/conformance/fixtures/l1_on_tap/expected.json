@@ -1,0 +1,12 @@
+{
+  "actions": [
+    { "tap": "n2" },
+    { "tap": "n4" },
+    { "tap": "n5" },
+    { "tap": "n6" }
+  ],
+  "expect": {
+    "renders": 5,
+    "finalDumpDelta": { "text[0].data": "idle t1 t2 t3 t4" }
+  }
+}

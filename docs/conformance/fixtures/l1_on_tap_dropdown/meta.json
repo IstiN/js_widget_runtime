@@ -1,0 +1,8 @@
+{
+  "categories": ["L1"],
+  "capabilities": [],
+  "ignore": ["data"],
+  "nodes": ["column", "text", "dropdown"],
+  "mock": {},
+  "notes": "dropdown registers onTap as the fallback of onChange ?? onChanged ?? onTap: it dispatches on option selection (payload {value}), not on the tap that opens the menu."
+}

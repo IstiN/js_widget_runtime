@@ -1,0 +1,8 @@
+{
+  "categories": ["L1"],
+  "capabilities": [],
+  "ignore": [],
+  "nodes": ["column", "text", "webView"],
+  "mock": {},
+  "notes": "no action type of PROTOCOL v0.2 triggers onEvent on webView: the reference runner has no webView host, the node renders the media placeholder and never creates the callback."
+}

@@ -1,0 +1,8 @@
+{
+  "categories": ["L1"],
+  "capabilities": [],
+  "ignore": ["data", "message"],
+  "nodes": ["column", "text", "navigationBar", "sizedBox", "navigationRail", "segmentedButton"],
+  "mock": {},
+  "notes": "popupMenu is excluded: its builders drop the items list from the applied dump record (flutter #15), so a popupMenu fixture cannot pass compare until that is fixed; selection itself does fire at runtime (proven in lane runs)."
+}
