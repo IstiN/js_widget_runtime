@@ -1,0 +1,9 @@
+{
+  "actions": [{ "wait": 1500 }],
+  "expect": {
+    "renders": 2,
+    "channels": ["set_interval", "clear_interval", "set_title"],
+    "title": "interval done: 2",
+    "finalDumpDelta": { "text[n2].data": "interval done: 2" }
+  }
+}

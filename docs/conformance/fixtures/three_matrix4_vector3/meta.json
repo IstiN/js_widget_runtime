@@ -1,0 +1,7 @@
+{
+  "categories": ["3D-API"],
+  "capabilities": ["three"],
+  "ignore": [],
+  "nodes": ["center", "text"],
+  "mock": {}
+}

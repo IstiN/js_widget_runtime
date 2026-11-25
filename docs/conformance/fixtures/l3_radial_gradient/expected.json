@@ -1,0 +1,10 @@
+{
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "container[n1].decoration.gradient.type": "radial",
+      "container[n1].decoration.gradient.radius": 0.8,
+      "container[n1].decoration.gradient.colors[1]": "#1E293B"
+    }
+  }
+}

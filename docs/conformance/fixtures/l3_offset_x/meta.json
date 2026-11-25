@@ -1,0 +1,7 @@
+{
+  "categories": ["L3"],
+  "capabilities": [],
+  "ignore": [],
+  "nodes": ["center", "text"],
+  "mock": {}
+}

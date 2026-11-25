@@ -1,0 +1,9 @@
+{
+  "actions": [{ "wait": 800 }],
+  "expect": {
+    "renders": 2,
+    "channels": ["set_interval", "set_title"],
+    "title": "timeout fired",
+    "finalDumpDelta": { "text[n2].data": "timeout fired" }
+  }
+}

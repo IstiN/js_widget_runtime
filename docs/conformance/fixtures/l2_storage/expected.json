@@ -1,0 +1,9 @@
+{
+  "actions": [{ "wait": 600 }],
+  "expect": {
+    "renders": 2,
+    "channels": ["set_interval", "storage_set", "set_title"],
+    "title": "stored v42",
+    "finalDumpDelta": { "text[n2].data": "stored: v42" }
+  }
+}

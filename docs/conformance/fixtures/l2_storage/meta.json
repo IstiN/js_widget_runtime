@@ -1,0 +1,7 @@
+{
+  "categories": ["L2"],
+  "capabilities": ["storage"],
+  "ignore": [],
+  "nodes": ["center", "column", "text"],
+  "mock": {}
+}

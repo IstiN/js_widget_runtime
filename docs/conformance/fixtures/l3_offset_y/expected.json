@@ -1,0 +1,6 @@
+{
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": { "text[n1].offsetY": -16 }
+  }
+}

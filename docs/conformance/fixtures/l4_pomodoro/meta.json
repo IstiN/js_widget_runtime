@@ -1,0 +1,7 @@
+{
+  "categories": ["L4"],
+  "capabilities": ["storage"],
+  "ignore": [],
+  "nodes": ["center", "column", "text", "gestureDetector"],
+  "mock": {}
+}

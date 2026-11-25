@@ -1,0 +1,11 @@
+{
+  "actions": [{ "wait": 400 }],
+  "expect": {
+    "renders": 1,
+    "channels": ["set_title", "render"],
+    "title": "fetching",
+    "finalDumpDelta": {
+      "text[n5].data": "Widget error: '__JSR_MOCK_ORIGIN__' is not defined"
+    }
+  }
+}

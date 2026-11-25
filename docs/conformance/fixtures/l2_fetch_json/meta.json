@@ -1,0 +1,10 @@
+{
+  "categories": ["L2"],
+  "capabilities": ["network"],
+  "ignore": [],
+  "notes": "flutter_js_widget_runtime#12: the runner never injects __JSR_MOCK_ORIGIN__, so the widget dies with a ReferenceError and the jsr.showError card replaces the tree; this fixture pins that observed behavior until the runner fix lands (then expect the mock body: renders 2, 'answer 42')",
+  "nodes": ["center", "column", "text"],
+  "mock": {
+    "/api/answer": { "status": 200, "body": { "answer": 42 } }
+  }
+}
