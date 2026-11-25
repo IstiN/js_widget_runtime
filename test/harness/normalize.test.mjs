@@ -1,0 +1,105 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { normalizeTree, normalizeColor } from '../../harness/normalize.mjs';
+
+test('style merges into props, node keys win, style removed', () => {
+  const tree = normalizeTree({ type: 'text', data: 'x', fontSize: 24, style: { fontSize: 99, color: '#abc' } });
+  assert.deepEqual(tree.props, { data: 'x', fontSize: 24, color: '#AABBCC' });
+  assert.equal('style' in tree, false);
+});
+
+test('on* string props move to events, non-string on* props stay', () => {
+  const tree = normalizeTree({ type: 'button', onTap: 'go', onHover: 3 });
+  assert.deepEqual(tree.events, { onTap: 'go' });
+  assert.equal(tree.props.onHover, 3);
+});
+
+test('existing events map is kept and merged', () => {
+  const tree = normalizeTree({ type: 'b', events: { onLongPress: 'lp' }, onTap: 't' });
+  assert.deepEqual(tree.events, { onLongPress: 'lp', onTap: 't' });
+});
+
+test('child object promotes to children, child string becomes a text node', () => {
+  const fromObject = normalizeTree({ type: 'column', child: { type: 'text', data: 'a' } });
+  assert.equal(fromObject.children.length, 1);
+  assert.equal(fromObject.children[0].type, 'text');
+  assert.equal(fromObject.children[0].props.data, 'a');
+  const fromString = normalizeTree({ type: 'column', child: 'hello' });
+  assert.deepEqual(fromString.children[0].props, { data: 'hello' });
+});
+
+test('items promote to children (reference semantics)', () => {
+  const tree = normalizeTree({ type: 'row', items: [{ type: 'text', data: 'a' }] });
+  assert.equal(tree.children.length, 1);
+  assert.equal('items' in tree, false);
+});
+
+test('children may contain bare strings', () => {
+  const tree = normalizeTree({ type: 'column', children: ['a', { type: 'text', data: 'b' }] });
+  assert.equal(tree.children[0].type, 'text');
+  assert.deepEqual(tree.children[0].props, { data: 'a' });
+  assert.deepEqual(tree.children[1].props, { data: 'b' });
+});
+
+test('key prop and __iid transport tag are removed', () => {
+  const tree = normalizeTree({ type: 'text', data: 'x', key: 'k1', __iid: 'w1' });
+  assert.equal('key' in tree, false);
+  assert.equal('__iid' in tree, false);
+});
+
+test('type aliases resolve (exact, then lowercase)', () => {
+  assert.equal(normalizeTree({ type: 'Text' }).type, 'text');
+  assert.equal(normalizeTree({ type: 'ElevatedButton' }).type, 'button');
+  assert.equal(normalizeTree({ type: 'View' }).type, 'column');
+  assert.equal(normalizeTree({ type: 'COLUMN' }).type, 'COLUMN'); // no bare 'column' key in the reference table
+  assert.equal(normalizeTree({ type: 'customThing' }).type, 'customThing');
+});
+
+test('colors normalize to upper-case #RRGGBB[AA]; non-color keys untouched', () => {
+  const tree = normalizeTree({ type: 'text', data: 'x', color: '#abc', backgroundColor: '#AbCd', borderColor: '#aabbccdd', shadowColor: 'rgb(1, 2, 3)', fontSize: 10 });
+  assert.equal(tree.props.color, '#AABBCC');
+  assert.equal(tree.props.backgroundColor, '#AABBCCDD');
+  assert.equal(tree.props.borderColor, '#AABBCCDD');
+  assert.equal(tree.props.shadowColor, '#010203');
+  assert.equal(tree.props.fontSize, 10);
+});
+
+test('normalizeColor handles rgba alpha and leaves unknown strings', () => {
+  assert.equal(normalizeColor('rgba(255, 0, 0, 0.5)'), '#FF000080');
+  assert.equal(normalizeColor('#f1f5f9'), '#F1F5F9');
+  assert.equal(normalizeColor('red'), 'red');
+  assert.equal(normalizeColor(42), 42);
+});
+
+test('nested prop objects normalize colors too', () => {
+  const tree = normalizeTree({ type: 'container', decoration: { color: '#abc', radius: 4 }, gradient: [{ color: '#112233' }] });
+  assert.equal(tree.props.decoration.color, '#AABBCC');
+  assert.equal(tree.props.gradient[0].color, '#112233');
+});
+
+test('nodeId assignment is depth-first pre-order from n0', () => {
+  const tree = normalizeTree({
+    type: 'column',
+    children: [
+      { type: 'text', data: 'a' },
+      { type: 'row', children: [{ type: 'text', data: 'b' }] },
+      'c',
+    ],
+  });
+  assert.equal(tree.nodeId, 'n0');
+  assert.equal(tree.children[0].nodeId, 'n1');
+  assert.equal(tree.children[1].nodeId, 'n2');
+  assert.equal(tree.children[1].children[0].nodeId, 'n3');
+  assert.equal(tree.children[2].nodeId, 'n4');
+});
+
+test('normalizeTree accepts the v0.1 { root: ... } wrapper', () => {
+  const tree = normalizeTree({ root: { type: 'text', data: 'x' } });
+  assert.equal(tree.type, 'text');
+});
+
+test('normalizeTree rejects invalid payloads', () => {
+  assert.throws(() => normalizeTree(null), TypeError);
+  assert.throws(() => normalizeTree({ children: [] }), TypeError);
+  assert.throws(() => normalizeTree({ type: 'x', children: [42] }), TypeError);
+});

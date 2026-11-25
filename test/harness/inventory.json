@@ -1,0 +1,7 @@
+{
+  "nodes": [
+    { "type": "column", "events": [], "props": ["spacing"] },
+    { "type": "text", "events": [], "props": ["data", "fontSize"] },
+    { "type": "textButton", "events": ["onTap"], "props": ["text"] }
+  ]
+}
