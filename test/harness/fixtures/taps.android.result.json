@@ -7,7 +7,7 @@
     "props": { "spacing": 8 },
     "children": [
       { "type": "text", "props": { "data": "Taps: 0", "fontSize": 20 }, "children": [], "events": {}, "nodeId": "n1" },
-      { "type": "textButton", "props": { "text": "tap" }, "children": [], "events": { "onTap": "inc" }, "nodeId": "n2" }
+      { "type": "textButton", "props": { "text": "tap", "data": "tap" }, "children": [], "events": { "onTap": "inc" }, "nodeId": "n2" }
     ],
     "events": {},
     "nodeId": "n0"
@@ -24,7 +24,7 @@
     "props": { "spacing": 8 },
     "children": [
       { "type": "text", "props": { "data": "Taps: 1", "fontSize": 20 }, "children": [], "events": {}, "nodeId": "n1" },
-      { "type": "textButton", "props": { "text": "tap" }, "children": [], "events": { "onTap": "inc" }, "nodeId": "n2" }
+      { "type": "textButton", "props": { "text": "tap", "data": "tap" }, "children": [], "events": { "onTap": "inc" }, "nodeId": "n2" }
     ],
     "events": {},
     "nodeId": "n0"

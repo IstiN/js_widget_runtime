@@ -55,3 +55,35 @@ test('run --engine chromium drives the page through Playwright', async (t) => {
   assert.equal(logic.renders.length, 1);
   assert.equal(logic.dump.children[0].props.data, 'answer 42');
 });
+
+test('run --engine chromium boots the canonical bootstrap halves', async (t) => {
+  let playwright = null;
+  try {
+    playwright = await import('playwright');
+  } catch {
+    if (process.env.JSR_REQUIRE_ENGINE === '1') {
+      assert.fail('playwright is required (JSR_REQUIRE_ENGINE=1) but is not installed');
+    }
+    t.skip('playwright not installed: canonical chromium test skipped');
+    return;
+  }
+  const dir = process.env.JSR_CANONICAL_BOOTSTRAP_DIR;
+  if (!dir) {
+    if (process.env.JSR_REQUIRE_ENGINE === '1') {
+      assert.fail('JSR_CANONICAL_BOOTSTRAP_DIR is required (JSR_REQUIRE_ENGINE=1) but is not set');
+    }
+    t.skip('JSR_CANONICAL_BOOTSTRAP_DIR not set (point it at a dir with bootstrap-runtime.js/bootstrap-widget.js)');
+    return;
+  }
+  const out = makeTmp();
+  const { code, stderr } = await runCli(['run', '--engine', 'chromium', '--fixtures', FIXTURES, '--out', out, '--bootstrap-dir', dir, '--filter', 'logic_*']);
+  assert.equal(code, 0, stderr);
+  const logic = JSON.parse(readFileSync(join(out, 'logic_l2.result.json'), 'utf8'));
+  assert.equal(logic.status, 'DONE');
+  assert.equal(logic.error, null);
+  assert.equal(logic.title, 'logic ready');
+  assert.equal(logic.renders.length, 1);
+  assert.ok(logic.trace.includes('fetch'));
+  assert.deepEqual(logic.state, { fired: true, answer: 42, untouched: null });
+  assert.equal(logic.dump.children[0].props.data, 'answer 42');
+});

@@ -206,7 +206,9 @@ async function coverageCommand(opts) {
   let totalProps = 0;
   for (const node of inventory.nodes) {
     if (!seenTypes.has(node.type)) missingNodes.push(node.type);
-    for (const prop of node.props ?? []) {
+    // props may be a name array or a prop map ({ "<name>": {...} }) — both count as names
+    const propNames = Array.isArray(node.props) ? node.props : (node.props && typeof node.props === 'object' ? Object.keys(node.props) : []);
+    for (const prop of propNames) {
       totalProps++;
       if (seenProps.has(prop)) coveredProps++;
     }

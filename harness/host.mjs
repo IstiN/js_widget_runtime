@@ -38,7 +38,7 @@ export function createHost({ fixtureDir, mock = {}, fire = () => {} }) {
     } else if (channel === '__jsr_set_title') {
       host.title = unwrapRaw(payload);
     } else if (channel === '__jsr_set_interval') {
-      const p = parseObject(payload);
+      const p = parseTagged(payload);
       if (!p || typeof p.id !== 'string') return;
       const ms = typeof p.ms === 'number' && p.ms >= 0 ? p.ms : (p.once ? 0 : 1000);
       host.timers.set(p.id, { kind: 'interval', ms, once: Boolean(p.once) });
@@ -48,7 +48,7 @@ export function createHost({ fixtureDir, mock = {}, fire = () => {} }) {
       host.timers.delete(id);
       fire({ type: 'cancel', id });
     } else if (channel === '__jsr_raf') {
-      const p = parseObject(payload);
+      const p = parseTagged(payload);
       if (!p || typeof p.id !== 'string') return;
       host.timers.set(p.id, { kind: 'raf' });
       fire({ type: 'raf', id: p.id });
@@ -57,36 +57,36 @@ export function createHost({ fixtureDir, mock = {}, fire = () => {} }) {
       host.timers.delete(id);
       fire({ type: 'cancel', id });
     } else if (channel === '__jsr_fetch') {
-      const p = parseObject(payload);
+      const p = parseTagged(payload);
       if (!p || typeof p.id !== 'string') return;
       fire({ type: 'resolve', id: p.id, value: mockLookup(mock, String(p.url)) });
     } else if (UNSUPPORTED_PROMISE_CHANNELS.has(channel)) {
-      const p = parseObject(payload);
+      const p = parseTagged(payload);
       if (!p || typeof p.id !== 'string') return;
       fire({ type: 'resolve', id: p.id, value: { __error: `${channel} is not supported by this host` } });
     } else if (channel === '__jsr_storage_get') {
-      const p = parseObject(payload);
+      const p = parseTagged(payload);
       if (!p || typeof p.id !== 'string') return;
       fire({ type: 'resolve', id: p.id, value: host.storage.has(p.key) ? host.storage.get(p.key) : null });
     } else if (channel === '__jsr_storage_set') {
-      const p = parseObject(payload);
+      const p = parseTagged(payload);
       if (!p || typeof p.key !== 'string') return;
       host.storage.set(p.key, p.value);
     } else if (channel === '__jsr_secrets_get') {
-      const p = parseObject(payload);
+      const p = parseTagged(payload);
       if (!p || typeof p.id !== 'string') return;
       fire({ type: 'resolve', id: p.id, value: host.secrets.has(p.key) ? host.secrets.get(p.key) : null });
     } else if (channel === '__jsr_secrets_set') {
-      const p = parseObject(payload);
+      const p = parseTagged(payload);
       if (!p || typeof p.id !== 'string') return;
       host.secrets.set(p.key, p.value);
       fire({ type: 'resolve', id: p.id, value: true });
     } else if (channel === '__jsr_load_asset') {
-      const p = parseObject(payload);
+      const p = parseTagged(payload);
       if (!p || typeof p.id !== 'string') return;
       fire({ type: 'resolve', id: p.id, value: readAsset(fixtureDir, String(p.path)) });
     } else if (channel === '__jsr_export_state') {
-      const p = parseObject(payload);
+      const p = parseTagged(payload);
       host.state = p === undefined ? undefined : p;
     }
     // __jsr_host_call_binary, __jsr_scene3d_command, __jsr_event_done:
@@ -124,6 +124,14 @@ function unwrapRaw(payload) {
   const o = parseObject(s);
   if (o && typeof o.id === 'string' && typeof o.iid === 'string' && Object.keys(o).length === 2) return o.id;
   return s;
+}
+
+// Object payloads arrive with the routing `iid` merged in (canonical __tag);
+// the bridge strips the tag before handlers run (PROTOCOL 1/6).
+function parseTagged(payload) {
+  const p = parseObject(payload);
+  if (p && p.iid !== undefined) delete p.iid;
+  return p;
 }
 
 function parseObject(payload) {

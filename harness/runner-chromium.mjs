@@ -55,6 +55,9 @@ export async function runWithChromium(fixture, { settleMs = 1000, ...bootOpts } 
     }
     await page.goto('about:blank');
     await page.exposeFunction('__jsrHostSend', (channel, payload) => host.handle(channel, payload));
+    // the bootstrap's __send calls window.sendMessage — define it before any
+    // boot code runs, the way the node and quickjs runners inject it
+    await page.addScriptTag({ content: 'window.sendMessage = (channel, payload) => window.__jsrHostSend(channel, payload);' });
     for (const item of items) {
       try {
         await page.addScriptTag({ content: item.code });

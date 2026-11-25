@@ -33,7 +33,7 @@ Actions (headless runners cannot execute them; rendering platform runners do): `
 ## AUI normalization (`harness/normalize.mjs`)
 
 One implementation for the family (plan 1.3 rules, aliases copied from the
-reference `UiViewTreeNormalizer`):
+reference `UiViewTreeNormalizer` @ `1fa2ec41`):
 
 1. a `style` object merges into `props`; node keys win; `style` is removed;
 2. props matching `/^on[A-Z]/` with a string value move to `events`;
@@ -43,13 +43,31 @@ reference `UiViewTreeNormalizer`):
 6. colors become `#RRGGBB` / `#RRGGBBAA` upper-case hex (`#abc`, `#abcd`, `rgb()`, `rgba()` accepted; named colors are out of contract); sizes stay numbers in logical pixels;
 7. `nodeId` = `n<i>` by depth-first pre-order, root `n0`, every node counted.
 
+**Reference field aliases** (applied after the type alias, exactly like
+`UiViewTreeNormalizer._aliasFields`; an alias fires only when its target prop
+is absent, so a dump that already carries both props stays unchanged):
+
+| Node types | Alias |
+|---|---|
+| all | `content` → `data`; `label` → `data` on `text` (label kept) |
+| `container`, `card`, `animatedContainer` | `backgroundColor` → `decoration.color`; flat `color` → `decoration.color` on `container` only |
+| `button`, `textButton`, `outlinedButton` | `title` → `data`, then `text` → `data` (source prop removed) |
+| `textField`/`input`/`textArea` | type → `textField` (`textArea` stays); `placeholder` → `hint`; `value` → `initialValue` |
+| `image`, `networkImage`, `img` | type → `image`; `uri`/`source` → `url` |
+| `svg` | `markup` → `data` |
+| `switch`, `checkbox`, `slider` | `onChanged` → `onChange` |
+| `dropdown`, `select` | type → `dropdown`; `onChanged` → `onChange` |
+
+This is why a Flutter dump's `textButton` carries both `text` and `data` (live
+text): the alias does not fire because `data` is present.
+
 Canonical node shape: `{ type, props, children, events, nodeId }` (props/children/events always present). `normalizeTree` accepts the protocol v0.1 `{ root: {...} }` wrapper and is idempotent.
 
 ## Comparison (`harness/compare.mjs`)
 
-- children in order; props compared by key; numbers with tolerance **±1**; strings exact; colors exact (both sides are already normalized);
+- children in order; props compared **by the keys of the expected tree** — a prop missing on the actual side is a diff, an extra actual prop is tolerated (platforms may carry e.g. a textButton's live-text `data` next to `text`); numbers with tolerance **±1**; strings exact; colors exact (both sides are already normalized);
 - `meta.json.ignore` lists prop names excluded from the dump compare at any depth;
-- delta path grammar: `<type>[<selector>].<prop>[.<subprop>...]` where `<selector>` is the zero-based occurrence of that type in depth-first order or a `nodeId` (`text[1].data`, `text[n2].data`). The first prop segment resolves through the node's `props`; array indexes are written `key[0]`. The form `text.data#count` is **not** valid.
+- delta path grammar: `<type>[<selector>].<prop>[.<subprop>...]` where `<selector>` is the zero-based occurrence of that type in depth-first order or a `nodeId` (`text[1].data`, `text[n2].data`). The first prop segment resolves through the node's `props` — including first-level array props (`textShadows[0].blur`); array indexes are written `key[0]`. The form `text.data#count` is **not** valid.
 
 ## `compare`
 
@@ -95,7 +113,9 @@ Engines:
 
 - `node` — a `vm` context, real timers on the host event loop;
 - `quickjs` — the binary at `$JSR_QJS_HARNESS` (`--iid`, `--preload`, `--script`, `--call`, `--out`; lines `channel<TAB>payload`). The binary has no host timers, so the runner replays deterministically: each round reruns the whole item list from scratch with one appended tick call per still-registered timer (earliest delay first, rAF first), until a round adds nothing or the 200-call cap is hit;
-- `chromium` — Playwright: `window.sendMessage` bridges to the host through an exposed binding; timers fire back via `page.evaluate`. Needs the `playwright` devDependency and browser.
+- `chromium` — Playwright: `page.exposeFunction('__jsrHostSend', ...)` plus `window.sendMessage = (c, p) => window.__jsrHostSend(c, p)` defined **before** any boot script runs (the bootstrap's `__send` calls it, exactly like the node/quickjs injection); timers fire back via `page.evaluate`. Needs the `playwright` devDependency and browser (honor `PLAYWRIGHT_BROWSERS_PATH`).
+
+Object payloads arrive with the routing `iid` merged in (the canonical `__tag`); the host strips that transport tag before handlers run, and unwraps the `{iid, id}` envelope on the raw-payload channels — protocol §1/§6.
 
 Fixtures with `actions` are `SKIP` (`skippedReason: "actions require a
 rendering runner"`) — headless has no hit testing. `--settle <ms>` (default
@@ -117,7 +137,9 @@ judged by `compare`.
 `--inventory` is the path of `inventory.json` or of the `docs/contract/nodes`
 directory (then the file is `../inventory.json`). The file holds
 `{ "nodes": [ { "type": "text", "events": ["onTap"], "props": ["data"] } ] }`
-(`events`/`props` optional). Every node type and every event key must occur in
+(`events`/`props` optional; `props` may be a **name array or a prop map**
+(`{ "<name>": {...} }` — the `gen_inventory.mjs` shape); both count as names).
+Every node type and every event key must occur in
 at least one `widget.js` of the fixtures directory. Prints totals — nodes,
 props (when the inventory lists any), event keys, fixtures per level — and
 exits 2 on a gap, 1 on invalid inventory/fixtures.

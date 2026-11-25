@@ -51,23 +51,41 @@ test('children are compared in order', () => {
 
 test('ignore list excludes props at any depth', () => {
   const expected = sample();
-  const actual = sample();
-  actual.children[1].props.decoration = { shadow: 3 };
-  assert.ok(diffTree(expected, actual).length > 0);
-  assert.deepEqual(diffTree(expected, actual, new Set(['decoration'])), []);
-  assert.deepEqual(diffTree(expected, sample(), new Set(['spacing'])), []);
+  const differing = rawTree(12, { a: 'X' }); // text[0].data differs
+  assert.ok(diffTree(expected, differing).length > 0);
+  assert.deepEqual(diffTree(expected, differing, new Set(['data'])), []);
+  assert.deepEqual(diffTree(expected, rawTree(12), new Set(['spacing'])), []);
 });
 
-test('missing props, extra props and missing nodes are diffs', () => {
+test('props missing from the actual side are diffs; extra actual props are tolerated', () => {
   const expected = sample();
   const withoutSpacing = normalizeTree({ type: 'column', children: expected.children });
   assert.ok(diffTree(expected, withoutSpacing).some((d) => d.path === 'column[0].spacing' && d.actual === 'missing'));
   const withExtra = sample();
   withExtra.children[0].props.extra = 1;
-  assert.ok(diffTree(expected, withExtra).some((d) => d.path === 'text[0].extra' && d.expected === 'missing'));
+  assert.deepEqual(diffTree(expected, withExtra), []); // expected-driven: platform extras are fine
   const fewer = normalizeTree({ type: 'column', spacing: 12, children: [expected.children[0]] });
   const diffs = diffTree(expected, fewer);
   assert.ok(diffs.some((d) => d.path === 'column[0].children' && d.expected === 2 && d.actual === 1));
+});
+
+test('a textButton dump with live-text data matches the aliased expected tree', () => {
+  // raw widget payload: textButton carries text only -> alias moves it to data
+  const expected = normalizeTree({ type: 'column', children: [{ type: 'textButton', text: 'Tap me', onTap: 'tap' }] });
+  assert.deepEqual(expected.children[0].props, { data: 'Tap me' });
+  // the reference dump carries both (live text), expected-driven compare passes
+  const dump = normalizeTree({ type: 'column', children: [{ type: 'textButton', text: 'Tap me', data: 'Tap me', onTap: 'tap' }] });
+  assert.deepEqual(dump.children[0].props, { text: 'Tap me', data: 'Tap me' }); // idempotent: both kept
+  assert.deepEqual(diffTree(expected, dump), []);
+});
+
+test('delta paths resolve through first-level array props', () => {
+  const tree = normalizeTree({ type: 'text', data: 'X', textShadows: [{ blur: 4, color: '#000000' }, { blur: 2 }], decoration: { shadows: [{ blur: 7 }] } });
+  assert.equal(resolveDeltaPath(tree, 'text[0].textShadows[0].blur'), 4);
+  assert.equal(resolveDeltaPath(tree, 'text[0].textShadows[1].blur'), 2);
+  assert.equal(resolveDeltaPath(tree, 'text[n0].textShadows[0].color'), '#000000');
+  assert.equal(resolveDeltaPath(tree, 'text[0].decoration.shadows[0].blur'), 7);
+  assert.equal(checkDelta(tree, { 'text[0].textShadows[0].blur': 4 })[0], undefined);
 });
 
 test('delta grammar resolves both selector kinds', () => {

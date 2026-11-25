@@ -50,18 +50,25 @@ function buildNode(node) {
     throw new TypeError('normalizeTree: node is not an object');
   }
   if (typeof node.type !== 'string') throw new TypeError('normalizeTree: node without string type');
-  const out = { type: resolveTypeAlias(node.type) };
-  const props = {};
-  const events = isPlainObject(node.events) ? { ...node.events } : {};
+  // working map: top-level keys, already-normalized props merged in first so
+  // the alias rules see the same view for raw payloads and dumps (idempotent)
+  const working = {};
+  if (isPlainObject(node.props)) {
+    for (const [k, v] of Object.entries(node.props)) working[k] = v;
+  }
   for (const [k, v] of Object.entries(node)) {
+    if (k !== 'props' && !(k in working)) working[k] = v; // node keys win
+  }
+  working.type = resolveTypeAlias(working.type);
+  applyFieldAliases(working); // reference UiViewTreeNormalizer._aliasFields
+
+  const out = { type: working.type };
+  const props = {};
+  const events = isPlainObject(working.events) ? { ...working.events } : {};
+  for (const [k, v] of Object.entries(working)) {
     if (STRUCTURAL.has(k) || k === 'events') continue;
     if (/^on[A-Z]/.test(k) && typeof v === 'string') { events[k] = v; continue; } // rule 2
     props[k] = normalizePropValue(k, v); // rule 6
-  }
-  if (isPlainObject(node.props)) { // idempotency: already-normalized nodes merge their props
-    for (const [k, v] of Object.entries(node.props)) {
-      if (!(k in props) && !(k in events)) props[k] = normalizePropValue(k, v);
-    }
   }
   if (isPlainObject(node.style)) { // rule 1: node keys win over style keys
     for (const [k, v] of Object.entries(node.style)) {
@@ -70,8 +77,105 @@ function buildNode(node) {
   }
   out.props = props;
   out.events = events;
-  out.children = rawChildren(node).map(toChild); // rule 3
+  out.children = rawChildren(working).map(toChild); // rule 3
   return out;
+}
+
+// Field aliases copied from the reference normalizer (ui_view_tree_normalizer.dart @ 1fa2ec41):
+// an alias applies only when its target prop is absent, so a dump that
+// already carries both props stays unchanged.
+const BOX_TYPES = new Set(['container', 'card', 'animatedContainer']);
+const BUTTON_TYPES = new Set(['button', 'textButton', 'outlinedButton']);
+const INPUT_TYPES = new Set(['textField', 'input', 'textArea']);
+const IMAGE_TYPES = new Set(['image', 'networkImage', 'img']);
+const VALUE_TYPES = new Set(['switch', 'checkbox', 'slider']);
+
+function applyFieldAliases(out) {
+  aliasTextContent(out);
+  const type = out.type;
+  if (BOX_TYPES.has(type)) aliasBoxDecoration(out, type);
+  if (BUTTON_TYPES.has(type)) aliasButtonLabel(out);
+  if (INPUT_TYPES.has(type)) aliasInputFields(out, type);
+  if (IMAGE_TYPES.has(type)) aliasImageSource(out);
+  if (type === 'svg') aliasSvgMarkup(out);
+  if (VALUE_TYPES.has(type)) aliasOnChanged(out);
+  if (type === 'dropdown' || type === 'select') aliasDropdown(out);
+}
+
+function aliasTextContent(out) {
+  if (out.content != null && out.data == null) {
+    out.data = out.content;
+    delete out.content;
+  }
+  if (out.label != null && out.data == null && out.type === 'text') {
+    out.data = out.label; // reference keeps the label prop
+  }
+}
+
+function aliasBoxDecoration(out, type) {
+  if (out.backgroundColor != null && out.decoration == null) {
+    out.decoration = { color: out.backgroundColor };
+    delete out.backgroundColor;
+  }
+  if (out.color != null && out.decoration == null && type === 'container') {
+    out.decoration = { color: out.color };
+    delete out.color;
+  }
+}
+
+function aliasButtonLabel(out) {
+  if (out.title != null && out.data == null) {
+    out.data = out.title;
+    delete out.title;
+  }
+  if (out.text != null && out.data == null) {
+    out.data = out.text;
+    delete out.text;
+  }
+}
+
+function aliasInputFields(out, type) {
+  out.type = type === 'textArea' ? 'textArea' : 'textField';
+  if (out.placeholder != null && out.hint == null) {
+    out.hint = out.placeholder;
+    delete out.placeholder;
+  }
+  if (out.value != null && out.initialValue == null) {
+    out.initialValue = out.value;
+    delete out.value;
+  }
+  aliasOnChanged(out);
+}
+
+function aliasImageSource(out) {
+  out.type = 'image';
+  if (out.uri != null && out.url == null) {
+    out.url = out.uri;
+    delete out.uri;
+  }
+  if (out.source != null && out.url == null) {
+    out.url = out.source;
+    delete out.source;
+  }
+}
+
+function aliasSvgMarkup(out) {
+  if (out.markup != null && out.data == null) {
+    out.data = out.markup;
+    delete out.markup;
+  }
+}
+
+function aliasOnChanged(out) {
+  if (out.onChanged != null && out.onChange == null) {
+    out.onChange = out.onChanged;
+    delete out.onChanged;
+  }
+}
+
+function aliasDropdown(out) {
+  out.type = 'dropdown';
+  aliasOnChanged(out);
 }
 
 function rawChildren(node) {

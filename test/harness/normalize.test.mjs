@@ -98,6 +98,46 @@ test('normalizeTree accepts the v0.1 { root: ... } wrapper', () => {
   assert.equal(tree.type, 'text');
 });
 
+test('normalizeTree is idempotent (a normalized node maps to itself)', () => {
+  const once = normalizeTree({ type: 'column', spacing: 8, children: [{ type: 'textButton', text: 'go', data: 'go', onTap: 'a' }, { type: 'text', data: 'x', style: { color: '#abc' } }] });
+  assert.deepEqual(normalizeTree(once), once);
+});
+
+test('reference field aliases: buttons, boxes, inputs, images, svg, values', () => {
+  // button labels: title/text move to data (reference removes the source prop)
+  assert.deepEqual(normalizeTree({ type: 'button', title: 'Hi' }).props, { data: 'Hi' });
+  assert.deepEqual(normalizeTree({ type: 'textButton', text: 'Go' }).props, { data: 'Go' });
+  // both present: stays unchanged (live text on dumps)
+  assert.deepEqual(normalizeTree({ type: 'textButton', text: 'Go', data: 'Go' }).props, { text: 'Go', data: 'Go' });
+  // text content: content -> data; label -> data only for text nodes (label kept)
+  assert.deepEqual(normalizeTree({ type: 'text', content: 'C' }).props, { data: 'C' });
+  const labeled = normalizeTree({ type: 'text', label: 'L' });
+  assert.equal(labeled.props.data, 'L');
+  assert.equal(labeled.props.label, 'L');
+  // boxes: backgroundColor / container color wrap into decoration.color
+  assert.deepEqual(normalizeTree({ type: 'container', backgroundColor: '#abc' }).props, { decoration: { color: '#AABBCC' } });
+  assert.deepEqual(normalizeTree({ type: 'card', color: '#123456' }).props, { color: '#123456' }); // plain color stays for card (reference)
+  assert.deepEqual(normalizeTree({ type: 'container', color: '#123456' }).props, { decoration: { color: '#123456' } });
+  // inputs: placeholder -> hint, value -> initialValue, input type canonicalized
+  const input = normalizeTree({ type: 'input', placeholder: 'Name', value: 'Ada' });
+  assert.equal(input.type, 'textField');
+  assert.deepEqual(input.props, { hint: 'Name', initialValue: 'Ada' });
+  // images: uri/source -> url
+  assert.deepEqual(normalizeTree({ type: 'img', uri: 'a.png' }).props, { url: 'a.png' });
+  assert.deepEqual(normalizeTree({ type: 'networkImage', source: 'b.png' }).props, { url: 'b.png' });
+  // svg markup -> data
+  assert.deepEqual(normalizeTree({ type: 'svg', markup: '<x/>' }).props, { data: '<x/>' });
+  // value types and dropdowns: onChanged -> onChange
+  assert.deepEqual(normalizeTree({ type: 'slider', onChanged: 'slide' }).events, { onChange: 'slide' });
+  assert.equal(normalizeTree({ type: 'select', onChanged: 'pick' }).type, 'dropdown');
+  assert.deepEqual(normalizeTree({ type: 'select', onChanged: 'pick' }).events, { onChange: 'pick' });
+});
+
+test('reference field aliases are idempotent with nested values', () => {
+  const dumpNode = { type: 'container', props: { decoration: { color: '#AABBCC' }, padding: 4 }, children: [], events: {}, nodeId: 'n0' };
+  assert.deepEqual(normalizeTree(dumpNode), dumpNode);
+});
+
 test('normalizeTree rejects invalid payloads', () => {
   assert.throws(() => normalizeTree(null), TypeError);
   assert.throws(() => normalizeTree({ children: [] }), TypeError);

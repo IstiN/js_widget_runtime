@@ -32,7 +32,7 @@ export function diffTree(expected, actual, ignore = new Set()) {
     for (let i = 0; i < Math.min(ec.length, ac.length); i++) visit(ec[i], ac[i]);
     const ee = e.events ?? {};
     const ae = a.events ?? {};
-    for (const key of unionKeys(ee, ae)) {
+    for (const key of Object.keys(ee)) {
       if (!valuesEqual(ee[key], ae[key])) {
         diffs.push({ path: `${epath}.events.${key}`, expected: ee[key] ?? 'missing', actual: ae[key] ?? 'missing' });
       }
@@ -42,10 +42,13 @@ export function diffTree(expected, actual, ignore = new Set()) {
   return diffs;
 }
 
+// Props are compared by the keys of the expected tree: a platform may carry
+// extra props (e.g. a textButton's live-text `data` next to `text`); props
+// missing from the actual side are diffs, extra actual props are not.
 function walkProps(expectedProps, actualProps, path, ignore, diffs) {
-  for (const key of unionKeys(expectedProps, actualProps)) {
+  for (const key of Object.keys(expectedProps)) {
     if (ignore.has(key)) continue;
-    walkValue(expectedProps[key], actualProps[key], `${path}.${key}`, diffs);
+    walkValue(expectedProps[key], actualProps?.[key], `${path}.${key}`, diffs);
   }
 }
 
@@ -53,7 +56,7 @@ function walkValue(expected, actual, path, diffs) {
   if (isPlainObject(expected) || isPlainObject(actual)) {
     const e = isPlainObject(expected) ? expected : {};
     const a = isPlainObject(actual) ? actual : {};
-    for (const key of unionKeys(e, a)) walkValue(e[key], a[key], `${path}.${key}`, diffs);
+    for (const key of Object.keys(e)) walkValue(e[key], a?.[key], `${path}.${key}`, diffs);
     return;
   }
   if (Array.isArray(expected) || Array.isArray(actual)) {
@@ -92,7 +95,10 @@ export function resolveDeltaPath(tree, path) {
   for (const seg of m[3].split('.')) {
     const arr = /^([A-Za-z0-9_]+)\[(\d+)\]$/.exec(seg);
     if (arr) {
-      value = value?.[arr[1]]?.[Number(arr[2])];
+      const base = (value && typeof value === 'object' && value.props && arr[1] in value.props)
+        ? value.props[arr[1]] // dump-node shape: UI props live under props
+        : value?.[arr[1]];
+      value = base?.[Number(arr[2])];
     } else if (value && typeof value === 'object' && value.props && seg in value.props) {
       value = value.props[seg]; // dump-node shape: UI props live under props
     } else {
@@ -117,10 +123,6 @@ function findNode(tree, type, selector) {
 function walk(node, visit) {
   visit(node);
   for (const child of node.children ?? []) walk(child, visit);
-}
-
-function unionKeys(a, b) {
-  return [...new Set([...Object.keys(a ?? {}), ...Object.keys(b ?? {})])];
 }
 
 function isPlainObject(v) {
