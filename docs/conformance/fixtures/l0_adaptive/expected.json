@@ -1,0 +1,9 @@
+{
+  "actions": [],
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "adaptive[0].compact.data": "L0 adaptive"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "categories": [
+    "L0"
+  ],
+  "capabilities": [],
+  "ignore": [],
+  "nodes": [
+    "column",
+    "circle"
+  ],
+  "mock": {}
+}

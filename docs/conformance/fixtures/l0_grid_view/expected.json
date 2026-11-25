@@ -1,0 +1,9 @@
+{
+  "actions": [],
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "gridView[0].crossAxisCount": 2
+    }
+  }
+}

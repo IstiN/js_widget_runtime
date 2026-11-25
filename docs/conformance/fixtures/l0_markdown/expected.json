@@ -1,0 +1,9 @@
+{
+  "actions": [],
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "markdown[0].data": "# L0 markdown"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "actions": [],
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "animatedContainer[0].color": "#7C3AED"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "actions": [],
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "tooltip[0].message": "L0 tip"
+    }
+  }
+}

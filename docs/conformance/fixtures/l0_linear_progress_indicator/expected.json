@@ -1,0 +1,9 @@
+{
+  "actions": [],
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "linearProgressIndicator[0].value": 0.5
+    }
+  }
+}

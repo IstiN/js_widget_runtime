@@ -1,0 +1,13 @@
+{
+  "categories": [
+    "L0"
+  ],
+  "capabilities": [],
+  "ignore": [],
+  "nodes": [
+    "column",
+    "inkWell",
+    "text"
+  ],
+  "mock": {}
+}

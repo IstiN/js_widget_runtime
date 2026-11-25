@@ -1,0 +1,9 @@
+{
+  "actions": [],
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "aspectRatio[0].aspectRatio": 2
+    }
+  }
+}
