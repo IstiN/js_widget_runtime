@@ -16,6 +16,8 @@ jobs:
         run: bash .conformance/js_runtime/tool/build_all.sh host
       - name: Install dependencies
         run: npm ci
+      - name: Install the chromium browser (engine tests feed the CRAP coverage)
+        run: npx playwright install chromium
       - name: Unit tests (quickjs engine enabled)
         run: npm test
         env:
