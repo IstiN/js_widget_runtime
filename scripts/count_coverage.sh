@@ -20,7 +20,7 @@ PROTOCOL="${JSR_CONFORMANCE_DIR:-.conformance}/js_runtime/docs/PROTOCOL.md"
 
 nodes=$(jq '.nodes | length' "$INV") || fail "cannot count nodes in $INV"
 props=$(jq '[.nodes[].props | length] | add' "$INV") || fail "cannot count props in $INV"
-event_keys=$(jq '[.nodes[].events | add?] | add | length' "$INV") || fail "cannot count unique event keys in $INV"
+event_keys=$(jq '[.nodes[].events[]?] | unique | length' "$INV") || fail "cannot count unique event keys in $INV"
 bindings=$(jq '[.nodes[].events | length] | add' "$INV") || fail "cannot count event bindings in $INV"
 
 # Channels: the bridge channels declared by the js_runtime pin's PROTOCOL.md
