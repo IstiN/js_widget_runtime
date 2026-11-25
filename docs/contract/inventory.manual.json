@@ -1,0 +1,401 @@
+{
+  "comment": "Hand-verified facts for gen_inventory.mjs. This file is the ONE place for facts that cannot be derived from the pinned Dart sources; regeneration merges it over the extraction and never loses it. Prop overrides are merged shallowly per prop (type/default/effect/note).",
+  "keyProp": {
+    "type": "string",
+    "default": null,
+    "note": "Reconciler identity hint (contract prop of android_js_widget_runtime#2). Not consumed by the flutter reference renderer (node ids are positional), never rendered, never dumped."
+  },
+  "universalEffects": {
+    "offsetX": {
+      "type": "number",
+      "default": null,
+      "effect": "Transform translate X (logical px; applied together with offsetY), center-aligned",
+      "source": {
+        "file": "lib/src/renderer/json_widget_decoration.dart",
+        "line": 46
+      }
+    },
+    "offsetY": {
+      "type": "number",
+      "default": null,
+      "effect": "Transform translate Y (logical px), center-aligned",
+      "source": {
+        "file": "lib/src/renderer/json_widget_decoration.dart",
+        "line": 47
+      }
+    },
+    "scale": {
+      "type": "number",
+      "default": null,
+      "effect": "Transform uniform scale (1 = none)",
+      "source": {
+        "file": "lib/src/renderer/json_widget_decoration.dart",
+        "line": 48
+      }
+    },
+    "rotation": {
+      "type": "number",
+      "default": null,
+      "effect": "Transform rotate around Z, radians (center-aligned)",
+      "source": {
+        "file": "lib/src/renderer/json_widget_decoration.dart",
+        "line": 52
+      }
+    },
+    "rotate": {
+      "type": "number",
+      "default": null,
+      "effect": "Rotation in DEGREES (yoclip alias; converted to radians and used when `rotation` is absent)",
+      "source": {
+        "file": "lib/src/renderer/json_widget_decoration.dart",
+        "line": 51
+      }
+    },
+    "blur": {
+      "type": "number|{sigma}",
+      "default": null,
+      "effect": "ImageFiltered gaussian blur, sigma in logical px (sigma <= 0 is skipped)",
+      "source": {
+        "file": "lib/src/renderer/json_widget_decoration.dart",
+        "line": 7
+      }
+    },
+    "opacity": {
+      "type": "number",
+      "default": null,
+      "effect": "Opacity wrap, clamped to [0,1]; skipped when 1.0; ignored on `animatedOpacity` (it animates its own opacity)",
+      "source": {
+        "file": "lib/src/renderer/json_widget_decoration.dart",
+        "line": 84
+      }
+    },
+    "ignorePointer": {
+      "type": "boolean",
+      "default": false,
+      "effect": "IgnorePointer wrap (overlay labels must not eat gestures)",
+      "source": {
+        "file": "lib/src/renderer/json_widget_decoration.dart",
+        "line": 24
+      }
+    }
+  },
+  "categoryGroups": {
+    "layout": [
+      "column",
+      "row",
+      "stack",
+      "center",
+      "align",
+      "expanded",
+      "flexible",
+      "wrap",
+      "padding",
+      "sizedBox",
+      "spacer",
+      "safeArea",
+      "aspectRatio",
+      "absoluteFill",
+      "fill"
+    ],
+    "display": [
+      "text",
+      "icon",
+      "divider",
+      "circularProgressIndicator",
+      "linearProgressIndicator",
+      "image",
+      "svg",
+      "circleAvatar",
+      "chip",
+      "badge",
+      "markdown",
+      "opacity",
+      "blur",
+      "clipRRect"
+    ],
+    "container": [
+      "container",
+      "card",
+      "inkWell",
+      "gestureDetector"
+    ],
+    "list": [
+      "scroll",
+      "listView",
+      "gridView",
+      "adaptive",
+      "listTile"
+    ],
+    "input": [
+      "switch",
+      "checkbox",
+      "slider",
+      "dropdown",
+      "button",
+      "textButton",
+      "outlinedButton",
+      "iconButton",
+      "textField",
+      "textArea",
+      "radio",
+      "segmentedButton",
+      "searchBar"
+    ],
+    "m3": [
+      "appBar",
+      "navigationBar",
+      "tabBar",
+      "fab",
+      "tooltip"
+    ],
+    "overlays": [
+      "popupMenu",
+      "banner",
+      "bottomAppBar",
+      "bottomSheet",
+      "dialog",
+      "snackBar",
+      "navigationRail",
+      "drawer",
+      "carousel",
+      "datePicker",
+      "timePicker"
+    ],
+    "charts": [
+      "chart",
+      "flChart"
+    ],
+    "drawing": [
+      "path",
+      "rect",
+      "circle",
+      "line",
+      "polygon"
+    ],
+    "map": [
+      "map"
+    ],
+    "animation": [
+      "animatedContainer",
+      "animatedOpacity",
+      "animatedPositioned",
+      "entrance",
+      "animatedSwitcher"
+    ],
+    "media": [
+      "video",
+      "audio",
+      "audio_player",
+      "webView"
+    ],
+    "3d": [
+      "scene3d",
+      "three",
+      "voxel"
+    ]
+  },
+  "nodes": {
+    "container": {
+      "children": "child: single node",
+      "notes": "Box container: width/height/padding/margin/alignment/decoration/transform (see _containerProps and _buildBox). `decoration` holds color, borderRadius, borderColor, borderWidth, gradient, shadows."
+    },
+    "card": {
+      "children": "child: single node",
+      "notes": "Material card; same box props as `container` plus `elevation`."
+    },
+    "animatedContainer": {
+      "children": "child: single node",
+      "notes": "Implicit animation over the box props; `duration` (ms, default 300) and `curve` (default linear)."
+    }
+  },
+  "globalProps": {
+    "_alignContentMinMainAxis": {
+      "type": "boolean",
+      "default": false,
+      "note": "Internal marker written by the renderer itself (_buildBox) when an explicit `alignment` must center the content: forces MainAxisSize.min. Hosts only need to keep it inert."
+    }
+  },
+  "propTypes": {
+    "duration": {
+      "type": "integer (ms)",
+      "default": 300
+    },
+    "curve": {
+      "type": "curve",
+      "default": "linear"
+    },
+    "animation": {
+      "type": "string",
+      "note": "entrance/switch variant name"
+    },
+    "variant": {
+      "type": "string",
+      "note": "entrance/switch variant name"
+    },
+    "kind": {
+      "type": "string",
+      "note": "entrance/switch variant name"
+    },
+    "switchKey": {
+      "type": "string",
+      "note": "re-run key for the switcher"
+    },
+    "flex": {
+      "type": "integer",
+      "default": 1
+    },
+    "alignment": {
+      "type": "alignment",
+      "default": "center"
+    },
+    "physics": {
+      "type": "enum(never|always|bounce|clamping)",
+      "default": "alwaysScrollable"
+    },
+    "padding": {
+      "type": "number|number[4]|object"
+    },
+    "spacing": {
+      "type": "number",
+      "default": 0
+    },
+    "crossAxisAlignment": {
+      "type": "enum(min|max|center|baseline|stretch)"
+    },
+    "selectedIndex": {
+      "type": "integer",
+      "default": 0
+    },
+    "borderRadius": {
+      "type": "number|number[4]"
+    },
+    "shadows": {
+      "type": "shadow[] ({color, blur, spread, offsetX, offsetY})"
+    },
+    "shadow": {
+      "type": "shadow[] ({color, blur, spread, offsetX, offsetY})"
+    },
+    "sigma": {
+      "type": "number",
+      "note": "gaussian blur sigma (logical px)"
+    },
+    "leading": {
+      "type": "node",
+      "note": "widget subtree"
+    },
+    "drawer": {
+      "type": "node",
+      "note": "widget subtree"
+    },
+    "points": {
+      "type": "number[][] ([x, y] pairs)",
+      "default": []
+    },
+    "meshes": {
+      "type": "array of mesh descriptors"
+    },
+    "curved": {
+      "type": "boolean",
+      "default": true
+    },
+    "showGrid": {
+      "type": "boolean",
+      "default": true
+    },
+    "maxY": {
+      "type": "number"
+    },
+    "centerSpaceRadius": {
+      "type": "number"
+    },
+    "shrinkExtent": {
+      "type": "number",
+      "default": 0
+    },
+    "aspectRatio": {
+      "type": "number",
+      "default": 1
+    },
+    "width": {
+      "type": "number"
+    },
+    "height": {
+      "type": "number"
+    },
+    "size": {
+      "type": "number"
+    },
+    "max": {
+      "type": "number"
+    },
+    "radius": {
+      "type": "number"
+    },
+    "x1": {
+      "type": "number"
+    },
+    "x2": {
+      "type": "number"
+    },
+    "y1": {
+      "type": "number"
+    },
+    "y2": {
+      "type": "number"
+    },
+    "opacity": {
+      "type": "number",
+      "default": 1
+    },
+    "fontSize": {
+      "type": "number"
+    },
+    "fontWeight": {
+      "type": "string"
+    },
+    "fontStyle": {
+      "type": "string"
+    },
+    "fontFamily": {
+      "type": "string"
+    },
+    "letterSpacing": {
+      "type": "number"
+    },
+    "lineHeight": {
+      "type": "number"
+    },
+    "lineHeightPx": {
+      "type": "number"
+    },
+    "textAlign": {
+      "type": "string"
+    },
+    "textTransform": {
+      "type": "enum(uppercase|lowercase|none)"
+    },
+    "textShadows": {
+      "type": "shadow[] ({color, blur, offsetX, offsetY})"
+    },
+    "endIndent": {
+      "type": "number"
+    },
+    "runSpacing": {
+      "type": "number"
+    },
+    "italic": {
+      "type": "boolean",
+      "default": false
+    },
+    "maxLines": {
+      "type": "integer"
+    },
+    "chartType": {
+      "type": "enum(line|bar|pie|radar|scatter)",
+      "note": "unknown values fall back to line"
+    },
+    "color": {
+      "type": "color"
+    }
+  }
+}
