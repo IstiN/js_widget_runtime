@@ -76,7 +76,12 @@ Every runner produces dumps that are already normalized:
 1. A `style` object is merged into `props`; node keys win over style keys;
    `style` is removed.
 2. Props whose key matches `/^on[A-Z]/` and whose value is a string move to
-   `events`.
+   `events`. Event **keys** are normalized with the props: the reference
+   folds `onChanged` → `onChange` on the input, value and dropdown families
+   (`textField`/`input`/`textArea`, `switch`/`checkbox`/`slider`,
+   `dropdown`/`select`), exactly like `UiViewTreeNormalizer`
+   (`aliasDumpEventKeys`); `harness/normalize.mjs` mirrors it, so every
+   normalized dump carries `onChange`, never `onChanged`, on those types.
 3. `child` (one object) and `children` (array) become `children` (array) and
    leave `props`.
 4. `key` is removed.
