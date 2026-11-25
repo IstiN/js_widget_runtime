@@ -1,0 +1,10 @@
+{
+  "actions": [
+    { "tap": "M1" },
+    { "wait": 100 }
+  ],
+  "expect": {
+    "renders": 2,
+    "finalDumpDelta": { "text[0].data": "mk=m1" }
+  }
+}

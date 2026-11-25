@@ -1,0 +1,8 @@
+{
+  "categories": ["L1"],
+  "capabilities": [],
+  "ignore": ["data", "text"],
+  "nodes": ["column", "text", "textField", "textArea", "searchBar"],
+  "mock": {},
+  "notes": "textField/textArea/searchBar wire onChange ?? onChanged into one callback; onChanged is exercised here because onChange is absent."
+}

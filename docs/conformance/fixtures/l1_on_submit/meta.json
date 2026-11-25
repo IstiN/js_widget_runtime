@@ -1,0 +1,8 @@
+{
+  "categories": ["L1"],
+  "capabilities": [],
+  "ignore": ["data", "text"],
+  "nodes": ["column", "text", "textField", "textArea"],
+  "mock": {},
+  "notes": "no action type of PROTOCOL v0.2 triggers onSubmit on the reference: the input action (tester.enterText) enters text without firing the keyboard done action, so the binding is accepted but never dispatched. flutter_js_widget_runtime issue #17."
+}

@@ -1,0 +1,8 @@
+{
+  "categories": ["L1"],
+  "capabilities": [],
+  "ignore": ["data"],
+  "nodes": ["column", "text", "listTile"],
+  "mock": {},
+  "notes": "listTile wires onTap ?? onPress into one ListTile.onTap slot: with both set only onTap fires, so this fixture sets onPress alone."
+}

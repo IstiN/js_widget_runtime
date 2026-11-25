@@ -1,0 +1,11 @@
+{
+  "actions": [
+    { "input": { "node": "n2", "value": "H1" } },
+    { "input": { "node": "n3", "value": "H2" } },
+    { "input": { "node": "n4", "value": "H3" } }
+  ],
+  "expect": {
+    "renders": 4,
+    "finalDumpDelta": { "text[0].data": "idle h1=H1 h2=H2 h3=H3" }
+  }
+}
