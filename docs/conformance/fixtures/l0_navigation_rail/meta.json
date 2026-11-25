@@ -7,8 +7,8 @@
     "data"
   ],
   "nodes": [
-    "column",
     "navigationRail"
   ],
-  "mock": {}
+  "mock": {},
+  "notes": "the node sits at the payload root (flutter-proposed fixture); delta anchors on selectedIndex"
 }

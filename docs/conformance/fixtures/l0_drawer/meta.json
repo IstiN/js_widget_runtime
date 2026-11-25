@@ -5,9 +5,9 @@
   "capabilities": [],
   "ignore": [],
   "nodes": [
-    "column",
     "drawer",
     "text"
   ],
-  "mock": {}
+  "mock": {},
+  "notes": "the node sits at the payload root; the drawer panel payload is the drawer prop, child is the body (flutter-proposed fixture)"
 }

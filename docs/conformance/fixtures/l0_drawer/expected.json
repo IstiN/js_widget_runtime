@@ -3,7 +3,8 @@
   "expect": {
     "renders": 1,
     "finalDumpDelta": {
-      "text[0].data": "L0 drawer"
+      "drawer[0].drawer.data": "L0 drawer",
+      "text[0].data": "L0 body"
     }
   }
 }

@@ -5,9 +5,9 @@
   "capabilities": [],
   "ignore": [],
   "nodes": [
-    "column",
     "fill",
     "text"
   ],
-  "mock": {}
+  "mock": {},
+  "notes": "the node sits at the payload root: bounded-space builders throw under the old root-column wrapper; root payload renders clean (flutter-proposed fixture)"
 }
