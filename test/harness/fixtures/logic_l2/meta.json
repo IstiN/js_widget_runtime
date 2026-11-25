@@ -1,0 +1,6 @@
+{
+  "categories": ["L2"],
+  "capabilities": ["network", "storage"],
+  "mock": { "/data": { "status": 200, "body": { "answer": 42 } } },
+  "ignore": []
+}

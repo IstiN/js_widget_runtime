@@ -1,0 +1,10 @@
+{
+  "actions": [{ "tap": "tap" }],
+  "expect": {
+    "renders": 2,
+    "channels": ["__jsr_render", "__jsr_set_title"],
+    "trace": ["render", "set_title", "render", "set_title"],
+    "title": "Tapped: 1",
+    "finalDumpDelta": { "text[0].data": "Taps: 1" }
+  }
+}

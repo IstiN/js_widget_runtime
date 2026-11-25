@@ -1,0 +1,10 @@
+{
+  "actions": [],
+  "expect": {
+    "renders": 1,
+    "channels": ["set_title", "fetch", "storage_set", "storage_get", "export_state", "render", "log"],
+    "title": "logic ready",
+    "state": { "fired": true, "answer": 42, "untouched": null },
+    "console": ["logic ready"]
+  }
+}
