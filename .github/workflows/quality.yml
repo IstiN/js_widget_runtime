@@ -39,9 +39,7 @@ jobs:
 
   fixtures-coverage:
     # Every node type and every event key of the contract inventory must
-    # occur in at least one widget.js. Expected red until the Flutter pin
-    # carries the expanded/flexible dump fixes (flutter#14) and their
-    # fixtures land.
+    # occur in at least one widget.js.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -53,9 +51,9 @@ jobs:
       - run: node harness/harness.mjs coverage --fixtures docs/conformance/fixtures --inventory docs/contract/nodes
 
   fixtures:
-    # Headless fixture runs on the three engines plus the comparison of the
-    # committed Flutter samples. Expected red on exactly scroll_list in the
-    # Flutter samples (flutter#11 at the pin).
+    # Headless fixture runs on the three engines plus the comparison of
+    # every committed platform sample set (flutter, android, apple/macos,
+    # apple/ios, web). A set with fewer than three seeds fails the job.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -83,8 +81,19 @@ jobs:
           node harness/harness.mjs compare --fixtures docs/conformance/fixtures --results out/node --out-report out/report-node.md --out-badge out/badge-node.json
           node harness/harness.mjs compare --fixtures docs/conformance/fixtures --results out/quickjs --out-report out/report-quickjs.md --out-badge out/badge-quickjs.json
           node harness/harness.mjs compare --fixtures docs/conformance/fixtures --results out/chromium --out-report out/report-chromium.md --out-badge out/badge-chromium.json
-      - name: Compare the Flutter samples
-        run: node harness/harness.mjs compare --fixtures docs/conformance/fixtures --results docs/conformance/samples/flutter --out-report out/report-flutter.md --out-badge out/badge-flutter.json
+      - name: Compare every platform sample set
+        run: |
+          set -euo pipefail
+          for set in flutter android apple/macos apple/ios web; do
+            dir="docs/conformance/samples/$set"
+            count=$(find "$dir" -maxdepth 1 -name '*.result.json' | wc -l)
+            if [ "$count" -lt 3 ]; then
+              echo "sample set $set holds $count result files, need 3 (hello, counter, scroll_list)"
+              exit 1
+            fi
+            name="${set/\//-}"
+            node harness/harness.mjs compare --fixtures docs/conformance/fixtures --results "$dir" --out-report "out/report-$name.md" --out-badge "out/badge-$name.json"
+          done
       - name: Upload reports
         uses: actions/upload-artifact@v4
         with:

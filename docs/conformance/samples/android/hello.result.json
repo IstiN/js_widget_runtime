@@ -1,0 +1,128 @@
+{
+  "fixture": "hello",
+  "platform": "android",
+  "status": "DONE",
+  "dump": {
+    "type": "center",
+    "props": {
+      "iid": "android-conformance"
+    },
+    "children": [
+      {
+        "type": "column",
+        "props": {
+          "mainAxisSize": "min",
+          "spacing": 12
+        },
+        "children": [
+          {
+            "type": "text",
+            "props": {
+              "data": "Hello from JS!",
+              "fontSize": 24,
+              "fontWeight": "bold",
+              "color": "#F1F5F9"
+            },
+            "children": [],
+            "events": {},
+            "nodeId": "n2"
+          },
+          {
+            "type": "sizedBox",
+            "props": {
+              "height": 12
+            },
+            "children": [],
+            "events": {},
+            "nodeId": "n3"
+          },
+          {
+            "type": "textButton",
+            "props": {
+              "data": "Tap me",
+              "text": "Tap me"
+            },
+            "children": [],
+            "events": {
+              "onTap": "tap"
+            },
+            "nodeId": "n4"
+          }
+        ],
+        "events": {},
+        "nodeId": "n1"
+      }
+    ],
+    "events": {},
+    "nodeId": "n0"
+  },
+  "trace": [
+    "render",
+    "set_title",
+    "render"
+  ],
+  "diffs": [],
+  "screenshot": null,
+  "renders": [
+    "{\"type\":\"center\",\"child\":{\"type\":\"column\",\"mainAxisSize\":\"min\",\"spacing\":12,\"children\":[{\"type\":\"text\",\"data\":\"Hello from JS!\",\"style\":{\"fontSize\":24,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"sizedBox\",\"height\":12},{\"type\":\"textButton\",\"text\":\"Tap me\",\"onTap\":\"tap\"}]},\"__iid\":\"android-conformance\",\"iid\":\"android-conformance\"}",
+    "{\"type\":\"center\",\"child\":{\"type\":\"column\",\"spacing\":12,\"children\":[{\"type\":\"text\",\"data\":\"Hello from JS!\",\"style\":{\"fontSize\":24,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Taps: 1\",\"style\":{\"fontSize\":18,\"color\":\"#818cf8\"}},{\"type\":\"textButton\",\"text\":\"Tap me\",\"onTap\":\"tap\"}]},\"__iid\":\"android-conformance\",\"iid\":\"android-conformance\"}"
+  ],
+  "finalDump": {
+    "type": "center",
+    "props": {
+      "iid": "android-conformance"
+    },
+    "children": [
+      {
+        "type": "column",
+        "props": {
+          "spacing": 12
+        },
+        "children": [
+          {
+            "type": "text",
+            "props": {
+              "data": "Hello from JS!",
+              "fontSize": 24,
+              "fontWeight": "bold",
+              "color": "#F1F5F9"
+            },
+            "children": [],
+            "events": {},
+            "nodeId": "n2"
+          },
+          {
+            "type": "text",
+            "props": {
+              "data": "Taps: 1",
+              "fontSize": 18,
+              "color": "#818CF8"
+            },
+            "children": [],
+            "events": {},
+            "nodeId": "n3"
+          },
+          {
+            "type": "textButton",
+            "props": {
+              "data": "Tap me",
+              "text": "Tap me"
+            },
+            "children": [],
+            "events": {
+              "onTap": "tap"
+            },
+            "nodeId": "n4"
+          }
+        ],
+        "events": {},
+        "nodeId": "n1"
+      }
+    ],
+    "events": {},
+    "nodeId": "n0"
+  },
+  "title": "Tapped: 1",
+  "console": [],
+  "skippedReason": null
+}

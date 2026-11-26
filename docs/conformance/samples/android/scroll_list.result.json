@@ -1,0 +1,2393 @@
+{
+  "fixture": "scroll_list",
+  "platform": "android",
+  "status": "DONE",
+  "dump": {
+    "type": "scroll",
+    "props": {
+      "iid": "android-conformance"
+    },
+    "children": [
+      {
+        "type": "column",
+        "props": {},
+        "children": [
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #1",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n3"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n4"
+              }
+            ],
+            "events": {},
+            "nodeId": "n2"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #2",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n6"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n7"
+              }
+            ],
+            "events": {},
+            "nodeId": "n5"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #3",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n9"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n10"
+              }
+            ],
+            "events": {},
+            "nodeId": "n8"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #4",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n12"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n13"
+              }
+            ],
+            "events": {},
+            "nodeId": "n11"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #5",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n15"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n16"
+              }
+            ],
+            "events": {},
+            "nodeId": "n14"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #6",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n18"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n19"
+              }
+            ],
+            "events": {},
+            "nodeId": "n17"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #7",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n21"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n22"
+              }
+            ],
+            "events": {},
+            "nodeId": "n20"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #8",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n24"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n25"
+              }
+            ],
+            "events": {},
+            "nodeId": "n23"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #9",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n27"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n28"
+              }
+            ],
+            "events": {},
+            "nodeId": "n26"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #10",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n30"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n31"
+              }
+            ],
+            "events": {},
+            "nodeId": "n29"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #11",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n33"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n34"
+              }
+            ],
+            "events": {},
+            "nodeId": "n32"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #12",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n36"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n37"
+              }
+            ],
+            "events": {},
+            "nodeId": "n35"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #13",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n39"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n40"
+              }
+            ],
+            "events": {},
+            "nodeId": "n38"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #14",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n42"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n43"
+              }
+            ],
+            "events": {},
+            "nodeId": "n41"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #15",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n45"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n46"
+              }
+            ],
+            "events": {},
+            "nodeId": "n44"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #16",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n48"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n49"
+              }
+            ],
+            "events": {},
+            "nodeId": "n47"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #17",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n51"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n52"
+              }
+            ],
+            "events": {},
+            "nodeId": "n50"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #18",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n54"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n55"
+              }
+            ],
+            "events": {},
+            "nodeId": "n53"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #19",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n57"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n58"
+              }
+            ],
+            "events": {},
+            "nodeId": "n56"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #20",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n60"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n61"
+              }
+            ],
+            "events": {},
+            "nodeId": "n59"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #21",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n63"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n64"
+              }
+            ],
+            "events": {},
+            "nodeId": "n62"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #22",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n66"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n67"
+              }
+            ],
+            "events": {},
+            "nodeId": "n65"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #23",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n69"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n70"
+              }
+            ],
+            "events": {},
+            "nodeId": "n68"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #24",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n72"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n73"
+              }
+            ],
+            "events": {},
+            "nodeId": "n71"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #25",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n75"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n76"
+              }
+            ],
+            "events": {},
+            "nodeId": "n74"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #26",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n78"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n79"
+              }
+            ],
+            "events": {},
+            "nodeId": "n77"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #27",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n81"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n82"
+              }
+            ],
+            "events": {},
+            "nodeId": "n80"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #28",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n84"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n85"
+              }
+            ],
+            "events": {},
+            "nodeId": "n83"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #29",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n87"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n88"
+              }
+            ],
+            "events": {},
+            "nodeId": "n86"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #30",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n90"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n91"
+              }
+            ],
+            "events": {},
+            "nodeId": "n89"
+          }
+        ],
+        "events": {},
+        "nodeId": "n1"
+      }
+    ],
+    "events": {},
+    "nodeId": "n0"
+  },
+  "trace": [
+    "render",
+    "set_title"
+  ],
+  "diffs": [],
+  "screenshot": null,
+  "renders": [
+    "{\"type\":\"scroll\",\"children\":[{\"type\":\"column\",\"children\":[{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #1\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #2\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #3\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #4\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #5\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #6\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #7\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #8\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #9\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #10\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #11\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #12\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #13\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #14\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #15\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #16\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #17\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #18\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #19\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #20\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #21\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #22\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #23\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #24\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #25\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #26\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #27\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #28\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #29\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #30\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]}]}],\"__iid\":\"android-conformance\",\"iid\":\"android-conformance\"}"
+  ],
+  "finalDump": {
+    "type": "scroll",
+    "props": {
+      "iid": "android-conformance"
+    },
+    "children": [
+      {
+        "type": "column",
+        "props": {},
+        "children": [
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #1",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n3"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n4"
+              }
+            ],
+            "events": {},
+            "nodeId": "n2"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #2",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n6"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n7"
+              }
+            ],
+            "events": {},
+            "nodeId": "n5"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #3",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n9"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n10"
+              }
+            ],
+            "events": {},
+            "nodeId": "n8"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #4",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n12"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n13"
+              }
+            ],
+            "events": {},
+            "nodeId": "n11"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #5",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n15"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n16"
+              }
+            ],
+            "events": {},
+            "nodeId": "n14"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #6",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n18"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n19"
+              }
+            ],
+            "events": {},
+            "nodeId": "n17"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #7",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n21"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n22"
+              }
+            ],
+            "events": {},
+            "nodeId": "n20"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #8",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n24"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n25"
+              }
+            ],
+            "events": {},
+            "nodeId": "n23"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #9",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n27"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n28"
+              }
+            ],
+            "events": {},
+            "nodeId": "n26"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #10",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n30"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n31"
+              }
+            ],
+            "events": {},
+            "nodeId": "n29"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #11",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n33"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n34"
+              }
+            ],
+            "events": {},
+            "nodeId": "n32"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #12",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n36"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n37"
+              }
+            ],
+            "events": {},
+            "nodeId": "n35"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #13",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n39"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n40"
+              }
+            ],
+            "events": {},
+            "nodeId": "n38"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #14",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n42"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n43"
+              }
+            ],
+            "events": {},
+            "nodeId": "n41"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #15",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n45"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n46"
+              }
+            ],
+            "events": {},
+            "nodeId": "n44"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #16",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n48"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n49"
+              }
+            ],
+            "events": {},
+            "nodeId": "n47"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #17",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n51"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n52"
+              }
+            ],
+            "events": {},
+            "nodeId": "n50"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #18",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n54"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n55"
+              }
+            ],
+            "events": {},
+            "nodeId": "n53"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #19",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n57"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n58"
+              }
+            ],
+            "events": {},
+            "nodeId": "n56"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #20",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n60"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n61"
+              }
+            ],
+            "events": {},
+            "nodeId": "n59"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #21",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n63"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n64"
+              }
+            ],
+            "events": {},
+            "nodeId": "n62"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #22",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n66"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n67"
+              }
+            ],
+            "events": {},
+            "nodeId": "n65"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #23",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n69"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n70"
+              }
+            ],
+            "events": {},
+            "nodeId": "n68"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #24",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n72"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n73"
+              }
+            ],
+            "events": {},
+            "nodeId": "n71"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #25",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n75"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n76"
+              }
+            ],
+            "events": {},
+            "nodeId": "n74"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #26",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n78"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n79"
+              }
+            ],
+            "events": {},
+            "nodeId": "n77"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #27",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n81"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n82"
+              }
+            ],
+            "events": {},
+            "nodeId": "n80"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#293548"
+              },
+              "color": "#293548"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #28",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n84"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n85"
+              }
+            ],
+            "events": {},
+            "nodeId": "n83"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#334155"
+              },
+              "color": "#334155"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #29",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n87"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n88"
+              }
+            ],
+            "events": {},
+            "nodeId": "n86"
+          },
+          {
+            "type": "container",
+            "props": {
+              "borderRadius": 8,
+              "margin": 6,
+              "padding": 16,
+              "decoration": {
+                "color": "#1E293B"
+              },
+              "color": "#1E293B"
+            },
+            "children": [
+              {
+                "type": "text",
+                "props": {
+                  "data": "Item #30",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "color": "#F1F5F9"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n90"
+              },
+              {
+                "type": "text",
+                "props": {
+                  "data": "Нативный скролл через QuickJS",
+                  "fontSize": 12,
+                  "color": "#94A3B8"
+                },
+                "children": [],
+                "events": {},
+                "nodeId": "n91"
+              }
+            ],
+            "events": {},
+            "nodeId": "n89"
+          }
+        ],
+        "events": {},
+        "nodeId": "n1"
+      }
+    ],
+    "events": {},
+    "nodeId": "n0"
+  },
+  "title": "JSR: список 30",
+  "console": [],
+  "skippedReason": null
+}

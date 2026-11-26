@@ -1,0 +1,2951 @@
+{
+  "console" : [
+
+  ],
+  "diffs" : [
+
+  ],
+  "dump" : {
+    "children" : [
+      {
+        "children" : [
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n3",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #1",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n4",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n2",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n6",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #2",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n7",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n5",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n9",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #3",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n10",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n8",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n12",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #4",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n13",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n11",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n15",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #5",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n16",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n14",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n18",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #6",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n19",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n17",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n21",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #7",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n22",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n20",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n24",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #8",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n25",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n23",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n27",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #9",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n28",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n26",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n30",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #10",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n31",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n29",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n33",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #11",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n34",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n32",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n36",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #12",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n37",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n35",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n39",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #13",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n40",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n38",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n42",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #14",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n43",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n41",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n45",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #15",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n46",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n44",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n48",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #16",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n49",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n47",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n51",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #17",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n52",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n50",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n54",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #18",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n55",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n53",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n57",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #19",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n58",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n56",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n60",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #20",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n61",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n59",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n63",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #21",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n64",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n62",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n66",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #22",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n67",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n65",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n69",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #23",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n70",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n68",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n72",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #24",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n73",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n71",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n75",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #25",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n76",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n74",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n78",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #26",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n79",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n77",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n81",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #27",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n82",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n80",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n84",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #28",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n85",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n83",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n87",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #29",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n88",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n86",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n90",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #30",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n91",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n89",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          }
+        ],
+        "events" : {
+
+        },
+        "nodeId" : "n1",
+        "props" : {
+
+        },
+        "type" : "column"
+      }
+    ],
+    "events" : {
+
+    },
+    "nodeId" : "n0",
+    "props" : {
+      "iid" : "ios"
+    },
+    "type" : "scroll"
+  },
+  "error" : null,
+  "finalDump" : {
+    "children" : [
+      {
+        "children" : [
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n3",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #1",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n4",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n2",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n6",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #2",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n7",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n5",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n9",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #3",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n10",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n8",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n12",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #4",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n13",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n11",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n15",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #5",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n16",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n14",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n18",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #6",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n19",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n17",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n21",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #7",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n22",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n20",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n24",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #8",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n25",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n23",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n27",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #9",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n28",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n26",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n30",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #10",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n31",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n29",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n33",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #11",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n34",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n32",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n36",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #12",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n37",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n35",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n39",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #13",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n40",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n38",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n42",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #14",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n43",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n41",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n45",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #15",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n46",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n44",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n48",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #16",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n49",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n47",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n51",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #17",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n52",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n50",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n54",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #18",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n55",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n53",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n57",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #19",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n58",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n56",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n60",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #20",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n61",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n59",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n63",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #21",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n64",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n62",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n66",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #22",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n67",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n65",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n69",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #23",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n70",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n68",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n72",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #24",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n73",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n71",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n75",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #25",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n76",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n74",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n78",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #26",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n79",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n77",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n81",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #27",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n82",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n80",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n84",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #28",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n85",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n83",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#293548"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n87",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #29",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n88",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n86",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#334155"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n90",
+                "props" : {
+                  "color" : "#F1F5F9",
+                  "data" : "Item #30",
+                  "fontSize" : 18,
+                  "fontWeight" : "bold"
+                },
+                "type" : "text"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+
+                },
+                "nodeId" : "n91",
+                "props" : {
+                  "color" : "#94A3B8",
+                  "data" : "Нативный скролл через QuickJS",
+                  "fontSize" : 12
+                },
+                "type" : "text"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n89",
+            "props" : {
+              "borderRadius" : 8,
+              "decoration" : {
+                "color" : "#1E293B"
+              },
+              "margin" : 6,
+              "padding" : 16
+            },
+            "type" : "container"
+          }
+        ],
+        "events" : {
+
+        },
+        "nodeId" : "n1",
+        "props" : {
+
+        },
+        "type" : "column"
+      }
+    ],
+    "events" : {
+
+    },
+    "nodeId" : "n0",
+    "props" : {
+      "iid" : "ios"
+    },
+    "type" : "scroll"
+  },
+  "fixture" : "scroll_list",
+  "platform" : "ios",
+  "renders" : [
+    "{\"type\":\"scroll\",\"children\":[{\"type\":\"column\",\"children\":[{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #1\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #2\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #3\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #4\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #5\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #6\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #7\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #8\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #9\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #10\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #11\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #12\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #13\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #14\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #15\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #16\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #17\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #18\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #19\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #20\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #21\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #22\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #23\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #24\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #25\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #26\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #27\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#293548\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #28\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#334155\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #29\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]},{\"type\":\"container\",\"color\":\"#1e293b\",\"borderRadius\":8,\"margin\":6,\"padding\":16,\"children\":[{\"type\":\"text\",\"data\":\"Item #30\",\"style\":{\"fontSize\":18,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"text\",\"data\":\"Нативный скролл через QuickJS\",\"style\":{\"fontSize\":12,\"color\":\"#94a3b8\"}}]}]}],\"__iid\":\"ios\",\"iid\":\"ios\"}"
+  ],
+  "screenshot" : null,
+  "skippedReason" : null,
+  "state" : null,
+  "status" : "DONE",
+  "title" : "JSR: список 30",
+  "trace" : [
+    "render",
+    "set_title"
+  ]
+}
