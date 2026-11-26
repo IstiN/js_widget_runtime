@@ -33,4 +33,4 @@ child: single node
 
 ## Platform support
 
-flutter=yes, android=no, ios=no, macos=no, web=no (source: [matrix.md](../matrix.md); wave D fills the final values).
+flutter=yes, android=yes, ios=partial, macos=partial, web=partial (source: [matrix.md](../matrix.md))
