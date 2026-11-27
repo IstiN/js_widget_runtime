@@ -249,3 +249,12 @@ function assignNodeIds(node, counter) {
   node.nodeId = 'n' + counter.i++;
   for (const child of node.children) assignNodeIds(child, counter);
 }
+
+// A3: the scroll-state contract applies to the resolved type `scroll`
+// (`ScrollView`, `scrollView`, `SingleChildScrollView`, ... aliases resolve
+// to it). A normalized dump node of this type carries `scrollOffset`,
+// `scrollExtent`, `viewportExtent` (numbers, logical px, primary axis);
+// normalization passes them through unchanged and idempotently.
+export function isScrollableType(type) {
+  return resolveTypeAlias(type) === 'scroll';
+}

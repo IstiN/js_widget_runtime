@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { normalizeTree, normalizeColor } from '../../harness/normalize.mjs';
+import { normalizeTree, normalizeColor, isScrollableType } from '../../harness/normalize.mjs';
 
 test('style merges into props, node keys win, style removed', () => {
   const tree = normalizeTree({ type: 'text', data: 'x', fontSize: 24, style: { fontSize: 99, color: '#abc' } });
@@ -142,4 +142,16 @@ test('normalizeTree rejects invalid payloads', () => {
   assert.throws(() => normalizeTree(null), TypeError);
   assert.throws(() => normalizeTree({ children: [] }), TypeError);
   assert.throws(() => normalizeTree({ type: 'x', children: [42] }), TypeError);
+});
+
+test('A3: isScrollableType resolves the scroll family; scroll state passes through', () => {
+  assert.equal(isScrollableType('scroll'), true);
+  assert.equal(isScrollableType('ScrollView'), true);
+  assert.equal(isScrollableType('SingleChildScrollView'), true);
+  assert.equal(isScrollableType('column'), false);
+  assert.equal(isScrollableType('listView'), false);
+  const tree = normalizeTree({ type: 'ScrollView', scrollOffset: 120, scrollExtent: 2000, viewportExtent: 400, children: [] });
+  assert.equal(tree.type, 'scroll');
+  assert.deepEqual(tree.props, { scrollOffset: 120, scrollExtent: 2000, viewportExtent: 400 });
+  assert.deepEqual(normalizeTree(tree), tree); // idempotent
 });

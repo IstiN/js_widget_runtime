@@ -22,6 +22,21 @@ repository's harness (`node`, `quickjs`, `chromium`).
   reaches `gestureDetector.onScroll` and scrollable containers.
   `{ "swipe": [x1, y1, x2, y2, ms] }` stays the **touch drag**
   ([IstiN/flutter_js_widget_runtime#18](https://github.com/IstiN/flutter_js_widget_runtime/issues/18)).
+- **A3 — scroll state in the dump**: the dump of a scrollable container
+  (resolved type `scroll`) carries `scrollOffset`, `scrollExtent`,
+  `viewportExtent` (§2); the delta grammar resolves the derived
+  `scrolledToEnd` on such nodes. A scrollable dump without the scroll state
+  fails the fixture — missing is not zero, and the `meta.json.ignore` list
+  never applies to it. This restores the v0.1 scroll outcome assertion
+  (`scrollsToEnd`/`lastVisibleText`) that v0.2 had dropped: a renderer whose
+  scroll container ignores `swipe` now FAILS `scroll_list`.
+- **A4 — the 3D family-wide split is restored**: **3D-API** (three.js
+  scene-graph math) stays **in contract**; **3D-RENDER** (golden images,
+  per-backend) is **out of pass/fail scope** and tracked by
+  [flutter#7](https://github.com/IstiN/flutter_js_widget_runtime/issues/7) /
+  [flutter#8](https://github.com/IstiN/flutter_js_widget_runtime/issues/8)
+  (§4.1). v0.2 had silently dropped the 3D-RENDER definition; it is back as
+  an explicit out-of-contract statement.
 - **Comparator rule (as `harness/` implements it)**: props are compared by
   the keys of the **expected** tree — extra props carried by a dump are
   tolerated (e.g. a textButton's live-text `data` next to `text`), missing
@@ -64,6 +79,20 @@ Every renderer must expose `dumpViewTree()` producing this node shape:
   also layout-only nodes).
 - **`key`** (string) is a universal optional prop: a reconciler identity
   hint. It is never rendered and never dumped.
+- **Scroll state (A3)**: the dump of a scrollable container (resolved type
+  `scroll`) carries three numbers in `props`, primary axis, logical pixels,
+  read live from the scrollable at dump time:
+
+  | prop | meaning | reference reading (Flutter) |
+  |---|---|---|
+  | `scrollOffset` | current position, `0` = start | `ScrollPosition.pixels` |
+  | `scrollExtent` | full scrollable content extent | `maxScrollExtent + viewportDimension` |
+  | `viewportExtent` | visible viewport extent | `ScrollPosition.viewportDimension` |
+
+  The comparator enforces their presence on every scrollable node of the
+  dump (initial **and** final): a dump that lacks them fails the fixture —
+  missing is not zero. A renderer whose scroll container ignores a `swipe`
+  keeps `scrollOffset: 0` and fails through the derived assertion below.
 - A platform node the renderer does not implement is rendered as the
   reference fallback shape (a card with the type name) with its node id tag;
   the dump stays structurally correct and the node is `partial` in that
@@ -89,7 +118,10 @@ Every runner produces dumps that are already normalized:
    (`UiViewTreeNormalizer`); the table lives in `harness/aliases.mjs` and
    `docs/contract/jsr-api.md`.
 6. Colors become `#RRGGBB` or `#RRGGBBAA` with upper-case hex. Sizes are
-   numbers in logical pixels.
+   numbers in logical pixels. The A3 scroll-state props
+   (`scrollOffset`, `scrollExtent`, `viewportExtent`) pass through
+   normalization unchanged and idempotently; `harness/normalize.mjs`
+   exports `isScrollableType` as the one scrollable-type predicate.
 7. `nodeId` is assigned (rule above). Normalization is idempotent.
 
 ### 2.2 Dump source per platform (the dump proves what is on screen)
@@ -97,24 +129,42 @@ Every runner produces dumps that are already normalized:
 - **Flutter**: `dumpViewTree()` walks the `Element` tree, reads the stamped
   `Key('jsr:<nodeId>')`, and joins it with the applied-node record of the
   renderer; text-bearing props (`data`, text of inputs, tooltip) are read
-  live from the built widgets.
+  live from the built widgets, the A3 scroll state is read live from the
+  scrollable's position.
 - **Android / Apple**: the view tree is walked in order; every mapped root
   view carries its `nodeId` (`View.setTag(nodeId)`,
   `accessibilityIdentifier`); text-bearing props are read live from the
-  view, other props come from the applied-node record.
+  view, other props come from the applied-node record; the A3 scroll state
+  is read live from the scrollable (offset / content range / viewport size).
 - **React**: DOM reflection — every mapped element has
   `data-node-id="n<i>"` and `data-node-type="<type>"`; text-bearing props
-  are read from the DOM node, other props from the applied-node record.
+  are read from the DOM node, other props from the applied-node record; the
+  A3 scroll state is read live from the scrolling element
+  (`scrollTop` / `scrollHeight` / `clientHeight`).
 
 ### 2.3 Comparison
 
 - Children in order; props compared by the keys of the expected tree (extra
-  actual props tolerated); numbers with tolerance ±1; strings and colors
-  exact. `meta.json.ignore` lists prop names excluded for that fixture
-  (top-level prop names of the normalized node).
+  actual props tolerated); **numbers: the ±1 logical-pixel tolerance applies
+  to px-size props only** (the leaf prop key decides — `width`, `height`,
+  `fontSize`, `padding`, `margin`, `spacing`, radii, borders, blur, offsets,
+  edge insets; the full list is `PX_SIZE_PROPS` in `harness/compare.mjs`).
+  **Every other number compares exact**: dump numbers are applied payload
+  values (`opacity: 0.5`, `scale`, `flex`, `progress`, durations, counts),
+  not measurements, so exact is the strongest portable assertion — an
+  `l3_opacity` expecting 0.5 fails against 0, 1 or 1.5. Strings and colors
+  are exact. `meta.json.ignore` lists prop names excluded for that fixture
+  (top-level prop names of the normalized node); it never applies to the
+  A3 scroll-state presence check.
 - Delta path grammar: `<type>[<selector>].<prop>[.<subprop>...]`; the
   selector is a zero-based depth-first occurrence of that type or a `nodeId`
-  (`text[1].data`, `text[n2].data`).
+  (`text[1].data`, `text[n2].data`). The leaf prop segment of the path
+  decides size-ness for the tolerance. On a scrollable node the grammar also
+  resolves the derived prop **`scrolledToEnd`** =
+  `scrollOffset >= scrollExtent - viewportExtent` (the universal at-end
+  predicate; `true` also when the content fits the viewport) — platforms
+  never dump the boolean itself, and an unknown value (state missing) is a
+  diff, not `false`.
 
 ## 3. Fixtures, actions, expectations
 
@@ -146,7 +196,7 @@ Allowed `expect` fields:
 | `trace` | exact ordered verb list |
 | `state` | deep subset of the last `__jsr_export_state` payload |
 | `console` | substrings that must occur in `__jsr_log` payloads |
-| `finalDumpDelta` | map of delta path → expected value |
+| `finalDumpDelta` | map of delta path → expected value; this is where scroll outcome assertions live (e.g. `"scroll[n0].scrolledToEnd": true`, §2 A3) |
 
 ### 3.3 Actions
 
@@ -159,7 +209,10 @@ Allowed `expect` fields:
 - `tap` selects by `nodeId` when the value matches `/^n\d+$/`, else by
   visible text.
 - `scroll` is a pointer scroll at the surface center (A2); `swipe` is the
-  touch drag. `wait` is real time on every platform.
+  touch drag. `wait` is real time on every platform. A `swipe` (or
+  `scroll`) over a scrollable container must actually scroll it: the dump
+  then reflects the moved `scrollOffset` (A3), which is how `scroll_list`
+  proves native scroll.
 - `submit` performs the keyboard done action on the named text node (A1).
 - `back`: the runner calls the reference host-event global
   `__jsrHostEvent('back', {})` — the same call the reference conformance
@@ -208,10 +261,19 @@ the `fixtures-coverage` check.
   offsetX, offsetY, scale, rotation, opacity.
 - **L4**: `calculator`, `pomodoro` (storage), `weather` (fetch mock) —
   deterministic ports of the Flutter example widgets.
-- **3D-API**: scene graph build, Matrix4/Vector3 math, Euler/Quaternion
-  math; the widget exports its results with `jsr.exportState(results)` and
-  `expect.state` holds the exact values (reference values produced by
-  `jsr-harness run --engine chromium --write-expect`).
+- **3D-API** (in contract): scene graph build, Matrix4/Vector3 math,
+  Euler/Quaternion math; the widget exports its results with
+  `jsr.exportState(results)` and `expect.state` holds the exact values
+  (reference values produced by `jsr-harness run --engine chromium
+  --write-expect`). 3D-API fixtures are pure-JS unit checks runnable in any
+  engine — the math does not touch the renderer.
+- **3D-RENDER** (out of contract, restored by amendment A4): golden images
+  of three.js output, per-backend artifacts. They are **not** part of
+  pass/fail conformance and have no fixtures here; the 1A/1B golden-image
+  work is tracked by
+  [flutter#7](https://github.com/IstiN/flutter_js_widget_runtime/issues/7)
+  and [flutter#8](https://github.com/IstiN/flutter_js_widget_runtime/issues/8).
+  L0–L4 and 3D-API are contract (must match everywhere); 3D-RENDER is not.
 
 ## 5. The harness (`jsr-harness`, Node >= 20, zero runtime dependencies)
 
@@ -230,16 +292,20 @@ coverage check. `docs/harness.md` documents the comparator in detail.
 
 - `hello` — L0/L1: render tree, tap → setTitle + re-render (README example).
 - `counter` — L1: full cycle tap→JS state→re-render, three buttons.
-- `scroll_list` — L0: 30-item scroll list, scroll-to-bottom action.
+- `scroll_list` — L0: 30-item scroll list; three `swipe`s must scroll the
+  container to its end — asserted through A3 as
+  `"finalDumpDelta": { "scroll[n0].scrolledToEnd": true }`.
 
 Seed widgets are the proven POC trio (android_js_widget_runtime assets);
-`scroll_list` currently carries the observed reference defects as its
-behavior (flutter#11 children, pinned dump `color` — see its `meta.json`
-notes) until the Flutter pin carries the fixes.
+the pinned flutter reference behavior they carry is documented in each
+seed's `meta.json` notes (scroll_list: flat dump `color`; the former
+flutter#11 children defect no longer reproduces at the pin e136d479).
 
 ## 7. Runner checklist (per platform repo)
 
-- [ ] `dumpViewTree()` per §2 (nodeId tags, normalized)
-- [ ] interaction driver per §3.3 verbs, `back` via `__jsrHostEvent`
+- [ ] `dumpViewTree()` per §2 (nodeId tags, normalized; A3 scroll state on
+      every scrollable container)
+- [ ] interaction driver per §3.3 verbs, `back` via `__jsrHostEvent`;
+      `swipe`/`scroll` actually move scrollables
 - [ ] `result.json` emitter per §4 (runner writes `DONE`/`SKIP`)
 - [ ] CI job: run fixtures → harness compare → score badge

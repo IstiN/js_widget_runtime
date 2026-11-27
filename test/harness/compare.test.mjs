@@ -29,14 +29,31 @@ function rawTree(spacing, overrides = {}) {
   });
 }
 
-test('numbers compare with tolerance +-1, strings and colors exact', () => {
+test('sizes compare with tolerance +-1, other numbers exact, strings and colors exact', () => {
   const expected = rawTree(12);
-  assert.deepEqual(diffTree(expected, rawTree(13)), []);
+  assert.deepEqual(diffTree(expected, rawTree(13)), []); // spacing: px size, +-1 ok
   const diffs = diffTree(expected, rawTree(14));
   assert.equal(diffs.length, 1);
   assert.equal(diffs[0].path, 'column[0].spacing');
   assert.ok(diffTree(expected, rawTree(12, { color: '#AABBCD' })).some((d) => d.path.endsWith('.color')));
   assert.ok(diffTree(expected, rawTree(12, { a: 'X' })).some((d) => d.path === 'text[0].data'));
+});
+
+test('scoped tolerance: unit-interval numbers are unasserted no more', () => {
+  const tree = (opacity) => normalizeTree({ type: 'column', opacity, children: [{ type: 'text', data: 'A' }] });
+  const expected = tree(0.5);
+  assert.deepEqual(diffTree(expected, tree(0.5)), []);
+  for (const actual of [0, 1, -3, 1.5]) {
+    const diffs = diffTree(expected, tree(actual));
+    assert.equal(diffs.length, 1, `opacity 0.5 vs ${actual} must fail`);
+    assert.equal(diffs[0].path, 'column[0].opacity');
+    assert.equal(diffs[0].expected, 0.5);
+    assert.equal(diffs[0].actual, actual);
+  }
+  // px sizes keep their tolerance: 100 vs 100.9 passes, 100 vs 101.1 fails
+  const sized = (height) => normalizeTree({ type: 'container', height, children: [] });
+  assert.deepEqual(diffTree(sized(100), sized(100.9)), []);
+  assert.equal(diffTree(sized(100), sized(101.1)).length, 1);
 });
 
 test('children are compared in order', () => {
@@ -99,12 +116,13 @@ test('delta grammar resolves both selector kinds', () => {
   assert.equal(resolveDeltaPath(tree, 'text[5].data'), undefined);
 });
 
-test('checkDelta reports missing paths and applies tolerance', () => {
+test('checkDelta reports missing paths and applies the scoped tolerance', () => {
   const tree = sample();
-  assert.deepEqual(checkDelta(tree, { 'text[0].data': 'A', 'text[1].fontSize': 21 }), []);
+  assert.deepEqual(checkDelta(tree, { 'text[0].data': 'A', 'text[1].fontSize': 21 }), []); // fontSize: px size
   assert.equal(checkDelta(tree, { 'text[0].data': 'X' }).length, 1);
   assert.equal(checkDelta(tree, { 'text[9].data': 'A' })[0].actual, 'missing');
   assert.equal(checkDelta(tree, { 'text[1].fontSize': 22 })[0].actual, 20);
+  assert.equal(checkDelta(tree, { 'text[1].fontSize': 20.9 })[0], undefined);
 });
 
 test('verbs normalize case-insensitively with underscores removed', () => {
@@ -119,12 +137,50 @@ test('deepSubset checks nested objects, exact arrays and scalars', () => {
   assert.equal(deepSubset({ a: 1 }, { a: 2 }), false);
 });
 
-test('valuesEqual: number tolerance, strict everything else', () => {
-  assert.equal(valuesEqual(10, 9), true);
-  assert.equal(valuesEqual(10, 8.9), false);
+test('valuesEqual: +-1 only for px-size keys, exact otherwise, strict everything else', () => {
+  assert.equal(valuesEqual(10, 9), false); // no key: exact
+  assert.equal(valuesEqual(10, 10), true);
+  assert.equal(valuesEqual(100, 100.9, 'width'), true); // px size key
+  assert.equal(valuesEqual(100, 101.1, 'width'), false);
+  assert.equal(valuesEqual(0.5, 1.5, 'opacity'), false); // non-size key: exact
+  assert.equal(valuesEqual(100, 100.9, 'radius'), true); // nested leaf key of a decoration path
   assert.equal(valuesEqual('#AA', '#AA'), true);
   assert.equal(valuesEqual(0, false), false);
   assert.equal(valuesEqual(null, undefined), false);
+});
+
+test('A3: a scrollable dump without scroll state fails, and ignore never exempts it', () => {
+  const scrollState = { scrollOffset: 0, scrollExtent: 2000, viewportExtent: 400 };
+  const expected = normalizeTree({ type: 'column', children: [{ type: 'scroll', children: [] }] });
+  const good = normalizeTree({ type: 'column', children: [{ type: 'scroll', ...scrollState, children: [] }] });
+  assert.deepEqual(diffTree(expected, good), []);
+  const bad = normalizeTree({ type: 'column', children: [{ type: 'scroll', children: [] }] });
+  const diffs = diffTree(expected, bad);
+  assert.deepEqual(diffs.map((d) => d.path), ['scroll[0].scrollOffset', 'scroll[0].scrollExtent', 'scroll[0].viewportExtent']);
+  assert.ok(diffs.every((d) => d.actual === 'missing'));
+  // negative or non-numeric scroll state is a failure too
+  const negative = normalizeTree({ type: 'scroll', scrollOffset: -1, scrollExtent: 2000, viewportExtent: 400, children: [] });
+  assert.equal(diffTree(negative, negative).length, 1);
+  // the ignore list must not be able to hide a missing scroll state
+  assert.deepEqual(diffTree(expected, bad, new Set(['scrollOffset'])), diffs);
+});
+
+test('A3: scrolledToEnd derives from the dumped scroll state', () => {
+  const scroll = (offset, extent, viewport) =>
+    normalizeTree({ type: 'scroll', scrollOffset: offset, scrollExtent: extent, viewportExtent: viewport, children: [] });
+  // 0 + 2000 - 400 = 1600: offset 1600 is at end, 1599 is not
+  assert.equal(resolveDeltaPath(scroll(1600, 2000, 400), 'scroll[n0].scrolledToEnd'), true);
+  assert.equal(resolveDeltaPath(scroll(1599, 2000, 400), 'scroll[n0].scrolledToEnd'), false);
+  assert.equal(resolveDeltaPath(scroll(0, 300, 400), 'scroll[n0].scrolledToEnd'), true); // content fits
+  assert.deepEqual(checkDelta(scroll(1700, 2000, 400), { 'scroll[n0].scrolledToEnd': true }), []);
+  assert.equal(checkDelta(scroll(10, 2000, 400), { 'scroll[n0].scrolledToEnd': true })[0].actual, false);
+  // missing state reads `missing`, not `false`
+  const bare = normalizeTree({ type: 'scroll', children: [] });
+  assert.equal(checkDelta(bare, { 'scroll[n0].scrolledToEnd': true })[0].actual, 'missing');
+  // the alias resolves: ScrollView dumps to scroll and carries the same virtual prop
+  const aliased = normalizeTree({ type: 'ScrollView', scrollOffset: 1600, scrollExtent: 2000, viewportExtent: 400, children: [] });
+  assert.equal(aliased.type, 'scroll');
+  assert.equal(resolveDeltaPath(aliased, 'scroll[n0].scrolledToEnd'), true);
 });
 
 test('nested object props diff key by key; array props diff by length and items', () => {

@@ -162,13 +162,18 @@ function assertWriteExpectFixture(writeExpect, fixture) {
 
 // headless has no hit testing and no renderer: interactive fixtures and
 // fixtures whose finalDumpDelta asserts renderer-side values (defaults,
-// live text, transforms) belong to platform runners
+// live text, transforms) belong to platform runners. A3: fixtures that
+// render a scrollable container also skip — the scroll state lives in the
+// platform dump, the headless derived tree cannot carry it.
+const SCROLLABLE_SOURCE = /type\s*:\s*['"](?:scroll|ScrollView|scrollView|SingleChildScrollView|singleChildScrollView)['"]/;
+
 function headlessSkipReason(fixture) {
   if ((fixture.expected.actions?.length ?? 0) > 0) return 'actions require a rendering runner';
   const delta = fixture.expected.expect.finalDumpDelta;
   if (delta && typeof delta === 'object' && Object.keys(delta).length > 0) {
     return 'renderer assertions (finalDumpDelta) require a rendering runner';
   }
+  if (SCROLLABLE_SOURCE.test(fixture.widget)) return 'scroll state (A3) requires a rendering runner';
   return null;
 }
 

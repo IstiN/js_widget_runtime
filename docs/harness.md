@@ -31,7 +31,7 @@ jsr-harness mock <fixture-dir>
 Actions (headless runners cannot execute them; rendering platform runners do): `{ "tap": "<nodeId|text>" }`, `{ "input": { "node": "<nodeId>", "value": "..." } }`, `{ "scroll": [dx, dy] }`, `{ "swipe": [x1, y1, x2, y2, ms] }`, `{ "submit": "<nodeId>" }`, `{ "wait": <ms> }`, `{ "back": true }`.
 
 - `submit` (PROTOCOL v0.2 amendment A1) performs the keyboard done action on the named text node (`textField`, `textArea`, `searchBar`) and must dispatch `onSubmit` / `onSubmitted` ([flutter#17](https://github.com/IstiN/flutter_js_widget_runtime/issues/17)).
-- `scroll` is a **pointer scroll** (wheel/trackpad signal) at the center of the surface — it reaches `gestureDetector.onScroll` and scrollable containers; `swipe` is the **touch drag** (PROTOCOL v0.2 amendment A2, [flutter#18](https://github.com/IstiN/flutter_js_widget_runtime/issues/18)).
+- `scroll` is a **pointer scroll** (wheel/trackpad signal) at the center of the surface — it reaches `gestureDetector.onScroll` and scrollable containers; `swipe` is the **touch drag** (PROTOCOL v0.2 amendment A2, [flutter#18](https://github.com/IstiN/flutter_js_widget_runtime/issues/18)). A `swipe`/`scroll` over a scrollable container must actually scroll it — the dump then reflects the moved `scrollOffset` (A3); this is how `scroll_list` proves native scroll.
 - `back` dispatches the reference host-event global `__jsrHostEvent('back', {})`.
 
 ## AUI normalization (`harness/normalize.mjs`)
@@ -65,13 +65,15 @@ is absent, so a dump that already carries both props stays unchanged):
 This is why a Flutter dump's `textButton` carries both `text` and `data` (live
 text): the alias does not fire because `data` is present.
 
-Canonical node shape: `{ type, props, children, events, nodeId }` (props/children/events always present). `normalizeTree` accepts the protocol v0.1 `{ root: {...} }` wrapper and is idempotent.
+Canonical node shape: `{ type, props, children, events, nodeId }` (props/children/events always present). A scrollable node's `props` additionally carry the A3 scroll state (`scrollOffset`, `scrollExtent`, `viewportExtent` — numbers, logical px, primary axis; the reference reads `ScrollPosition.pixels`, `maxScrollExtent + viewportDimension`, `viewportDimension`). `normalizeTree` accepts the protocol v0.1 `{ root: {...} }` wrapper and is idempotent; `isScrollableType` is the one scrollable-type predicate.
 
 ## Comparison (`harness/compare.mjs`)
 
-- children in order; props compared **by the keys of the expected tree** — a prop missing on the actual side is a diff, an extra actual prop is tolerated (platforms may carry e.g. a textButton's live-text `data` next to `text`); numbers with tolerance **±1**; strings exact; colors exact (both sides are already normalized);
+- children in order; props compared **by the keys of the expected tree** — a prop missing on the actual side is a diff, an extra actual prop is tolerated (platforms may carry e.g. a textButton's live-text `data` next to `text`); strings exact; colors exact (both sides are already normalized);
+- **numbers: the ±1 logical-pixel tolerance applies to px-size props only.** The leaf prop key decides (`PX_SIZE_PROPS` in `harness/compare.mjs`): `width`, `height`, `minWidth`/`maxWidth`, `minHeight`/`maxHeight`, `size`, `fontSize`, `letterSpacing`, `padding` (and array values like `padding: [10, 20]`), `margin`, `thickness`, `spacing`, `runSpacing`, `mainAxisSpacing`, `crossAxisSpacing`, `indent`, `endIndent`, `itemExtent`, `shrinkExtent`, `radius`, `borderRadius`, `borderWidth`, `strokeWidth`, `centerSpaceRadius`, `blur`, `sigma`, `elevation`, `offsetX`, `offsetY`, `left`, `top`, `right`, `bottom`, `inset` — inside nested objects too (`decoration.radius`). **Every other number compares exact**: dump numbers are applied payload values (`opacity: 0.5`, `scale`, `flex`, `progress`, durations, counts), not measurements — `l3_opacity` expecting 0.5 fails against 0, 1 or 1.5; a size 100 against 100.9 passes;
+- **A3 scroll state**: every node of a scrollable container (resolved type `scroll`) in the actual dump must carry `scrollOffset`, `scrollExtent`, `viewportExtent` — finite numbers ≥ 0, logical px, primary axis. The check runs on the initial and the final dump and is not subject to `meta.json.ignore`: a dump that lacks the scroll state fails the fixture (missing is not zero);
 - `meta.json.ignore` lists prop names excluded from the dump compare at any depth;
-- delta path grammar: `<type>[<selector>].<prop>[.<subprop>...]` where `<selector>` is the zero-based occurrence of that type in depth-first order or a `nodeId` (`text[1].data`, `text[n2].data`). The first prop segment resolves through the node's `props` — including first-level array props (`textShadows[0].blur`); array indexes are written `key[0]`. The form `text.data#count` is **not** valid.
+- delta path grammar: `<type>[<selector>].<prop>[.<subprop>...]` where `<selector>` is the zero-based occurrence of that type in depth-first order or a `nodeId` (`text[1].data`, `text[n2].data`). The first prop segment resolves through the node's `props` — including first-level array props (`textShadows[0].blur`); array indexes are written `key[0]`. The form `text.data#count` is **not** valid. The leaf prop segment of the path decides size-ness for the number tolerance. On a scrollable node the grammar also resolves the derived prop **`scrolledToEnd`** = `scrollOffset >= scrollExtent - viewportExtent` (at-end; `true` also when the content fits); platforms never dump the boolean, and when the scroll state is missing the delta reads `missing` (a diff), not `false`.
 
 ## `compare`
 
@@ -111,7 +113,8 @@ The host side lives in `harness/host.mjs`, shared by all three engines:
 - `__jsr_fetch` resolves from the `meta.json.mock` map directly (same lookup rules as the mock server: origin ignored, query stripped; body for status < 400, `{ "__error": "HTTP <status>" }` otherwise; unknown path → `{ "__error": "no mock for <path>" }` which rejects the promise);
 - `__jsr_export_state` lands in `state`;
 - `__jsr_exec`, `__jsr_open_url`, `__jsr_host_call`, `__jsr_capture` resolve `{ "__error": "<channel> is not supported by this host" }`; the fire-and-forget lanes (`__jsr_host_call_binary`, `__jsr_scene3d_command`, `__jsr_event_done`) are dropped (protocol §5);
-- raw-payload channels arrive `{ iid, id }`-wrapped and are unwrapped (protocol §1).
+- raw-payload channels arrive `{ iid, id }`-wrapped and are unwrapped (protocol §1);
+- the headless host cannot scroll and its derived dumps carry no A3 scroll state — fixtures that render a scrollable container skip in `run` (see below).
 
 Engines:
 
@@ -127,7 +130,11 @@ rendering runner"`) — headless has no hit testing. Fixtures whose
 (`skippedReason: "renderer assertions (finalDumpDelta) require a rendering
 runner"`) — the delta pins renderer-side values (defaults, live text,
 transforms) that only a platform dump carries; the headless derived tree
-equals the normalized payload. `--settle <ms>` (default
+equals the normalized payload. Fixtures rendering a scrollable container
+(resolved type `scroll`) skip for the same reason
+(`skippedReason: "scroll state (A3) requires a rendering runner"`) — the
+headless host cannot scroll and the derived tree carries no scroll state.
+`--settle <ms>` (default
 1000) is the real-time window timers get. `--filter <glob>` selects fixture ids
 (`*`/`?` wildcards). `--write-expect` copies the measured `state` into
 `expect.state` of `expected.json` and refuses (exit 1) any fixture whose

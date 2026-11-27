@@ -7,6 +7,9 @@
   "expect": {
     "renders": 1,
     "channels": ["render", "set_title"],
-    "title": "JSR: список 30"
+    "title": "JSR: список 30",
+    "finalDumpDelta": {
+      "scroll[n0].scrolledToEnd": true
+    }
   }
 }

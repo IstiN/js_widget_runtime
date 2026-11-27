@@ -144,7 +144,7 @@ test('run --engine node drives mock fetch, storage, timers and exportState', asy
   const out = makeTmp();
   const { code, stdout } = await runCli(['run', '--engine', 'node', '--fixtures', FIXTURES, '--out', out, '--bootstrap-dir', STUB]);
   assert.equal(code, 0);
-  assert.match(stdout, /ran 3 fixture\(s\), skipped 2/); // taps has actions; delta_probe pins a renderer value
+  assert.match(stdout, /ran 3 fixture\(s\), skipped 3/); // taps has actions; delta_probe pins a renderer value; scroll_probe needs scroll state
   const logic = JSON.parse(readFileSync(join(out, 'logic_l2.result.json'), 'utf8'));
   assert.equal(logic.status, 'DONE');
   assert.equal(logic.platform, 'node');
@@ -161,6 +161,9 @@ test('run --engine node drives mock fetch, storage, timers and exportState', asy
   const taps = JSON.parse(readFileSync(join(out, 'taps.result.json'), 'utf8'));
   assert.equal(taps.status, 'SKIP');
   assert.match(taps.skippedReason, /actions require a rendering runner/);
+  const scrollProbe = JSON.parse(readFileSync(join(out, 'scroll_probe.result.json'), 'utf8'));
+  assert.equal(scrollProbe.status, 'SKIP');
+  assert.match(scrollProbe.skippedReason, /scroll state \(A3\) requires a rendering runner/);
   const math = JSON.parse(readFileSync(join(out, 'math_3d.result.json'), 'utf8'));
   assert.deepEqual(math.state, { dot: 28, transformed: { x: 2, y: 4, z: 6 } });
 });
