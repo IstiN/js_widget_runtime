@@ -1,0 +1,10 @@
+{
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "container[n1].decoration.shadows[0].blur": 12,
+      "container[n1].decoration.shadows[0].spread": 2,
+      "container[n1].decoration.shadows[0].color": "#000000"
+    }
+  }
+}

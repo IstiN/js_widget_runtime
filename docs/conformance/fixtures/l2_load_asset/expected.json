@@ -1,0 +1,9 @@
+{
+  "actions": [{ "wait": 200 }],
+  "expect": {
+    "renders": 2,
+    "channels": ["load_asset", "set_title", "render"],
+    "title": "asset: asset payload 7",
+    "finalDumpDelta": { "text[n2].data": "asset says: asset payload 7" }
+  }
+}

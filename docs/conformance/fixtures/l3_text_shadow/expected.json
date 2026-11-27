@@ -1,0 +1,7 @@
+{
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": { "text[n1].data": "glowing text" },
+    "console": ["textShadows: [{\"color\":\"#818CF8\",\"blur\":6,\"offsetX\":2,\"offsetY\":2}]"]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "categories": ["L3"],
+  "capabilities": [],
+  "ignore": ["data"],
+  "notes": "dump shows the uppercased live text while renders[0] keeps the payload case; data ignored for the payload/dump comparison, the delta asserts the transformed value",
+  "nodes": ["center", "text"],
+  "mock": {}
+}

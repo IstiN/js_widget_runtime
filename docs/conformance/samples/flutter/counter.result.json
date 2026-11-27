@@ -1,0 +1,220 @@
+{
+  "fixture": "counter",
+  "platform": "flutter",
+  "status": "DONE",
+  "dump": {
+    "type": "center",
+    "props": {},
+    "children": [
+      {
+        "type": "column",
+        "props": {
+          "spacing": 16
+        },
+        "children": [
+          {
+            "type": "text",
+            "props": {
+              "fontSize": 20,
+              "color": "#94A3B8",
+              "data": "QuickJS counter"
+            },
+            "children": [],
+            "events": {},
+            "nodeId": "n2"
+          },
+          {
+            "type": "text",
+            "props": {
+              "fontSize": 64,
+              "fontWeight": "bold",
+              "color": "#F1F5F9",
+              "data": "0"
+            },
+            "children": [],
+            "events": {},
+            "nodeId": "n3"
+          },
+          {
+            "type": "row",
+            "props": {
+              "spacing": 12
+            },
+            "children": [
+              {
+                "type": "textButton",
+                "props": {
+                  "text": "-1",
+                  "data": "-1"
+                },
+                "children": [],
+                "events": {
+                  "onTap": "dec"
+                },
+                "nodeId": "n5"
+              },
+              {
+                "type": "textButton",
+                "props": {
+                  "text": "+1",
+                  "data": "+1"
+                },
+                "children": [],
+                "events": {
+                  "onTap": "inc"
+                },
+                "nodeId": "n6"
+              },
+              {
+                "type": "textButton",
+                "props": {
+                  "text": "reset",
+                  "data": "reset"
+                },
+                "children": [],
+                "events": {
+                  "onTap": "reset"
+                },
+                "nodeId": "n7"
+              }
+            ],
+            "events": {},
+            "nodeId": "n4"
+          },
+          {
+            "type": "text",
+            "props": {
+              "fontSize": 12,
+              "color": "#64748B",
+              "data": "перерендер целиком, но нативно и мгновенно"
+            },
+            "children": [],
+            "events": {},
+            "nodeId": "n8"
+          }
+        ],
+        "events": {},
+        "nodeId": "n1"
+      }
+    ],
+    "events": {},
+    "nodeId": "n0"
+  },
+  "trace": [
+    "render",
+    "render",
+    "render",
+    "render"
+  ],
+  "diffs": [],
+  "screenshot": null,
+  "renders": [
+    "{\"type\":\"center\",\"child\":{\"type\":\"column\",\"spacing\":16,\"children\":[{\"type\":\"text\",\"data\":\"QuickJS counter\",\"style\":{\"fontSize\":20,\"color\":\"#94a3b8\"}},{\"type\":\"text\",\"data\":\"0\",\"style\":{\"fontSize\":64,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"row\",\"spacing\":12,\"children\":[{\"type\":\"textButton\",\"text\":\"-1\",\"onTap\":\"dec\"},{\"type\":\"textButton\",\"text\":\"+1\",\"onTap\":\"inc\"},{\"type\":\"textButton\",\"text\":\"reset\",\"onTap\":\"reset\"}]},{\"type\":\"text\",\"data\":\"перерендер целиком, но нативно и мгновенно\",\"style\":{\"fontSize\":12,\"color\":\"#64748b\"}}]},\"__iid\":\"conformance-counter\"}",
+    "{\"type\":\"center\",\"child\":{\"type\":\"column\",\"spacing\":16,\"children\":[{\"type\":\"text\",\"data\":\"QuickJS counter\",\"style\":{\"fontSize\":20,\"color\":\"#94a3b8\"}},{\"type\":\"text\",\"data\":\"1\",\"style\":{\"fontSize\":64,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"row\",\"spacing\":12,\"children\":[{\"type\":\"textButton\",\"text\":\"-1\",\"onTap\":\"dec\"},{\"type\":\"textButton\",\"text\":\"+1\",\"onTap\":\"inc\"},{\"type\":\"textButton\",\"text\":\"reset\",\"onTap\":\"reset\"}]},{\"type\":\"text\",\"data\":\"перерендер целиком, но нативно и мгновенно\",\"style\":{\"fontSize\":12,\"color\":\"#64748b\"}}]},\"__iid\":\"conformance-counter\"}",
+    "{\"type\":\"center\",\"child\":{\"type\":\"column\",\"spacing\":16,\"children\":[{\"type\":\"text\",\"data\":\"QuickJS counter\",\"style\":{\"fontSize\":20,\"color\":\"#94a3b8\"}},{\"type\":\"text\",\"data\":\"2\",\"style\":{\"fontSize\":64,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"row\",\"spacing\":12,\"children\":[{\"type\":\"textButton\",\"text\":\"-1\",\"onTap\":\"dec\"},{\"type\":\"textButton\",\"text\":\"+1\",\"onTap\":\"inc\"},{\"type\":\"textButton\",\"text\":\"reset\",\"onTap\":\"reset\"}]},{\"type\":\"text\",\"data\":\"перерендер целиком, но нативно и мгновенно\",\"style\":{\"fontSize\":12,\"color\":\"#64748b\"}}]},\"__iid\":\"conformance-counter\"}",
+    "{\"type\":\"center\",\"child\":{\"type\":\"column\",\"spacing\":16,\"children\":[{\"type\":\"text\",\"data\":\"QuickJS counter\",\"style\":{\"fontSize\":20,\"color\":\"#94a3b8\"}},{\"type\":\"text\",\"data\":\"1\",\"style\":{\"fontSize\":64,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"row\",\"spacing\":12,\"children\":[{\"type\":\"textButton\",\"text\":\"-1\",\"onTap\":\"dec\"},{\"type\":\"textButton\",\"text\":\"+1\",\"onTap\":\"inc\"},{\"type\":\"textButton\",\"text\":\"reset\",\"onTap\":\"reset\"}]},{\"type\":\"text\",\"data\":\"перерендер целиком, но нативно и мгновенно\",\"style\":{\"fontSize\":12,\"color\":\"#64748b\"}}]},\"__iid\":\"conformance-counter\"}"
+  ],
+  "finalDump": {
+    "type": "center",
+    "props": {},
+    "children": [
+      {
+        "type": "column",
+        "props": {
+          "spacing": 16
+        },
+        "children": [
+          {
+            "type": "text",
+            "props": {
+              "fontSize": 20,
+              "color": "#94A3B8",
+              "data": "QuickJS counter"
+            },
+            "children": [],
+            "events": {},
+            "nodeId": "n2"
+          },
+          {
+            "type": "text",
+            "props": {
+              "fontSize": 64,
+              "fontWeight": "bold",
+              "color": "#F1F5F9",
+              "data": "1"
+            },
+            "children": [],
+            "events": {},
+            "nodeId": "n3"
+          },
+          {
+            "type": "row",
+            "props": {
+              "spacing": 12
+            },
+            "children": [
+              {
+                "type": "textButton",
+                "props": {
+                  "text": "-1",
+                  "data": "-1"
+                },
+                "children": [],
+                "events": {
+                  "onTap": "dec"
+                },
+                "nodeId": "n5"
+              },
+              {
+                "type": "textButton",
+                "props": {
+                  "text": "+1",
+                  "data": "+1"
+                },
+                "children": [],
+                "events": {
+                  "onTap": "inc"
+                },
+                "nodeId": "n6"
+              },
+              {
+                "type": "textButton",
+                "props": {
+                  "text": "reset",
+                  "data": "reset"
+                },
+                "children": [],
+                "events": {
+                  "onTap": "reset"
+                },
+                "nodeId": "n7"
+              }
+            ],
+            "events": {},
+            "nodeId": "n4"
+          },
+          {
+            "type": "text",
+            "props": {
+              "fontSize": 12,
+              "color": "#64748B",
+              "data": "перерендер целиком, но нативно и мгновенно"
+            },
+            "children": [],
+            "events": {},
+            "nodeId": "n8"
+          }
+        ],
+        "events": {},
+        "nodeId": "n1"
+      }
+    ],
+    "events": {},
+    "nodeId": "n0"
+  },
+  "title": null,
+  "state": null,
+  "console": [],
+  "error": null,
+  "skippedReason": null
+}

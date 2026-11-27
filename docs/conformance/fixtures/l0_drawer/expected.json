@@ -1,0 +1,10 @@
+{
+  "actions": [],
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "drawer[0].drawer.data": "L0 drawer",
+      "text[0].data": "L0 body"
+    }
+  }
+}

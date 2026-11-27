@@ -1,0 +1,17 @@
+{
+  "categories": [
+    "L4"
+  ],
+  "capabilities": [
+    "network"
+  ],
+  "ignore": [],
+  "nodes": [
+    "center",
+    "column",
+    "text"
+  ],
+  "mock": {
+    "/weather": { "status": 200, "body": { "city": "London", "tempC": 12, "desc": "Light rain", "humidity": 71 } }
+  }
+}

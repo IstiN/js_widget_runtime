@@ -1,0 +1,6 @@
+{
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": { "container[n1].transform.rotateX": 0.5 }
+  }
+}

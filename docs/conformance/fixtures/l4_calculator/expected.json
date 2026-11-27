@@ -1,0 +1,11 @@
+{
+  "actions": [{ "tap": "7" }, { "tap": "×" }, { "tap": "8" }, { "tap": "=" }],
+  "expect": {
+    "renders": 5,
+    "title": "Calculator",
+    "finalDumpDelta": {
+      "text[0].data": "56",
+      "text[1].data": "56"
+    }
+  }
+}

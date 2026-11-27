@@ -1,9 +1,28 @@
 {
-  "capabilities": [],
-  "categories": ["L0"],
-  "initialDump": {
-    "root": { "type": "scroll", "children": [ { "type": "column", "children": "30x container[2 texts]" } ] }
-  },
-  "actions": [ { "swipe": [640, 600, 640, 200, 150] }, { "swipe": [640, 600, 640, 200, 150] }, { "swipe": [640, 600, 640, 200, 150] } ],
-  "expect": { "scrollsToEnd": true, "lastVisibleText": "Item #30" }
+  "actions": [
+    { "swipe": [49, 180, 49, 40, 150] },
+    { "swipe": [49, 180, 49, 40, 150] },
+    { "swipe": [49, 180, 49, 40, 150] },
+    { "swipe": [49, 180, 49, 40, 150] },
+    { "swipe": [49, 180, 49, 40, 150] },
+    { "swipe": [49, 180, 49, 40, 150] },
+    { "swipe": [49, 180, 49, 40, 150] },
+    { "swipe": [49, 180, 49, 40, 150] },
+    { "swipe": [49, 180, 49, 40, 150] },
+    { "swipe": [49, 180, 49, 40, 150] },
+    { "swipe": [49, 180, 49, 40, 150] },
+    { "swipe": [49, 180, 49, 40, 150] },
+    { "swipe": [49, 180, 49, 40, 150] },
+    { "swipe": [49, 180, 49, 40, 150] },
+    { "swipe": [49, 180, 49, 40, 150] },
+    { "swipe": [49, 180, 49, 40, 150] }
+  ],
+  "expect": {
+    "renders": 1,
+    "channels": ["render", "set_title"],
+    "title": "JSR: список 30",
+    "finalDumpDelta": {
+      "scroll[n0].scrolledToEnd": true
+    }
+  }
 }

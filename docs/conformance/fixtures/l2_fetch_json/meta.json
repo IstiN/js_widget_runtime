@@ -1,0 +1,17 @@
+{
+  "categories": [
+    "L2"
+  ],
+  "capabilities": [
+    "network"
+  ],
+  "ignore": [],
+  "nodes": [
+    "center",
+    "column",
+    "text"
+  ],
+  "mock": {
+    "/api/answer": { "status": 200, "body": { "answer": 42 } }
+  }
+}

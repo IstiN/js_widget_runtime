@@ -1,0 +1,9 @@
+{
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "container[n1].transform.perspective": 400,
+      "container[n1].transform.rotateX": 0.3
+    }
+  }
+}

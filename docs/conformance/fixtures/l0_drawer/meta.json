@@ -1,0 +1,13 @@
+{
+  "categories": [
+    "L0"
+  ],
+  "capabilities": [],
+  "ignore": [],
+  "nodes": [
+    "drawer",
+    "text"
+  ],
+  "mock": {},
+  "notes": "the node sits at the payload root; the drawer panel payload is the drawer prop, child is the body (flutter-proposed fixture)"
+}

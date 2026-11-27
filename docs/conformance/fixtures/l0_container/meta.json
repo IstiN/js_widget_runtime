@@ -1,0 +1,16 @@
+{
+  "categories": [
+    "L0"
+  ],
+  "capabilities": [],
+  "ignore": [
+    "decoration"
+  ],
+  "nodes": [
+    "column",
+    "container",
+    "text"
+  ],
+  "mock": {},
+  "notes": "Pinned-dump-pipeline deviation (reference behavior wins): the reference normalizer rule (`UiViewTreeNormalizer._aliasBoxDecoration` @ 1fa2ec41) wraps a flat `color` into `decoration.color` for `container`, but the JsonWidgetRenderer dump path never applies that normalizer (it runs only in ui_view_bindings.dart), so the dump keeps the payload's flat `color` while the derived tree wraps it. `decoration` is on meta.ignore because the harness ignore list matches top-level prop names, so the nested `color` key is not reachable by name. To revisit together with the flutter#11/#14 dump fixes."
+}

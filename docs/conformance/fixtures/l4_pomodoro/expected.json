@@ -1,0 +1,12 @@
+{
+  "actions": [{ "tap": "Start" }, { "wait": 1200 }, { "tap": "Pause" }],
+  "expect": {
+    "title": "Pomodoro",
+    "finalDumpDelta": {
+      "text[0].data": "24:59",
+      "text[1].data": "stopped",
+      "text[2].data": "Start",
+      "text[4].data": "Completed: 0"
+    }
+  }
+}

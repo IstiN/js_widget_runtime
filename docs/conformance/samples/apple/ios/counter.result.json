@@ -1,0 +1,270 @@
+{
+  "console" : [
+
+  ],
+  "diffs" : [
+
+  ],
+  "dump" : {
+    "children" : [
+      {
+        "children" : [
+          {
+            "children" : [
+
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n2",
+            "props" : {
+              "color" : "#94A3B8",
+              "data" : "QuickJS counter",
+              "fontSize" : 20
+            },
+            "type" : "text"
+          },
+          {
+            "children" : [
+
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n3",
+            "props" : {
+              "color" : "#F1F5F9",
+              "data" : "0",
+              "fontSize" : 64,
+              "fontWeight" : "bold"
+            },
+            "type" : "text"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+                  "onTap" : "dec"
+                },
+                "nodeId" : "n5",
+                "props" : {
+                  "data" : "-1"
+                },
+                "type" : "textButton"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+                  "onTap" : "inc"
+                },
+                "nodeId" : "n6",
+                "props" : {
+                  "data" : "+1"
+                },
+                "type" : "textButton"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+                  "onTap" : "reset"
+                },
+                "nodeId" : "n7",
+                "props" : {
+                  "data" : "reset"
+                },
+                "type" : "textButton"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n4",
+            "props" : {
+              "spacing" : 12
+            },
+            "type" : "row"
+          },
+          {
+            "children" : [
+
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n8",
+            "props" : {
+              "color" : "#64748B",
+              "data" : "перерендер целиком, но нативно и мгновенно",
+              "fontSize" : 12
+            },
+            "type" : "text"
+          }
+        ],
+        "events" : {
+
+        },
+        "nodeId" : "n1",
+        "props" : {
+          "spacing" : 16
+        },
+        "type" : "column"
+      }
+    ],
+    "events" : {
+
+    },
+    "nodeId" : "n0",
+    "props" : {
+      "iid" : "ios"
+    },
+    "type" : "center"
+  },
+  "error" : null,
+  "finalDump" : {
+    "children" : [
+      {
+        "children" : [
+          {
+            "children" : [
+
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n2",
+            "props" : {
+              "color" : "#94A3B8",
+              "data" : "QuickJS counter",
+              "fontSize" : 20
+            },
+            "type" : "text"
+          },
+          {
+            "children" : [
+
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n3",
+            "props" : {
+              "color" : "#F1F5F9",
+              "data" : "1",
+              "fontSize" : 64,
+              "fontWeight" : "bold"
+            },
+            "type" : "text"
+          },
+          {
+            "children" : [
+              {
+                "children" : [
+
+                ],
+                "events" : {
+                  "onTap" : "dec"
+                },
+                "nodeId" : "n5",
+                "props" : {
+                  "data" : "-1"
+                },
+                "type" : "textButton"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+                  "onTap" : "inc"
+                },
+                "nodeId" : "n6",
+                "props" : {
+                  "data" : "+1"
+                },
+                "type" : "textButton"
+              },
+              {
+                "children" : [
+
+                ],
+                "events" : {
+                  "onTap" : "reset"
+                },
+                "nodeId" : "n7",
+                "props" : {
+                  "data" : "reset"
+                },
+                "type" : "textButton"
+              }
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n4",
+            "props" : {
+              "spacing" : 12
+            },
+            "type" : "row"
+          },
+          {
+            "children" : [
+
+            ],
+            "events" : {
+
+            },
+            "nodeId" : "n8",
+            "props" : {
+              "color" : "#64748B",
+              "data" : "перерендер целиком, но нативно и мгновенно",
+              "fontSize" : 12
+            },
+            "type" : "text"
+          }
+        ],
+        "events" : {
+
+        },
+        "nodeId" : "n1",
+        "props" : {
+          "spacing" : 16
+        },
+        "type" : "column"
+      }
+    ],
+    "events" : {
+
+    },
+    "nodeId" : "n0",
+    "props" : {
+      "iid" : "ios"
+    },
+    "type" : "center"
+  },
+  "fixture" : "counter",
+  "platform" : "ios",
+  "renders" : [
+    "{\"type\":\"center\",\"child\":{\"type\":\"column\",\"spacing\":16,\"children\":[{\"type\":\"text\",\"data\":\"QuickJS counter\",\"style\":{\"fontSize\":20,\"color\":\"#94a3b8\"}},{\"type\":\"text\",\"data\":\"0\",\"style\":{\"fontSize\":64,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"row\",\"spacing\":12,\"children\":[{\"type\":\"textButton\",\"text\":\"-1\",\"onTap\":\"dec\"},{\"type\":\"textButton\",\"text\":\"+1\",\"onTap\":\"inc\"},{\"type\":\"textButton\",\"text\":\"reset\",\"onTap\":\"reset\"}]},{\"type\":\"text\",\"data\":\"перерендер целиком, но нативно и мгновенно\",\"style\":{\"fontSize\":12,\"color\":\"#64748b\"}}]},\"__iid\":\"ios\",\"iid\":\"ios\"}",
+    "{\"type\":\"center\",\"child\":{\"type\":\"column\",\"spacing\":16,\"children\":[{\"type\":\"text\",\"data\":\"QuickJS counter\",\"style\":{\"fontSize\":20,\"color\":\"#94a3b8\"}},{\"type\":\"text\",\"data\":\"1\",\"style\":{\"fontSize\":64,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"row\",\"spacing\":12,\"children\":[{\"type\":\"textButton\",\"text\":\"-1\",\"onTap\":\"dec\"},{\"type\":\"textButton\",\"text\":\"+1\",\"onTap\":\"inc\"},{\"type\":\"textButton\",\"text\":\"reset\",\"onTap\":\"reset\"}]},{\"type\":\"text\",\"data\":\"перерендер целиком, но нативно и мгновенно\",\"style\":{\"fontSize\":12,\"color\":\"#64748b\"}}]},\"__iid\":\"ios\",\"iid\":\"ios\"}",
+    "{\"type\":\"center\",\"child\":{\"type\":\"column\",\"spacing\":16,\"children\":[{\"type\":\"text\",\"data\":\"QuickJS counter\",\"style\":{\"fontSize\":20,\"color\":\"#94a3b8\"}},{\"type\":\"text\",\"data\":\"2\",\"style\":{\"fontSize\":64,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"row\",\"spacing\":12,\"children\":[{\"type\":\"textButton\",\"text\":\"-1\",\"onTap\":\"dec\"},{\"type\":\"textButton\",\"text\":\"+1\",\"onTap\":\"inc\"},{\"type\":\"textButton\",\"text\":\"reset\",\"onTap\":\"reset\"}]},{\"type\":\"text\",\"data\":\"перерендер целиком, но нативно и мгновенно\",\"style\":{\"fontSize\":12,\"color\":\"#64748b\"}}]},\"__iid\":\"ios\",\"iid\":\"ios\"}",
+    "{\"type\":\"center\",\"child\":{\"type\":\"column\",\"spacing\":16,\"children\":[{\"type\":\"text\",\"data\":\"QuickJS counter\",\"style\":{\"fontSize\":20,\"color\":\"#94a3b8\"}},{\"type\":\"text\",\"data\":\"1\",\"style\":{\"fontSize\":64,\"fontWeight\":\"bold\",\"color\":\"#f1f5f9\"}},{\"type\":\"row\",\"spacing\":12,\"children\":[{\"type\":\"textButton\",\"text\":\"-1\",\"onTap\":\"dec\"},{\"type\":\"textButton\",\"text\":\"+1\",\"onTap\":\"inc\"},{\"type\":\"textButton\",\"text\":\"reset\",\"onTap\":\"reset\"}]},{\"type\":\"text\",\"data\":\"перерендер целиком, но нативно и мгновенно\",\"style\":{\"fontSize\":12,\"color\":\"#64748b\"}}]},\"__iid\":\"ios\",\"iid\":\"ios\"}"
+  ],
+  "screenshot" : null,
+  "skippedReason" : null,
+  "state" : null,
+  "status" : "DONE",
+  "title" : null,
+  "trace" : [
+    "render",
+    "render",
+    "render",
+    "render"
+  ]
+}

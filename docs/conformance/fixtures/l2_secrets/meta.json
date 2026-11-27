@@ -1,0 +1,18 @@
+{
+  "categories": [
+    "L2"
+  ],
+  "capabilities": [
+    "secrets"
+  ],
+  "ignore": [
+    "data"
+  ],
+  "nodes": [
+    "center",
+    "column",
+    "text"
+  ],
+  "mock": {},
+  "notes": "the reference's first dumped frame already carries the resolved state (the in-memory secrets round trip resolves in microtasks before the dump), so data is ignored in the tree comparison; finalDumpDelta pins the final screen exactly"
+}

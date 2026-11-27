@@ -1,0 +1,13 @@
+{
+  "categories": [
+    "L0"
+  ],
+  "capabilities": [],
+  "ignore": [],
+  "nodes": [
+    "column",
+    "carousel"
+  ],
+  "mock": {},
+  "notes": "reference defect flutter_js_widget_runtime#15: carousel ignores documented children (payload children produce dump children []); fixture renders without children, observed behavior kept per plan 462"
+}

@@ -1,0 +1,9 @@
+{
+  "actions": [],
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": {
+      "polygon[0].fill": "#8B5CF6"
+    }
+  }
+}

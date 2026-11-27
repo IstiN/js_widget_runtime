@@ -1,0 +1,11 @@
+{
+  "actions": [
+    { "input": { "node": "n2", "value": "x" } },
+    { "input": { "node": "n3", "value": "y" } },
+    { "wait": 100 }
+  ],
+  "expect": {
+    "renders": 1,
+    "finalDumpDelta": { "text[0].data": "idle" }
+  }
+}

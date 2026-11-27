@@ -1,0 +1,9 @@
+{
+  "actions": [{ "wait": 400 }],
+  "expect": {
+    "renders": 1,
+    "channels": ["set_title", "fetch", "render"],
+    "title": "answer 42",
+    "finalDumpDelta": { "text[n2].data": "answer 42" }
+  }
+}

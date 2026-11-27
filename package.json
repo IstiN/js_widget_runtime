@@ -1,0 +1,23 @@
+{
+  "name": "js-widget-runtime",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\" \"test/harness/*.test.mjs\"",
+    "coverage": "npx c8 --reporter=json --reporter=text --include='src/**' --include='harness/**' node --test \"test/*.test.js\" \"test/harness/*.test.mjs\"",
+    "crap": "npx crap4js src harness --coverage coverage/coverage-final.json --threshold 8.0 --exclude 'src/bootstrap-runtime.js' --exclude 'src/bootstrap-widget.js'"
+  },
+  "devDependencies": {
+    "acorn": "^8.19.0",
+    "acorn-walk": "^8.3.5",
+    "c8": "^12.0.0",
+    "crap4js": "https://codeload.github.com/vabhzw17eg2qu4m9-bit/crap4js/tar.gz/5556116e37d42df6f3c15c2ff48f5bc353e7a36",
+    "playwright": "1.65.1"
+  },
+  "bin": {
+    "jsr-harness": "harness/harness.mjs"
+  }
+}

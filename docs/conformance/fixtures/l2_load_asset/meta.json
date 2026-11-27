@@ -1,0 +1,15 @@
+{
+  "categories": [
+    "L2"
+  ],
+  "capabilities": [
+    "assets"
+  ],
+  "ignore": [],
+  "nodes": [
+    "center",
+    "column",
+    "text"
+  ],
+  "mock": {}
+}

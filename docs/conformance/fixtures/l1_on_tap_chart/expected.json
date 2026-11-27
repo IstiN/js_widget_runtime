@@ -1,0 +1,9 @@
+{
+  "actions": [
+    { "tap": "n2" }
+  ],
+  "expect": {
+    "renders": 2,
+    "finalDumpDelta": { "text[0].data": "ct=fire" }
+  }
+}

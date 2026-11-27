@@ -1,0 +1,8 @@
+{
+  "categories": ["L1"],
+  "capabilities": [],
+  "ignore": ["data"],
+  "nodes": ["column", "text", "map"],
+  "mock": {},
+  "notes": "the tap needs an 800 ms settle wait first: without it the tap races the map tile load and onTap is flaky (fired in 1 of 3 lane runs without the wait, 2 of 2 with it); payload is the tapped lat/lng. flutter_js_widget_runtime issue #19."
+}

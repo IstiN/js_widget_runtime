@@ -1,0 +1,20 @@
+{
+  "expect": {
+    "state": {
+      "sceneChildren": 1,
+      "meshName": "unit",
+      "meshChildren": 1,
+      "childName": "child",
+      "isObject3D": true,
+      "geometryType": "BoxGeometry",
+      "vertexCount": 24,
+      "vertexItemSize": 3,
+      "indexCount": 36,
+      "firstVertex": [
+        1,
+        1.5,
+        2
+      ]
+    }
+  }
+}

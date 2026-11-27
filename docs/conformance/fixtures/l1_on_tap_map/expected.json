@@ -1,0 +1,11 @@
+{
+  "actions": [
+    { "wait": 800 },
+    { "tap": "n2" },
+    { "wait": 300 }
+  ],
+  "expect": {
+    "renders": 2,
+    "finalDumpDelta": { "text[0].data": "mt={\"lat\":0,\"lng\":0}" }
+  }
+}

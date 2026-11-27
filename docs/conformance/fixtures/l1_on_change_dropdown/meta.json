@@ -1,0 +1,7 @@
+{
+  "categories": ["L1"],
+  "capabilities": [],
+  "ignore": ["data"],
+  "nodes": ["column", "text", "dropdown"],
+  "mock": {}
+}

@@ -1,0 +1,14 @@
+{
+  "categories": [
+    "L0"
+  ],
+  "capabilities": [],
+  "ignore": [
+    "data"
+  ],
+  "nodes": [
+    "navigationRail"
+  ],
+  "mock": {},
+  "notes": "the node sits at the payload root (flutter-proposed fixture); delta anchors on selectedIndex"
+}

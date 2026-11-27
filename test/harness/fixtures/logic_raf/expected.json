@@ -1,0 +1,7 @@
+{
+  "actions": [],
+  "expect": {
+    "renders": 1,
+    "channels": ["raf", "caf", "render"]
+  }
+}
