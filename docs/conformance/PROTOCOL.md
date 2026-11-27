@@ -37,6 +37,44 @@ repository's harness (`node`, `quickjs`, `chromium`).
   [flutter#8](https://github.com/IstiN/flutter_js_widget_runtime/issues/8)
   (§4.1). v0.2 had silently dropped the 3D-RENDER definition; it is back as
   an explicit out-of-contract statement.
+- **A5 — `scroll_list` no longer depends on platform momentum** (chief
+  decision, owner may veto): the seed performs **16** `swipe`s of the same
+  gesture `[49, 180, 49, 40, 150]` instead of three. Decision record with
+  the measured numbers from the three A3 platform heads: three swipes
+  reached the end only through the fling physics of each reference test
+  environment —
+  flutter `135ac6b9` (run
+  [45922768568](https://github.com/IstiN/flutter_js_widget_runtime/actions/runs/45922768568),
+  green 9/9 jobs, 137/137 fixtures, `scroll_list` PASS): content extent
+  2610, viewport 600; the runner's swipe had to become a real touch drag
+  (8 quadratic-eased samples, lift with tracked velocity, bounded settle)
+  because the old single-move drag carried zero estimated velocity and
+  settled at 975.11 px; three swipes settle at exactly `2010.0` =
+  `maxScrollExtent`.
+  apple `242098b` (probe run
+  [45923825392](https://github.com/vabhzw17eg2qu4m9-bit/flutter_js_widget_runtime/actions/runs/45923825392),
+  green, `scroll_list` PASS on macOS and iOS): the driver applies a swipe
+  as drag delta plus a coast computed from the iOS normal deceleration
+  model (0.998 per ms) — 140 px in 150 ms carries 605.7 px; macOS numbers:
+  extent 1590, viewport 700, range 890.
+  android `a9d93d6` (run
+  [45921724145](https://github.com/IstiN/android_js_widget_runtime/actions/runs/45921724145)):
+  real touch events through the native fling; the three swipes move
+  870 px (≈ 290 px per swipe: 140 drag + ≈ 150 native fling); dumped
+  `scrollOffset` 870 / `scrollExtent` 4470 / `viewportExtent` 616 →
+  `scrolledToEnd` false, `scroll_list` FAIL (1 diff); with the reference
+  content height the need would be 1994 px (scroll range 3854 px) against
+  870 px of native carry — no device profile and no layout parity closes
+  it. Conclusion: three 140 px / 150 ms swipes reach the end only through
+  the fling physics of the reference test environment; as a cross-platform
+  proof of native scroll the seed depended on momentum Android does not
+  have natively. The fix: 16 × 140 = 2240 px of pure drag covers the
+  reference scroll range (2010 px at the flutter pin) with margin — a
+  renderer whose scroll container ignores `swipe` still FAILS (the offset
+  stays 0), flutter and apple pass on drag alone, android passes with its
+  native fling carry (≈ 150 px per swipe → ≈ 4640 px total ≥ its 3854 px
+  need). The assertion is unchanged:
+  `"finalDumpDelta": { "scroll[n0].scrolledToEnd": true }`.
 - **Comparator rule (as `harness/` implements it)**: props are compared by
   the keys of the **expected** tree — extra props carried by a dump are
   tolerated (e.g. a textButton's live-text `data` next to `text`), missing
@@ -292,14 +330,15 @@ coverage check. `docs/harness.md` documents the comparator in detail.
 
 - `hello` — L0/L1: render tree, tap → setTitle + re-render (README example).
 - `counter` — L1: full cycle tap→JS state→re-render, three buttons.
-- `scroll_list` — L0: 30-item scroll list; three `swipe`s must scroll the
-  container to its end — asserted through A3 as
-  `"finalDumpDelta": { "scroll[n0].scrolledToEnd": true }`.
+- `scroll_list` — L0: 30-item scroll list; **16** identical `swipe`s of the
+  gesture `[49, 180, 49, 40, 150]` (A5 — the count must not depend on
+  platform momentum) must scroll the container to its end — asserted
+  through A3 as `"finalDumpDelta": { "scroll[n0].scrolledToEnd": true }`.
 
 Seed widgets are the proven POC trio (android_js_widget_runtime assets);
 the pinned flutter reference behavior they carry is documented in each
 seed's `meta.json` notes (scroll_list: flat dump `color`; the former
-flutter#11 children defect no longer reproduces at the pin e136d479).
+flutter#11 children defect does not reproduce at the pin).
 
 ## 7. Runner checklist (per platform repo)
 

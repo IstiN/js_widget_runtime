@@ -2,7 +2,7 @@
 
 Category: **layout**
 
-Builder: `_row` — [source](https://github.com/IstiN/flutter_js_widget_runtime/blob/1fa2ec41ab8428a25085711ca743e5ecc4909c1d/lib/src/renderer/nodes/js_layout_nodes.dart#L36).
+Builder: `_row` — [source](https://github.com/IstiN/flutter_js_widget_runtime/blob/135ac6b92e5b3393e9bfe5301ebbafa9b5cbf2bf/lib/src/renderer/nodes/js_layout_nodes.dart#L36).
 
 
 
@@ -10,20 +10,20 @@ Builder: `_row` — [source](https://github.com/IstiN/flutter_js_widget_runtime/
 
 | Name | Type | Default | Effect | Source |
 |---|---|---|---|---|
-| `mainAxisAlignment` | number | 0 | — | [js_layout_nodes.dart:50](https://github.com/IstiN/flutter_js_widget_runtime/blob/1fa2ec41ab8428a25085711ca743e5ecc4909c1d/lib/src/renderer/nodes/js_layout_nodes.dart#L50) |
-| `textBaseline` | number | 0 | — | [js_layout_nodes.dart:50](https://github.com/IstiN/flutter_js_widget_runtime/blob/1fa2ec41ab8428a25085711ca743e5ecc4909c1d/lib/src/renderer/nodes/js_layout_nodes.dart#L50) |
-| `mainAxisSize` | number | 0 | — | [js_layout_nodes.dart:50](https://github.com/IstiN/flutter_js_widget_runtime/blob/1fa2ec41ab8428a25085711ca743e5ecc4909c1d/lib/src/renderer/nodes/js_layout_nodes.dart#L50) |
-| `spacing` | number | 0 | — | [js_layout_nodes.dart:50](https://github.com/IstiN/flutter_js_widget_runtime/blob/1fa2ec41ab8428a25085711ca743e5ecc4909c1d/lib/src/renderer/nodes/js_layout_nodes.dart#L50) |
-| `_alignContentMinMainAxis` | boolean | false | — | [js_layout_nodes.dart:50](https://github.com/IstiN/flutter_js_widget_runtime/blob/1fa2ec41ab8428a25085711ca743e5ecc4909c1d/lib/src/renderer/nodes/js_layout_nodes.dart#L50) |
-| `crossAxisAlignment` | enum(min|max|center|baseline|stretch) | null | — | [js_layout_nodes.dart:76](https://github.com/IstiN/flutter_js_widget_runtime/blob/1fa2ec41ab8428a25085711ca743e5ecc4909c1d/lib/src/renderer/nodes/js_layout_nodes.dart#L76) |
-| `offsetX` | number | null | Transform translate X (logical px; applied together with offsetY), center-aligned | [json_widget_decoration.dart:46](https://github.com/IstiN/flutter_js_widget_runtime/blob/1fa2ec41ab8428a25085711ca743e5ecc4909c1d/lib/src/renderer/json_widget_decoration.dart#L46) |
-| `offsetY` | number | null | Transform translate Y (logical px), center-aligned | [json_widget_decoration.dart:47](https://github.com/IstiN/flutter_js_widget_runtime/blob/1fa2ec41ab8428a25085711ca743e5ecc4909c1d/lib/src/renderer/json_widget_decoration.dart#L47) |
-| `scale` | number | null | Transform uniform scale (1 = none) | [json_widget_decoration.dart:48](https://github.com/IstiN/flutter_js_widget_runtime/blob/1fa2ec41ab8428a25085711ca743e5ecc4909c1d/lib/src/renderer/json_widget_decoration.dart#L48) |
-| `rotation` | number | null | Transform rotate around Z, radians (center-aligned) | [json_widget_decoration.dart:52](https://github.com/IstiN/flutter_js_widget_runtime/blob/1fa2ec41ab8428a25085711ca743e5ecc4909c1d/lib/src/renderer/json_widget_decoration.dart#L52) |
-| `rotate` | number | null | Rotation in DEGREES (yoclip alias; converted to radians and used when `rotation` is absent) | [json_widget_decoration.dart:51](https://github.com/IstiN/flutter_js_widget_runtime/blob/1fa2ec41ab8428a25085711ca743e5ecc4909c1d/lib/src/renderer/json_widget_decoration.dart#L51) |
-| `blur` | number|{sigma} | null | ImageFiltered gaussian blur, sigma in logical px (sigma <= 0 is skipped) | [json_widget_decoration.dart:7](https://github.com/IstiN/flutter_js_widget_runtime/blob/1fa2ec41ab8428a25085711ca743e5ecc4909c1d/lib/src/renderer/json_widget_decoration.dart#L7) |
-| `opacity` | number | null | Opacity wrap, clamped to [0,1]; skipped when 1.0; ignored on `animatedOpacity` (it animates its own opacity) | [json_widget_decoration.dart:84](https://github.com/IstiN/flutter_js_widget_runtime/blob/1fa2ec41ab8428a25085711ca743e5ecc4909c1d/lib/src/renderer/json_widget_decoration.dart#L84) |
-| `ignorePointer` | boolean | false | IgnorePointer wrap (overlay labels must not eat gestures) | [json_widget_decoration.dart:24](https://github.com/IstiN/flutter_js_widget_runtime/blob/1fa2ec41ab8428a25085711ca743e5ecc4909c1d/lib/src/renderer/json_widget_decoration.dart#L24) |
+| `mainAxisAlignment` | number | 0 | — | [js_layout_nodes.dart:50](https://github.com/IstiN/flutter_js_widget_runtime/blob/135ac6b92e5b3393e9bfe5301ebbafa9b5cbf2bf/lib/src/renderer/nodes/js_layout_nodes.dart#L50) |
+| `textBaseline` | number | 0 | — | [js_layout_nodes.dart:50](https://github.com/IstiN/flutter_js_widget_runtime/blob/135ac6b92e5b3393e9bfe5301ebbafa9b5cbf2bf/lib/src/renderer/nodes/js_layout_nodes.dart#L50) |
+| `mainAxisSize` | number | 0 | — | [js_layout_nodes.dart:50](https://github.com/IstiN/flutter_js_widget_runtime/blob/135ac6b92e5b3393e9bfe5301ebbafa9b5cbf2bf/lib/src/renderer/nodes/js_layout_nodes.dart#L50) |
+| `spacing` | number | 0 | — | [js_layout_nodes.dart:50](https://github.com/IstiN/flutter_js_widget_runtime/blob/135ac6b92e5b3393e9bfe5301ebbafa9b5cbf2bf/lib/src/renderer/nodes/js_layout_nodes.dart#L50) |
+| `_alignContentMinMainAxis` | boolean | false | — | [js_layout_nodes.dart:50](https://github.com/IstiN/flutter_js_widget_runtime/blob/135ac6b92e5b3393e9bfe5301ebbafa9b5cbf2bf/lib/src/renderer/nodes/js_layout_nodes.dart#L50) |
+| `crossAxisAlignment` | enum(min|max|center|baseline|stretch) | null | — | [js_layout_nodes.dart:76](https://github.com/IstiN/flutter_js_widget_runtime/blob/135ac6b92e5b3393e9bfe5301ebbafa9b5cbf2bf/lib/src/renderer/nodes/js_layout_nodes.dart#L76) |
+| `offsetX` | number | null | Transform translate X (logical px; applied together with offsetY), center-aligned | [json_widget_decoration.dart:46](https://github.com/IstiN/flutter_js_widget_runtime/blob/135ac6b92e5b3393e9bfe5301ebbafa9b5cbf2bf/lib/src/renderer/json_widget_decoration.dart#L46) |
+| `offsetY` | number | null | Transform translate Y (logical px), center-aligned | [json_widget_decoration.dart:47](https://github.com/IstiN/flutter_js_widget_runtime/blob/135ac6b92e5b3393e9bfe5301ebbafa9b5cbf2bf/lib/src/renderer/json_widget_decoration.dart#L47) |
+| `scale` | number | null | Transform uniform scale (1 = none) | [json_widget_decoration.dart:48](https://github.com/IstiN/flutter_js_widget_runtime/blob/135ac6b92e5b3393e9bfe5301ebbafa9b5cbf2bf/lib/src/renderer/json_widget_decoration.dart#L48) |
+| `rotation` | number | null | Transform rotate around Z, radians (center-aligned) | [json_widget_decoration.dart:52](https://github.com/IstiN/flutter_js_widget_runtime/blob/135ac6b92e5b3393e9bfe5301ebbafa9b5cbf2bf/lib/src/renderer/json_widget_decoration.dart#L52) |
+| `rotate` | number | null | Rotation in DEGREES (yoclip alias; converted to radians and used when `rotation` is absent) | [json_widget_decoration.dart:51](https://github.com/IstiN/flutter_js_widget_runtime/blob/135ac6b92e5b3393e9bfe5301ebbafa9b5cbf2bf/lib/src/renderer/json_widget_decoration.dart#L51) |
+| `blur` | number|{sigma} | null | ImageFiltered gaussian blur, sigma in logical px (sigma <= 0 is skipped) | [json_widget_decoration.dart:7](https://github.com/IstiN/flutter_js_widget_runtime/blob/135ac6b92e5b3393e9bfe5301ebbafa9b5cbf2bf/lib/src/renderer/json_widget_decoration.dart#L7) |
+| `opacity` | number | null | Opacity wrap, clamped to [0,1]; skipped when 1.0; ignored on `animatedOpacity` (it animates its own opacity) | [json_widget_decoration.dart:84](https://github.com/IstiN/flutter_js_widget_runtime/blob/135ac6b92e5b3393e9bfe5301ebbafa9b5cbf2bf/lib/src/renderer/json_widget_decoration.dart#L84) |
+| `ignorePointer` | boolean | false | IgnorePointer wrap (overlay labels must not eat gestures) | [json_widget_decoration.dart:24](https://github.com/IstiN/flutter_js_widget_runtime/blob/135ac6b92e5b3393e9bfe5301ebbafa9b5cbf2bf/lib/src/renderer/json_widget_decoration.dart#L24) |
 
 Universal effect props (applied to every node by `_applyUniversalEffects`) are
 included above and marked by their effect column; the universal identity hint
@@ -39,4 +39,4 @@ children: array of nodes
 
 ## Platform support
 
-flutter=yes, android=yes, ios=yes, macos=yes, web=yes (source: [matrix.md](../matrix.md))
+flutter=yes, android=yes, ios=yes, macos=yes, web=yes (source: [matrix.md](../matrix.md); wave D fills the final values).
