@@ -1465,7 +1465,10 @@
     },
     "nodeId" : "n0",
     "props" : {
-      "iid" : "macos"
+      "iid" : "macos",
+      "scrollExtent" : 1590,
+      "scrollOffset" : 0,
+      "viewportExtent" : 700
     },
     "type" : "scroll"
   },
@@ -2930,7 +2933,10 @@
     },
     "nodeId" : "n0",
     "props" : {
-      "iid" : "macos"
+      "iid" : "macos",
+      "scrollExtent" : 1590,
+      "scrollOffset" : 890,
+      "viewportExtent" : 700
     },
     "type" : "scroll"
   },

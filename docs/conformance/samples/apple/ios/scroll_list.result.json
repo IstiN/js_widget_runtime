@@ -1465,7 +1465,10 @@
     },
     "nodeId" : "n0",
     "props" : {
-      "iid" : "ios"
+      "iid" : "ios",
+      "scrollExtent" : 1970,
+      "scrollOffset" : 0,
+      "viewportExtent" : 700
     },
     "type" : "scroll"
   },
@@ -2930,7 +2933,10 @@
     },
     "nodeId" : "n0",
     "props" : {
-      "iid" : "ios"
+      "iid" : "ios",
+      "scrollExtent" : 1970,
+      "scrollOffset" : 1270,
+      "viewportExtent" : 700
     },
     "type" : "scroll"
   },

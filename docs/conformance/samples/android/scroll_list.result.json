@@ -5,7 +5,10 @@
   "dump": {
     "type": "scroll",
     "props": {
-      "iid": "android-conformance"
+      "iid": "android-conformance",
+      "scrollOffset": 0,
+      "scrollExtent": 4470,
+      "viewportExtent": 616
     },
     "children": [
       {
@@ -1202,7 +1205,10 @@
   "finalDump": {
     "type": "scroll",
     "props": {
-      "iid": "android-conformance"
+      "iid": "android-conformance",
+      "scrollOffset": 3854,
+      "scrollExtent": 4470,
+      "viewportExtent": 616
     },
     "children": [
       {

@@ -1,4 +1,4 @@
-// Generated from IstiN/flutter_js_widget_runtime@135ac6b:lib/src/runtime/js_widget_bootstrap.dart (widget half) by scripts/extract_bootstrap.mjs — do not edit
+// Generated from IstiN/flutter_js_widget_runtime@fd9ca58:lib/src/runtime/js_widget_bootstrap.dart (widget half) by scripts/extract_bootstrap.mjs — do not edit
 Object.assign(jsr, {
 ease: {
     linear: function(t){ return t; },

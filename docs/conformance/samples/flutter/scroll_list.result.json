@@ -4,7 +4,11 @@
   "status": "DONE",
   "dump": {
     "type": "scroll",
-    "props": {},
+    "props": {
+      "scrollOffset": 0.0,
+      "scrollExtent": 2610.0,
+      "viewportExtent": 600.0
+    },
     "children": [
       {
         "type": "column",
@@ -1109,7 +1113,11 @@
   ],
   "finalDump": {
     "type": "scroll",
-    "props": {},
+    "props": {
+      "scrollOffset": 2010.0,
+      "scrollExtent": 2610.0,
+      "viewportExtent": 600.0
+    },
     "children": [
       {
         "type": "column",
