@@ -6,8 +6,8 @@
   "ignore": [],
   "nodes": [
     "column",
-    "carousel"
+    "carousel",
+    "text"
   ],
-  "mock": {},
-  "notes": "reference defect flutter_js_widget_runtime#15: carousel ignores documented children (payload children produce dump children []); fixture renders without children, observed behavior kept per plan 462"
+  "mock": {}
 }

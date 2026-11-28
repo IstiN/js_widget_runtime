@@ -3,7 +3,9 @@
   "expect": {
     "renders": 1,
     "finalDumpDelta": {
-      "carousel[0].itemExtent": 200
+      "carousel[0].itemExtent": 200,
+      "text[0].data": "Alpha card",
+      "text[1].data": "Beta card"
     }
   }
 }

@@ -3,7 +3,8 @@
   "expect": {
     "renders": 1,
     "finalDumpDelta": {
-      "popupMenu[0].message": "Show menu"
+      "text[0].data": "Alpha",
+      "text[1].data": "Beta"
     }
   }
 }
