@@ -4,7 +4,7 @@
     { "wait": 100 }
   ],
   "expect": {
-    "renders": 1,
-    "finalDumpDelta": { "text[0].data": "idle" }
+    "renders": 2,
+    "finalDumpDelta": { "text[0].data": "idle gs={\"dx\":0,\"dy\":60}" }
   }
 }

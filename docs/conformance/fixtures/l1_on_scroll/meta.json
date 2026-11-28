@@ -2,7 +2,7 @@
   "categories": ["L1"],
   "capabilities": [],
   "ignore": [],
-  "nodes": ["column", "text", "sizedBox", "scroll", "container", "gestureDetector"],
+  "nodes": ["center", "column", "text", "sizedBox", "scroll", "container", "gestureDetector"],
   "mock": {},
-  "notes": "no action type of PROTOCOL v0.2 triggers onScroll on the reference: the scroll action is tester.drag (a touch drag on find.byType(Scrollable).first), while gestureDetector.onScroll only fires on a PointerScrollEvent (mouse-wheel/trackpad pointer signal). flutter_js_widget_runtime issue #18."
+  "notes": "amendment A2 (flutter_js_widget_runtime#18, fixed by IstiN/flutter_js_widget_runtime PR #10 commit 20697678): the scroll action is a PointerScrollEvent at the center of the surface (a touch drag produces no pointer signal), so the gestureDetector is placed at the surface center and onScroll fires with the documented payload {dx, dy} = the raw scrollDelta sign ({\"dx\":0,\"dy\":60} for scroll [0, 60])."
 }
